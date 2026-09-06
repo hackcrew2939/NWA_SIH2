@@ -1,0 +1,476 @@
+[
+  {
+    "state": "Andhra Pradesh",
+    "code": "AP",
+    "capital": "Amaravati",
+    "lat": 16.5062,
+    "lon": 80.6480,
+    "cities": [
+      { "name": "Visakhapatnam", "lat": 17.6868, "lon": 83.2185 },
+      { "name": "Vijayawada", "lat": 16.5062, "lon": 80.6480 },
+      { "name": "Guntur", "lat": 16.3067, "lon": 80.4365 },
+      { "name": "Tirupati", "lat": 13.6288, "lon": 79.4192 },
+      { "name": "Kurnool", "lat": 15.8281, "lon": 78.0373 }
+    ]
+  },
+  {
+    "state": "Arunachal Pradesh",
+    "code": "AR",
+    "capital": "Itanagar",
+    "lat": 27.0844,
+    "lon": 93.6053,
+    "cities": [
+      { "name": "Itanagar", "lat": 27.0844, "lon": 93.6053 },
+      { "name": "Naharlagun", "lat": 27.1042, "lon": 93.6938 },
+      { "name": "Pasighat", "lat": 28.0664, "lon": 95.3267 },
+      { "name": "Tawang", "lat": 27.5860, "lon": 91.8659 }
+    ]
+  },
+  {
+    "state": "Assam",
+    "code": "AS",
+    "capital": "Dispur",
+    "lat": 26.1445,
+    "lon": 91.7362,
+    "cities": [
+      { "name": "Guwahati", "lat": 26.1445, "lon": 91.7362 },
+      { "name": "Silchar", "lat": 24.8333, "lon": 92.7789 },
+      { "name": "Dibrugarh", "lat": 27.4728, "lon": 94.9120 },
+      { "name": "Jorhat", "lat": 26.7509, "lon": 94.2037 },
+      { "name": "Tezpur", "lat": 26.6528, "lon": 92.7926 }
+    ]
+  },
+  {
+    "state": "Bihar",
+    "code": "BR",
+    "capital": "Patna",
+    "lat": 25.5941,
+    "lon": 85.1376,
+    "cities": [
+      { "name": "Patna", "lat": 25.5941, "lon": 85.1376 },
+      { "name": "Gaya", "lat": 24.7914, "lon": 85.0002 },
+      { "name": "Bhagalpur", "lat": 25.2425, "lon": 86.9842 },
+      { "name": "Muzaffarpur", "lat": 26.1209, "lon": 85.3647 },
+      { "name": "Darbhanga", "lat": 26.1542, "lon": 85.8918 }
+    ]
+  },
+  {
+    "state": "Chhattisgarh",
+    "code": "CG",
+    "capital": "Raipur",
+    "lat": 21.2514,
+    "lon": 81.6296,
+    "cities": [
+      { "name": "Raipur", "lat": 21.2514, "lon": 81.6296 },
+      { "name": "Bhilai", "lat": 21.2144, "lon": 81.4332 },
+      { "name": "Bilaspur", "lat": 22.0797, "lon": 82.1409 },
+      { "name": "Korba", "lat": 22.3595, "lon": 82.7501 }
+    ]
+  },
+  {
+    "state": "Goa",
+    "code": "GA",
+    "capital": "Panaji",
+    "lat": 15.4909,
+    "lon": 73.8278,
+    "cities": [
+      { "name": "Panaji", "lat": 15.4909, "lon": 73.8278 },
+      { "name": "Margao", "lat": 15.2832, "lon": 73.9862 },
+      { "name": "Vasco da Gama", "lat": 15.3982, "lon": 73.8113 },
+      { "name": "Mapusa", "lat": 15.5936, "lon": 73.8142 }
+    ]
+  },
+  {
+    "state": "Gujarat",
+    "code": "GJ",
+    "capital": "Gandhinagar",
+    "lat": 23.2156,
+    "lon": 72.6369,
+    "cities": [
+      { "name": "Ahmedabad", "lat": 23.0225, "lon": 72.5714 },
+      { "name": "Surat", "lat": 21.1702, "lon": 72.8311 },
+      { "name": "Vadodara", "lat": 22.3072, "lon": 73.1812 },
+      { "name": "Rajkot", "lat": 22.3039, "lon": 70.8022 },
+      { "name": "Bhavnagar", "lat": 21.7645, "lon": 72.1519 }
+    ]
+  },
+  {
+    "state": "Haryana",
+    "code": "HR",
+    "capital": "Chandigarh",
+    "lat": 30.7333,
+    "lon": 76.7794,
+    "cities": [
+      { "name": "Gurugram", "lat": 28.4595, "lon": 77.0266 },
+      { "name": "Faridabad", "lat": 28.4089, "lon": 77.3178 },
+      { "name": "Panipat", "lat": 29.3909, "lon": 76.9635 },
+      { "name": "Ambala", "lat": 30.3782, "lon": 76.7767 },
+      { "name": "Rohtak", "lat": 28.8955, "lon": 76.6066 }
+    ]
+  },
+  {
+    "state": "Himachal Pradesh",
+    "code": "HP",
+    "capital": "Shimla",
+    "lat": 31.1048,
+    "lon": 77.1734,
+    "cities": [
+      { "name": "Shimla", "lat": 31.1048, "lon": 77.1734 },
+      { "name": "Dharamshala", "lat": 32.2190, "lon": 76.3234 },
+      { "name": "Manali", "lat": 32.2432, "lon": 77.1892 },
+      { "name": "Solan", "lat": 30.9084, "lon": 77.0999 },
+      { "name": "Mandi", "lat": 31.5892, "lon": 76.9182 }
+    ]
+  },
+  {
+    "state": "Jharkhand",
+    "code": "JH",
+    "capital": "Ranchi",
+    "lat": 23.3441,
+    "lon": 85.3096,
+    "cities": [
+      { "name": "Ranchi", "lat": 23.3441, "lon": 85.3096 },
+      { "name": "Jamshedpur", "lat": 22.8046, "lon": 86.2029 },
+      { "name": "Dhanbad", "lat": 23.7957, "lon": 86.4304 },
+      { "name": "Bokaro", "lat": 23.6693, "lon": 86.1511 },
+      { "name": "Deoghar", "lat": 24.4826, "lon": 86.7001 }
+    ]
+  },
+  {
+    "state": "Karnataka",
+    "code": "KA",
+    "capital": "Bengaluru",
+    "lat": 12.9716,
+    "lon": 77.5946,
+    "cities": [
+      { "name": "Bengaluru", "lat": 12.9716, "lon": 77.5946 },
+      { "name": "Mysuru", "lat": 12.2958, "lon": 76.6394 },
+      { "name": "Hubballi", "lat": 15.3647, "lon": 75.1240 },
+      { "name": "Mangaluru", "lat": 12.9141, "lon": 74.8560 },
+      { "name": "Belagavi", "lat": 15.8497, "lon": 74.4977 }
+    ]
+  },
+  {
+    "state": "Kerala",
+    "code": "KL",
+    "capital": "Thiruvananthapuram",
+    "lat": 8.5241,
+    "lon": 76.9366,
+    "cities": [
+      { "name": "Thiruvananthapuram", "lat": 8.5241, "lon": 76.9366 },
+      { "name": "Kochi", "lat": 9.9312, "lon": 76.2673 },
+      { "name": "Kozhikode", "lat": 11.2588, "lon": 75.7804 },
+      { "name": "Thrissur", "lat": 10.5276, "lon": 76.2144 },
+      { "name": "Kollam", "lat": 8.8932, "lon": 76.6141 }
+    ]
+  },
+  {
+    "state": "Madhya Pradesh",
+    "code": "MP",
+    "capital": "Bhopal",
+    "lat": 23.2599,
+    "lon": 77.4126,
+    "cities": [
+      { "name": "Bhopal", "lat": 23.2599, "lon": 77.4126 },
+      { "name": "Indore", "lat": 22.7196, "lon": 75.8577 },
+      { "name": "Jabalpur", "lat": 23.1815, "lon": 79.9864 },
+      { "name": "Gwalior", "lat": 26.2183, "lon": 78.1828 },
+      { "name": "Ujjain", "lat": 23.1765, "lon": 75.7885 }
+    ]
+  },
+  {
+    "state": "Maharashtra",
+    "code": "MH",
+    "capital": "Mumbai",
+    "lat": 19.0760,
+    "lon": 72.8777,
+    "cities": [
+      { "name": "Mumbai", "lat": 19.0760, "lon": 72.8777 },
+      { "name": "Pune", "lat": 18.5204, "lon": 73.8567 },
+      { "name": "Nagpur", "lat": 21.1458, "lon": 79.0882 },
+      { "name": "Nashik", "lat": 19.9975, "lon": 73.7898 },
+      { "name": "Chhatrapati Sambhajinagar", "lat": 19.8762, "lon": 75.3433 },
+      { "name": "Thane", "lat": 19.2183, "lon": 72.9781 }
+    ]
+  },
+  {
+    "state": "Manipur",
+    "code": "MN",
+    "capital": "Imphal",
+    "lat": 24.8170,
+    "lon": 93.9368,
+    "cities": [
+      { "name": "Imphal", "lat": 24.8170, "lon": 93.9368 },
+      { "name": "Churachandpur", "lat": 24.3333, "lon": 93.6833 },
+      { "name": "Thoubal", "lat": 24.6382, "lon": 94.0044 }
+    ]
+  },
+  {
+    "state": "Meghalaya",
+    "code": "ML",
+    "capital": "Shillong",
+    "lat": 25.5788,
+    "lon": 91.8933,
+    "cities": [
+      { "name": "Shillong", "lat": 25.5788, "lon": 91.8933 },
+      { "name": "Tura", "lat": 25.5138, "lon": 90.2201 },
+      { "name": "Cherrapunji (Sohra)", "lat": 25.2986, "lon": 91.7329 },
+      { "name": "Jowai", "lat": 25.4452, "lon": 92.2036 }
+    ]
+  },
+  {
+    "state": "Mizoram",
+    "code": "MZ",
+    "capital": "Aizawl",
+    "lat": 23.7271,
+    "lon": 92.7176,
+    "cities": [
+      { "name": "Aizawl", "lat": 23.7271, "lon": 92.7176 },
+      { "name": "Lunglei", "lat": 22.8671, "lon": 92.7655 },
+      { "name": "Champhai", "lat": 23.4560, "lon": 93.3282 }
+    ]
+  },
+  {
+    "state": "Nagaland",
+    "code": "NL",
+    "capital": "Kohima",
+    "lat": 25.6751,
+    "lon": 94.1086,
+    "cities": [
+      { "name": "Kohima", "lat": 25.6751, "lon": 94.1086 },
+      { "name": "Dimapur", "lat": 25.9064, "lon": 93.7271 },
+      { "name": "Mokokchung", "lat": 26.3255, "lon": 94.5204 }
+    ]
+  },
+  {
+    "state": "Odisha",
+    "code": "OD",
+    "capital": "Bhubaneswar",
+    "lat": 20.2961,
+    "lon": 85.8245,
+    "cities": [
+      { "name": "Bhubaneswar", "lat": 20.2961, "lon": 85.8245 },
+      { "name": "Cuttack", "lat": 20.4625, "lon": 85.8830 },
+      { "name": "Rourkela", "lat": 22.2604, "lon": 84.8536 },
+      { "name": "Puri", "lat": 19.8135, "lon": 85.8312 },
+      { "name": "Sambalpur", "lat": 21.4669, "lon": 83.9812 }
+    ]
+  },
+  {
+    "state": "Punjab",
+    "code": "PB",
+    "capital": "Chandigarh",
+    "lat": 30.7333,
+    "lon": 76.7794,
+    "cities": [
+      { "name": "Ludhiana", "lat": 30.9010, "lon": 75.8573 },
+      { "name": "Amritsar", "lat": 31.6340, "lon": 74.8723 },
+      { "name": "Jalandhar", "lat": 31.3260, "lon": 75.5762 },
+      { "name": "Patiala", "lat": 30.3398, "lon": 76.3869 },
+      { "name": "Bathinda", "lat": 30.2110, "lon": 74.9455 }
+    ]
+  },
+  {
+    "state": "Rajasthan",
+    "code": "RJ",
+    "capital": "Jaipur",
+    "lat": 26.9124,
+    "lon": 75.7873,
+    "cities": [
+      { "name": "Jaipur", "lat": 26.9124, "lon": 75.7873 },
+      { "name": "Jodhpur", "lat": 26.2389, "lon": 73.0243 },
+      { "name": "Udaipur", "lat": 24.5854, "lon": 73.7125 },
+      { "name": "Kota", "lat": 25.2138, "lon": 75.8648 },
+      { "name": "Bikaner", "lat": 28.0229, "lon": 73.3119 }
+    ]
+  },
+  {
+    "state": "Sikkim",
+    "code": "SK",
+    "capital": "Gangtok",
+    "lat": 27.3389,
+    "lon": 88.6065,
+    "cities": [
+      { "name": "Gangtok", "lat": 27.3389, "lon": 88.6065 },
+      { "name": "Namchi", "lat": 27.1667, "lon": 88.3500 },
+      { "name": "Geyzing", "lat": 27.2833, "lon": 88.2500 }
+    ]
+  },
+  {
+    "state": "Tamil Nadu",
+    "code": "TN",
+    "capital": "Chennai",
+    "lat": 13.0827,
+    "lon": 80.2707,
+    "cities": [
+      { "name": "Chennai", "lat": 13.0827, "lon": 80.2707 },
+      { "name": "Coimbatore", "lat": 11.0168, "lon": 76.9558 },
+      { "name": "Madurai", "lat": 9.9252, "lon": 78.1198 },
+      { "name": "Tiruchirappalli", "lat": 10.7905, "lon": 78.7047 },
+      { "name": "Salem", "lat": 11.6643, "lon": 78.1460 }
+    ]
+  },
+  {
+    "state": "Telangana",
+    "code": "TS",
+    "capital": "Hyderabad",
+    "lat": 17.3850,
+    "lon": 78.4867,
+    "cities": [
+      { "name": "Hyderabad", "lat": 17.3850, "lon": 78.4867 },
+      { "name": "Warangal", "lat": 17.9689, "lon": 79.5941 },
+      { "name": "Nizamabad", "lat": 18.6725, "lon": 78.0941 },
+      { "name": "Karimnagar", "lat": 18.4386, "lon": 79.1288 },
+      { "name": "Khammam", "lat": 17.2473, "lon": 80.1514 }
+    ]
+  },
+  {
+    "state": "Tripura",
+    "code": "TR",
+    "capital": "Agartala",
+    "lat": 23.8315,
+    "lon": 91.2868,
+    "cities": [
+      { "name": "Agartala", "lat": 23.8315, "lon": 91.2868 },
+      { "name": "Dharmanagar", "lat": 24.3833, "lon": 92.1667 },
+      { "name": "Udaipur", "lat": 23.5333, "lon": 91.4833 }
+    ]
+  },
+  {
+    "state": "Uttar Pradesh",
+    "code": "UP",
+    "capital": "Lucknow",
+    "lat": 26.8467,
+    "lon": 80.9462,
+    "cities": [
+      { "name": "Lucknow", "lat": 26.8467, "lon": 80.9462 },
+      { "name": "Kanpur", "lat": 26.4499, "lon": 80.3319 },
+      { "name": "Varanasi", "lat": 25.3176, "lon": 82.9739 },
+      { "name": "Noida", "lat": 28.5355, "lon": 77.3910 },
+      { "name": "Agra", "lat": 27.1767, "lon": 78.0081 },
+      { "name": "Prayagraj", "lat": 25.4358, "lon": 81.8463 }
+    ]
+  },
+  {
+    "state": "Uttarakhand",
+    "code": "UK",
+    "capital": "Dehradun",
+    "lat": 30.3165,
+    "lon": 78.0322,
+    "cities": [
+      { "name": "Dehradun", "lat": 30.3165, "lon": 78.0322 },
+      { "name": "Haridwar", "lat": 29.9457, "lon": 78.1642 },
+      { "name": "Rishikesh", "lat": 30.0869, "lon": 78.2676 },
+      { "name": "Nainital", "lat": 29.3919, "lon": 79.4542 },
+      { "name": "Haldwani", "lat": 29.2183, "lon": 79.5130 }
+    ]
+  },
+  {
+    "state": "West Bengal",
+    "code": "WB",
+    "capital": "Kolkata",
+    "lat": 22.5726,
+    "lon": 88.3639,
+    "cities": [
+      { "name": "Kolkata", "lat": 22.5726, "lon": 88.3639 },
+      { "name": "Howrah", "lat": 22.5958, "lon": 88.2636 },
+      { "name": "Siliguri", "lat": 26.7271, "lon": 88.3953 },
+      { "name": "Durgapur", "lat": 23.5204, "lon": 87.3119 },
+      { "name": "Asansol", "lat": 23.6739, "lon": 86.9524 },
+      { "name": "Darjeeling", "lat": 27.0410, "lon": 88.2663 }
+    ]
+  },
+  {
+    "state": "Delhi",
+    "code": "DL",
+    "capital": "New Delhi",
+    "lat": 28.6139,
+    "lon": 77.2090,
+    "cities": [
+      { "name": "New Delhi", "lat": 28.6139, "lon": 77.2090 },
+      { "name": "North Delhi", "lat": 28.7180, "lon": 77.1500 },
+      { "name": "South Delhi", "lat": 28.5244, "lon": 77.1855 },
+      { "name": "Dwarka", "lat": 28.5921, "lon": 77.0460 }
+    ]
+  },
+  {
+    "state": "Jammu and Kashmir",
+    "code": "JK",
+    "capital": "Srinagar",
+    "lat": 34.0837,
+    "lon": 74.7973,
+    "cities": [
+      { "name": "Srinagar", "lat": 34.0837, "lon": 74.7973 },
+      { "name": "Jammu", "lat": 32.7266, "lon": 74.8570 },
+      { "name": "Anantnag", "lat": 33.7311, "lon": 75.1522 },
+      { "name": "Baramulla", "lat": 34.2000, "lon": 74.3500 }
+    ]
+  },
+  {
+    "state": "Ladakh",
+    "code": "LA",
+    "capital": "Leh",
+    "lat": 34.1526,
+    "lon": 77.5771,
+    "cities": [
+      { "name": "Leh", "lat": 34.1526, "lon": 77.5771 },
+      { "name": "Kargil", "lat": 34.5539, "lon": 76.1310 }
+    ]
+  },
+  {
+    "state": "Chandigarh",
+    "code": "CH",
+    "capital": "Chandigarh",
+    "lat": 30.7333,
+    "lon": 76.7794,
+    "cities": [
+      { "name": "Chandigarh", "lat": 30.7333, "lon": 76.7794 }
+    ]
+  },
+  {
+    "state": "Puducherry",
+    "code": "PY",
+    "capital": "Puducherry",
+    "lat": 11.9416,
+    "lon": 79.8083,
+    "cities": [
+      { "name": "Puducherry", "lat": 11.9416, "lon": 79.8083 },
+      { "name": "Karaikal", "lat": 10.9254, "lon": 79.8380 }
+    ]
+  },
+  {
+    "state": "Andaman and Nicobar Islands",
+    "code": "AN",
+    "capital": "Port Blair",
+    "lat": 11.6234,
+    "lon": 92.7265,
+    "cities": [
+      { "name": "Port Blair", "lat": 11.6234, "lon": 92.7265 }
+    ]
+  },
+  {
+    "state": "Lakshadweep",
+    "code": "LD",
+    "capital": "Kavaratti",
+    "lat": 10.5669,
+    "lon": 72.6420,
+    "cities": [
+      { "name": "Kavaratti", "lat": 10.5669, "lon": 72.6420 },
+      { "name": "Agatti", "lat": 10.8534, "lon": 72.1931 },
+      { "name": "Andrott", "lat": 10.8294, "lon": 73.6667 },
+      { "name": "Minicoy", "lat": 8.2833, "lon": 73.0500 }
+    ]
+  },
+  {
+    "state": "Dadra and Nagar Haveli and Daman and Diu",
+    "code": "DH",
+    "capital": "Daman",
+    "lat": 20.3974,
+    "lon": 72.8328,
+    "cities": [
+      { "name": "Daman", "lat": 20.3974, "lon": 72.8328 },
+      { "name": "Diu", "lat": 20.7144, "lon": 70.9874 },
+      { "name": "Silvassa", "lat": 20.2763, "lon": 73.0083 }
+    ]
+  }
+]

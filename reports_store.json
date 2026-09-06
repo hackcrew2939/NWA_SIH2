@@ -1,0 +1,658 @@
+[
+  {
+    "id": "rep-1788622895423-55",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Ranchi",
+    "state": "Jharkhand",
+    "lat": 23.3234,
+    "lon": 85.2971,
+    "description": "rik11",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "rik11",
+    "timestamp": "2026-09-05T15:41:35.423Z",
+    "verified_status": "rejected",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 68,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 13,
+      "credibility_score": 87,
+      "fake_risk_level": "low",
+      "reasons": [
+        "GPS telemetry corroborated within standard Indian subcontinent zone",
+        "Unverified text-only submission without multimedia sensor proof"
+      ],
+      "auto_categorized": "other"
+    },
+    "is_duplicate": true,
+    "duplicate_of": "rep-1788622536785-572"
+  },
+  {
+    "id": "rep-1788622839351-64",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Connaught Place, New Delhi",
+    "state": "Delhi",
+    "lat": 28.6315,
+    "lon": 77.2167,
+    "description": "Severe waterlogging under Minto Bridge.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Test Citizen",
+    "timestamp": "2026-09-05T15:40:39.351Z",
+    "verified_status": "rejected",
+    "urgency": "high",
+    "source_trust": {
+      "trust_score": 68,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 13,
+      "credibility_score": 87,
+      "fake_risk_level": "low",
+      "reasons": [
+        "GPS telemetry corroborated within standard Indian subcontinent zone",
+        "Unverified text-only submission without multimedia sensor proof"
+      ],
+      "auto_categorized": "flood"
+    },
+    "is_duplicate": true,
+    "duplicate_of": "rep-1788622806239-631"
+  },
+  {
+    "id": "rep-1788622806239-631",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Connaught Place, New Delhi",
+    "state": "Delhi",
+    "lat": 28.6315,
+    "lon": 77.2167,
+    "description": "Severe waterlogging under Minto Bridge.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Test Citizen",
+    "timestamp": "2026-09-05T15:40:06.239Z",
+    "verified_status": "unverified",
+    "urgency": "high",
+    "source_trust": {
+      "trust_score": 68,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 13,
+      "credibility_score": 87,
+      "fake_risk_level": "low",
+      "reasons": [
+        "GPS telemetry corroborated within standard Indian subcontinent zone",
+        "Unverified text-only submission without multimedia sensor proof"
+      ],
+      "auto_categorized": "flood"
+    }
+  },
+  {
+    "id": "rep-1788622726742-268",
+    "source": "citizen",
+    "category": "thunderstorm",
+    "location": "Salt Lake Sector V, Kolkata",
+    "state": "West Bengal",
+    "lat": 22.58,
+    "lon": 88.42,
+    "description": "Sudden high velocity squalls and tree branch fall near IT hub.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Anirban Sen",
+    "timestamp": "2026-09-05T15:38:46.742Z",
+    "verified_status": "unverified",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 68,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 13,
+      "credibility_score": 87,
+      "fake_risk_level": "low",
+      "reasons": [
+        "GPS telemetry corroborated within standard Indian subcontinent zone",
+        "Unverified text-only submission without multimedia sensor proof"
+      ],
+      "auto_categorized": "strong_winds"
+    }
+  },
+  {
+    "id": "rep-1788622536785-572",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Ranchi",
+    "state": "Jharkhand",
+    "lat": 23.3234,
+    "lon": 85.2969,
+    "description": "rik",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "rik",
+    "timestamp": "2026-09-05T15:35:36.785Z",
+    "verified_status": "unverified",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 68,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 13,
+      "credibility_score": 87,
+      "fake_risk_level": "low",
+      "reasons": [
+        "GPS telemetry corroborated within standard Indian subcontinent zone",
+        "Unverified text-only submission without multimedia sensor proof"
+      ],
+      "auto_categorized": "other"
+    }
+  },
+  {
+    "id": "rep-1788622297849-256",
+    "source": "citizen",
+    "category": "cyclone",
+    "location": "Connaught Place, Delhi",
+    "state": "Delhi",
+    "lat": 28.6315,
+    "lon": 77.2167,
+    "description": "Tsunami in Delhi with 50 degree snow aliens",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Anonymous",
+    "timestamp": "2026-09-05T15:31:37.849Z",
+    "verified_status": "unverified",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 45,
+      "tier": "Untrusted / Anonymous",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 98,
+      "credibility_score": 2,
+      "fake_risk_level": "high",
+      "reasons": [
+        "Sensationalist or physically impossible weather terminology detected",
+        "Meteorological anomaly: Tropical cyclone event reported in inland northern/central state",
+        "GPS telemetry corroborated within standard Indian subcontinent zone",
+        "Unverified text-only submission without multimedia sensor proof"
+      ],
+      "auto_categorized": "other"
+    }
+  },
+  {
+    "id": "rep-1788622297835-194",
+    "source": "citizen",
+    "category": "flood",
+    "location": "Ranchi, Jharkhand",
+    "state": "Jharkhand",
+    "lat": 23.3441,
+    "lon": 85.3096,
+    "description": "Subarnarekha river overflowing due to heavy rain, water logging in low lying areas",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Local Spotter",
+    "timestamp": "2026-09-05T15:31:37.835Z",
+    "verified_status": "unverified",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 68,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 13,
+      "credibility_score": 87,
+      "fake_risk_level": "low",
+      "reasons": [
+        "GPS telemetry corroborated within standard Indian subcontinent zone",
+        "Unverified text-only submission without multimedia sensor proof"
+      ],
+      "auto_categorized": "heavy_rain"
+    }
+  },
+  {
+    "id": "rep-1788621997796-87",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Bandra West, Mumbai",
+    "state": "Maharashtra",
+    "lat": 19.0596,
+    "lon": 72.8295,
+    "description": "Heavy waterlogging on Linking Road, 2 feet water accumulated.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Vikram Joshi",
+    "timestamp": "2026-09-05T15:26:37.796Z",
+    "verified_status": "verified",
+    "urgency": "high",
+    "source_trust": {
+      "trust_score": 68,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 13,
+      "credibility_score": 87,
+      "fake_risk_level": "low",
+      "reasons": [
+        "GPS telemetry corroborated within standard Indian subcontinent zone",
+        "Unverified text-only submission without multimedia sensor proof"
+      ],
+      "auto_categorized": "flood"
+    }
+  },
+  {
+    "id": "rep-1788592118269-944",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Connaught Place, Delhi",
+    "state": "Delhi",
+    "lat": 28.6315,
+    "lon": 77.2167,
+    "description": "Heavy sudden thunderstorm downpour, visibility reduced to 500m.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Test Citizen",
+    "timestamp": "2026-09-05T07:08:38.269Z",
+    "verified_status": "verified",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 68,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 13,
+      "credibility_score": 87,
+      "fake_risk_level": "low",
+      "reasons": [
+        "GPS telemetry corroborated within standard Indian subcontinent zone",
+        "Unverified text-only submission without multimedia sensor proof"
+      ],
+      "auto_categorized": "fog"
+    }
+  },
+  {
+    "id": "rep-1788589692169-78",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Silchar",
+    "state": "Assam",
+    "lat": 24.8333,
+    "lon": 92.7789,
+    "description": ";oqhwjhqwdowq",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "kahwdfjqwef",
+    "timestamp": "2026-09-05T06:28:12.169Z",
+    "verified_status": "verified",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 68,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 13,
+      "credibility_score": 87,
+      "fake_risk_level": "low",
+      "reasons": [
+        "GPS telemetry corroborated within standard Indian subcontinent zone",
+        "Unverified text-only submission without multimedia sensor proof",
+        "Corroborated with active station observation data"
+      ],
+      "auto_categorized": "other"
+    }
+  },
+  {
+    "id": "rep-1788547505057-282",
+    "source": "citizen",
+    "category": "cyclone",
+    "location": "Porbandar",
+    "state": "Gujarat",
+    "lat": 21.6417,
+    "lon": 69.6293,
+    "description": "High Arabian Sea squalls and waves.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Anonymous Citizen",
+    "timestamp": "2026-09-04T18:45:05.057Z",
+    "verified_status": "flagged_fake",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 45,
+      "tier": "Untrusted / Anonymous",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 13,
+      "credibility_score": 87,
+      "fake_risk_level": "low",
+      "reasons": [
+        "GPS telemetry corroborated within standard Indian subcontinent zone",
+        "Unverified text-only submission without multimedia sensor proof"
+      ],
+      "auto_categorized": "strong_winds"
+    }
+  },
+  {
+    "id": "rep-001",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Marine Drive, Mumbai",
+    "state": "Maharashtra",
+    "lat": 18.9438,
+    "lon": 72.8232,
+    "description": "Waterlogging up to 1.5 ft near Churchgate station. Traffic slow moving.",
+    "timestamp": "2026-09-04T18:00:00.000Z",
+    "verified_status": "verified",
+    "reporter_name": "Aakash Mehta",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 85,
+      "tier": "Trusted Spotter",
+      "is_verified_source": true
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 8,
+      "credibility_score": 92,
+      "fake_risk_level": "low",
+      "reasons": [
+        "Corroborated by Mumbai Doppler Radar"
+      ],
+      "auto_categorized": "heavy_rain"
+    }
+  },
+  {
+    "id": "rep-002",
+    "source": "citizen",
+    "category": "cyclone",
+    "location": "Puri Beach Road",
+    "state": "Odisha",
+    "lat": 19.7983,
+    "lon": 85.8249,
+    "description": "High storm surge and gusty winds exceeding 75 km/h. Sea rough, fishermen advised not to venture.",
+    "timestamp": "2026-09-04T17:45:00.000Z",
+    "verified_status": "unverified",
+    "reporter_name": "Priyanka Das",
+    "urgency": "high",
+    "source_trust": {
+      "trust_score": 90,
+      "tier": "IMD Volunteer Network",
+      "is_verified_source": true
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 5,
+      "credibility_score": 95,
+      "fake_risk_level": "low",
+      "reasons": [
+        "Bay of Bengal synoptic depression corroborated"
+      ],
+      "auto_categorized": "cyclone"
+    }
+  },
+  {
+    "id": "rep-003",
+    "source": "citizen",
+    "category": "heatwave",
+    "location": "Churu District",
+    "state": "Rajasthan",
+    "lat": 28.29,
+    "lon": 74.96,
+    "description": "Severe heatwave conditions with loo winds. Outdoor activity minimal after 11 AM.",
+    "timestamp": "2026-09-04T16:30:00.000Z",
+    "verified_status": "unverified",
+    "reporter_name": "Sunil Sharma",
+    "urgency": "high",
+    "source_trust": {
+      "trust_score": 78,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 12,
+      "credibility_score": 88,
+      "fake_risk_level": "low",
+      "reasons": [
+        "Desert zone temperature anomaly matches satellite feed"
+      ],
+      "auto_categorized": "heatwave"
+    }
+  },
+  {
+    "id": "rep-004",
+    "source": "citizen",
+    "category": "thunderstorm",
+    "location": "Whitefield, Bengaluru",
+    "state": "Karnataka",
+    "lat": 12.9698,
+    "lon": 77.75,
+    "description": "Sudden intense thunderstorm with frequent lightning and localized power outages.",
+    "timestamp": "2026-09-04T18:15:00.000Z",
+    "verified_status": "verified",
+    "reporter_name": "Rohan Iyer",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 82,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 10,
+      "credibility_score": 90,
+      "fake_risk_level": "low",
+      "reasons": [
+        "Convective cloud echo matches IMD Bengaluru radar"
+      ],
+      "auto_categorized": "thunderstorm"
+    }
+  },
+  {
+    "id": "rep-005",
+    "source": "citizen",
+    "category": "flood",
+    "location": "Kaziranga National Park",
+    "state": "Assam",
+    "lat": 26.5775,
+    "lon": 93.1711,
+    "description": "Brahmaputra water level breached danger mark, low-lying animal corridors inundated.",
+    "timestamp": "2026-09-04T15:20:00.000Z",
+    "verified_status": "verified",
+    "reporter_name": "Himanta Borah",
+    "urgency": "high",
+    "source_trust": {
+      "trust_score": 95,
+      "tier": "State Disaster Response Liaison",
+      "is_verified_source": true
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 3,
+      "credibility_score": 97,
+      "fake_risk_level": "low",
+      "reasons": [
+        "Central Water Commission hydrological telemetry verified"
+      ],
+      "auto_categorized": "flood"
+    }
+  },
+  {
+    "id": "rep-006",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Aluva, Kochi",
+    "state": "Kerala",
+    "lat": 10.1076,
+    "lon": 76.3516,
+    "description": "Periyar river swelling due to continuous torrential monsoon showers. Orange alert sounded.",
+    "timestamp": "2026-09-04T17:10:00.000Z",
+    "verified_status": "verified",
+    "reporter_name": "Ananya Menon",
+    "urgency": "high",
+    "source_trust": {
+      "trust_score": 88,
+      "tier": "Trusted Spotter",
+      "is_verified_source": true
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 6,
+      "credibility_score": 94,
+      "fake_risk_level": "low",
+      "reasons": [
+        "Kochi IMD radar corroboration active"
+      ],
+      "auto_categorized": "heavy_rain"
+    }
+  },
+  {
+    "id": "rep-007",
+    "source": "citizen",
+    "category": "hailstorm",
+    "location": "Solan Valley",
+    "state": "Himachal Pradesh",
+    "lat": 30.9045,
+    "lon": 77.0967,
+    "description": "Heavy hailstorm with golf-ball sized hailstones damaging apple orchard nets.",
+    "timestamp": "2026-09-04T14:45:00.000Z",
+    "verified_status": "verified",
+    "reporter_name": "Vikram Thakur",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 80,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 14,
+      "credibility_score": 86,
+      "fake_risk_level": "low",
+      "reasons": [
+        "Western disturbance freezing altitude matches"
+      ],
+      "auto_categorized": "hailstorm"
+    }
+  },
+  {
+    "id": "rep-008",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Connaught Place",
+    "state": "Delhi",
+    "lat": 28.6315,
+    "lon": 77.2167,
+    "description": "Heavy sudden downpour with waterlogging near Minto bridge underpass.",
+    "timestamp": "2026-09-04T18:10:00.000Z",
+    "verified_status": "flagged_fake",
+    "reporter_name": "Deepak Gupta",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 84,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 9,
+      "credibility_score": 91,
+      "fake_risk_level": "low",
+      "reasons": [
+        "Palam Doppler Radar rain cell confirmed"
+      ],
+      "auto_categorized": "heavy_rain"
+    }
+  },
+  {
+    "id": "rep-009",
+    "source": "citizen",
+    "category": "cyclone",
+    "location": "Marina Beach",
+    "state": "Tamil Nadu",
+    "lat": 13.0475,
+    "lon": 80.2824,
+    "description": "Gale winds and high tidal waves reaching coast road. Storm signals hoisted.",
+    "timestamp": "2026-09-04T16:00:00.000Z",
+    "verified_status": "unverified",
+    "reporter_name": "Kavitha Raman",
+    "urgency": "high",
+    "source_trust": {
+      "trust_score": 89,
+      "tier": "Trusted Spotter",
+      "is_verified_source": true
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 7,
+      "credibility_score": 93,
+      "fake_risk_level": "low",
+      "reasons": [
+        "Chennai Doppler radar cyclone track matches"
+      ],
+      "auto_categorized": "cyclone"
+    }
+  },
+  {
+    "id": "rep-010",
+    "source": "citizen",
+    "category": "flood",
+    "location": "Howrah Riverside",
+    "state": "West Bengal",
+    "lat": 22.5892,
+    "lon": 88.3414,
+    "description": "High tide combined with catchment runoff leading to localized ghat flooding.",
+    "timestamp": "2026-09-04T15:40:00.000Z",
+    "verified_status": "unverified",
+    "reporter_name": "Subhashish Roy",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 86,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 11,
+      "credibility_score": 89,
+      "fake_risk_level": "low",
+      "reasons": [
+        "Hooghly tidal gauge data matches level"
+      ],
+      "auto_categorized": "flood"
+    }
+  },
+  {
+    "id": "rep-011",
+    "source": "citizen",
+    "category": "thunderstorm",
+    "location": "Kandla Port",
+    "state": "Gujarat",
+    "lat": 23.0033,
+    "lon": 70.2208,
+    "description": "Squall line with wind gusts up to 60 km/h and thunder squalls in Gulf of Kutch.",
+    "timestamp": "2026-09-04T17:00:00.000Z",
+    "verified_status": "unverified",
+    "reporter_name": "Mahesh Patel",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 75,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 16,
+      "credibility_score": 84,
+      "fake_risk_level": "low",
+      "reasons": [
+        "Coastal radar echo indicates convective activity"
+      ],
+      "auto_categorized": "thunderstorm"
+    }
+  }
+]

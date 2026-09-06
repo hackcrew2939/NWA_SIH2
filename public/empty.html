@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>No Data Records Available | National Weather Analytics</title>
+  <meta name="description" content="No meteorological data records or telemetry reports match your specified filter parameters on the National Weather Analytics platform.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .empty-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      background: var(--bg-main);
+    }
+    .empty-card {
+      max-width: 580px;
+      width: 100%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      box-shadow: var(--card-shadow);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .empty-icon {
+      font-size: 3.5rem;
+      line-height: 1;
+      color: var(--accent-primary);
+      margin-bottom: 1.25rem;
+    }
+    .empty-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      font-family: var(--font-heading);
+    }
+    .empty-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .empty-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .empty-contact {
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .contact-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .contact-links a {
+      color: var(--accent-primary);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .contact-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="empty-wrapper">
+    <div class="empty-card">
+      <div class="empty-icon">
+        <i class="fa-solid fa-cloud-sun"></i>
+      </div>
+      <h1 class="empty-title">No Observation Records Available</h1>
+      <p class="empty-desc">
+        There are currently no active weather alerts, citizen reports, or telemetry logs matching the selected query parameters or region filter.
+      </p>
+
+      <div class="empty-actions">
+        <a href="/" class="btn btn-primary">
+          <i class="fa-solid fa-house"></i> Return to Live Dashboard
+        </a>
+        <a href="/privacy.html" class="btn btn-outline">
+          <i class="fa-solid fa-shield-halved"></i> Privacy Policy
+        </a>
+        <a href="/terms.html" class="btn btn-outline">
+          <i class="fa-solid fa-file-contract"></i> Terms of Service
+        </a>
+      </div>
+
+      <div class="empty-contact">
+        <div>National Meteorological Operational Center, Mausam Bhawan, Lodhi Road, New Delhi 110003</div>
+        <div class="contact-links">
+          <a href="mailto:support@weatheranalytics.in">
+            <i class="fa-regular fa-envelope"></i> support@weatheranalytics.in
+          </a>
+          <a href="tel:+911124611792">
+            <i class="fa-solid fa-phone"></i> +91 (011) 2461-1792
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

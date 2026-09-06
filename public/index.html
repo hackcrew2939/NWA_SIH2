@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>National Weather Analytics | National Weather Big Data Analytics Platform</title>
+  <meta name="description" content="National Weather Analytics (NWA) provides real-time India weather forecasts, interactive maps, citizen weather reporting, and meteorological intelligence.">
+  <meta name="keywords" content="IMD, India Weather, Weather Analytics, Live Weather India, Citizen Weather Reports, Open-Meteo, Cyclone Alert, Flood Warning">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- External Stylesheets & Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/styles.css?v=7">
+</head>
+<body class="sidebar-collapsed">
+
+  <!-- =========================================================
+       Application Layout (Clean Production Structure)
+       ========================================================= -->
+  <div class="app-layout">
+
+    <!-- Left Sidebar Navigation -->
+    <aside class="app-sidebar" id="appSidebar">
+      <!-- Authoritative Brand Header -->
+      <div class="sidebar-brand">
+        <div class="brand-icon-wrap brand-icon-favicon" title="National Weather Big Data Analytics Platform">
+          <img src="/favicon.svg" alt="NWA Logo" class="brand-favicon-img" />
+        </div>
+        <div class="brand-text">
+          <h1 class="brand-name">NWA</h1>
+          <div class="brand-tagline">National Weather Big Data Platform</div>
+        </div>
+        <button id="sidebarCollapseBtn" class="sidebar-collapse-btn" aria-label="Expand Sidebar" title="Expand Sidebar">
+          <i class="fa-solid fa-angles-right"></i>
+        </button>
+        <button id="sidebarCloseBtn" class="sidebar-close-btn" aria-label="Close Navigation Menu" title="Close Navigation Menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="sidebar-inner">
+        <!-- Navigation Section -->
+        <div class="sidebar-section-title">METEOROLOGY</div>
+        <nav class="sidebar-nav">
+          <button class="tab-btn active" data-tab="live-weather-view" title="Live Forecast & Map">
+            <i class="fa-solid fa-cloud-sun-rain"></i>
+            <span class="tab-btn-text">Live Forecast & Map</span>
+          </button>
+          <button class="tab-btn" data-tab="citizen-reports-view" title="Citizen Reports">
+            <i class="fa-solid fa-users"></i>
+            <span class="tab-btn-text">Citizen Reports</span>
+          </button>
+          <button class="tab-btn" data-tab="social-stream-view" title="Social Intelligence">
+            <i class="fa-brands fa-x-twitter"></i>
+            <span class="tab-btn-text">Social Intelligence</span>
+          </button>
+          <button class="tab-btn" data-tab="analytics-view" title="Analytics & Trends">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span class="tab-btn-text">Analytics & Trends</span>
+          </button>
+          <button class="tab-btn" data-tab="admin-panel-view" id="navAdminPanelBtn" title="Supervisory Admin & AI Moderation Panel">
+            <i class="fa-solid fa-user-shield" style="color: #0284c7;"></i>
+            <span class="tab-btn-text">Admin Panel</span>
+          </button>
+        </nav>
+
+        <!-- Quick Actions Section -->
+        <div class="sidebar-section-title" style="margin-top: 1rem;">QUICK ACTIONS</div>
+        <nav class="sidebar-nav">
+          <button class="quick-action-btn" type="button" title="Report Severe Event" onclick="if(window.NWAReports) { NWAReports.openReportModal(); } else { document.getElementById('reportModal')?.classList.add('active'); }">
+            <i class="fa-solid fa-bullhorn"></i>
+            <span class="tab-btn-text">Report Severe Event</span>
+          </button>
+          <button class="tab-btn" data-tab="official-reports-view" title="Download Official Reports">
+            <i class="fa-solid fa-file-arrow-down"></i>
+            <span class="tab-btn-text">Download Official Reports</span>
+          </button>
+        </nav>
+
+        <!-- Sidebar Footer Legal -->
+        <div class="sidebar-footer-info">
+          <div class="footer-legal-links" style="display: flex; gap: 0.5rem; font-size: 0.75rem; flex-wrap: wrap; color: var(--sidebar-text-muted);">
+            <a href="/privacy.html" style="color: var(--sidebar-text-muted); text-decoration: none;">Privacy</a>
+            <span>•</span>
+            <a href="/terms.html" style="color: var(--sidebar-text-muted); text-decoration: none;">Terms</a>
+            <span>•</span>
+            <a href="/empty.html" style="color: var(--sidebar-text-muted); text-decoration: none;">Archive</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Mobile Drawer Overlay Backdrop -->
+    <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
+
+    <!-- Main Workspace (Header + Content) -->
+    <div class="main-wrapper">
+      
+      <!-- Top Utility Header -->
+      <header class="site-header">
+        <div class="header-inner">
+          <!-- Mobile Menu Hamburger Button -->
+          <button id="mobileMenuToggleBtn" class="mobile-menu-toggle-btn" aria-label="Toggle Navigation Menu" title="Open Navigation Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <!-- Search Bar with Geolocation -->
+          <div class="search-container">
+            <div class="search-input-group">
+              <i class="fa-solid fa-magnifying-glass search-icon"></i>
+              <input 
+                type="text" 
+                id="citySearchInput" 
+                class="search-input" 
+                placeholder="Search city, district, or Indian state..." 
+                autocomplete="off"
+              />
+              <button id="geoBtn" class="geo-btn" title="Use current GPS location">
+                <i class="fa-solid fa-crosshairs"></i>
+              </button>
+            </div>
+            <div id="autocompleteResults" class="autocomplete-results"></div>
+          </div>
+
+          <!-- State & City Fallback Dropdowns -->
+          <div class="state-fallback-group">
+            <select id="stateSelect" class="custom-select" title="Select State / UT">
+              <option value="">State / UT</option>
+            </select>
+            <select id="citySelect" class="custom-select" title="Select District / City">
+              <option value="">City</option>
+            </select>
+          </div>
+
+          <!-- Header Actions -->
+          <div class="header-actions">
+            <button id="refreshWeatherBtn" class="btn btn-outline" title="Fetch fresh weather data">
+              <i class="fa-solid fa-rotate-right"></i>
+              <span>Refresh</span>
+            </button>
+
+            <button id="openReportModalBtn" class="btn btn-accent" title="Submit Citizen Weather Report">
+              <i class="fa-solid fa-bullhorn"></i>
+              <span>Report Incident</span>
+            </button>
+
+            <button id="topNavAdminBtn" class="btn btn-outline header-admin-btn" title="Open Admin Portal" onclick="document.getElementById('navAdminPanelBtn')?.click();">
+              <i class="fa-solid fa-user-shield" style="color: var(--accent-primary);"></i>
+              <span id="topNavAdminBtnText">Admin Portal</span>
+            </button>
+
+            <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle Dark/Light Mode">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content Container -->
+      <main class="app-container app-main-content">
+
+    <!-- =======================================================
+         VIEW 1: Live Weather Dashboard
+         ======================================================= -->
+    <section id="live-weather-view" class="tab-view active">
+      
+      <!-- Location & Metadata Bar -->
+      <div class="location-status-bar">
+        <div class="location-title-info">
+          <div class="location-pin-badge">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <div>
+            <div class="location-name">
+              <span id="currentLocationTitle">New Delhi</span>
+              <span id="cachedStatusBadge" class="cached-tag" style="display: none;">Cached</span>
+            </div>
+            <div id="currentLocationState" class="location-state">Delhi, India</div>
+          </div>
+        </div>
+
+        <div class="location-right-info">
+          <!-- Live Indian Standard Time (IST) Clock Badge -->
+          <div id="istClockBadge" class="ist-clock-badge" title="Indian Standard Time (UTC+05:30)">
+            <span class="live-pulse-dot"></span>
+            <span id="istClockText">--:--:-- IST</span>
+            <span class="ist-tag">IST</span>
+          </div>
+
+          <!-- Voice Weather Briefing Button -->
+          <button type="button" id="voiceBriefBtn" class="btn-voice-brief" onclick="NWAApp.toggleVoiceBrief()" title="Listen to weather summary">
+            <i class="fa-solid fa-volume-high" id="voiceBriefIcon"></i>
+            <span id="voiceBriefText">Audio Summary</span>
+          </button>
+
+          <div id="weatherTimestamp" class="timestamp-badge">
+            <i class="fa-regular fa-clock"></i> Updated Just Now
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Panoramic Animated Weather Scenery Banner -->
+      <div class="weather-scenery-banner-wrap" id="weatherSceneryBannerWrap">
+        <div class="weather-scenery-banner" id="weatherSceneryBanner">
+          <canvas id="sceneryAnimCanvas" class="scenery-canvas"></canvas>
+          <div class="scenery-overlay-content">
+            <div class="scenery-info-left">
+              <span class="scenery-live-tag"><span class="live-dot-green"></span> <span id="sceneryModeText">Live Weather Dynamic Landscape</span></span>
+              <h3 id="sceneryConditionTitle" class="scenery-title">Loading Scene...</h3>
+              <p id="scenerySubtitle" class="scenery-desc">Interactive landscape simulation with atmospheric light beams & environmental physics</p>
+            </div>
+            <div class="scenery-controls" id="sceneryControls">
+              <span class="scenery-ctrl-label"><i class="fa-solid fa-wand-magic-sparkles"></i> Preview:</span>
+              <button class="scene-pill-btn active" data-scene="auto" title="Sync automatically with live city weather"><i class="fa-solid fa-arrows-rotate"></i> Live Auto</button>
+              <button class="scene-pill-btn" data-scene="thunder" title="Thunderstorm with lightning bolts and storm light beams">⛈️ Thunder</button>
+              <button class="scene-pill-btn" data-scene="heavyRain" title="Heavy Downpour">🌊 Heavy Rain</button>
+              <button class="scene-pill-btn" data-scene="rain" title="Rainfall & Puddles">🌧️ Rain</button>
+              <button class="scene-pill-btn" data-scene="sunny" title="Bright Sunny Meadow">☀️ Sunny</button>
+              <button class="scene-pill-btn" data-scene="night" title="Starry Night & Fireflies">🌙 Night</button>
+              <button class="scene-pill-btn" data-scene="partlyCloudy" title="Partly Cloudy & Sunbeams">⛅ Clouds</button>
+              <button class="scene-pill-btn" data-scene="snow" title="Snowy Cottage & Blizzard">❄️ Snow</button>
+              <button class="scene-pill-btn" data-scene="fog" title="Atmospheric Mist & Fog">🌫️ Fog</button>
+              <button class="scene-pill-btn" data-scene="heatwave" title="Extreme Heat Shimmer">🔥 Heat</button>
+              <button class="scene-pill-btn" data-scene="hail" title="Hailstorm & Ice Bounces">🌨️ Hail</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Weather Hero + Interactive Map Grid -->
+      <div class="dashboard-grid">
+        
+        <!-- Left: Hero Weather & 8 Metrics -->
+        <div class="hero-weather-card">
+          <div class="hero-main-row">
+            <div>
+              <div class="hero-temp-group">
+                <span id="heroTemperature" class="hero-temp">--</span>
+                <span class="hero-temp-unit">°C</span>
+              </div>
+              <div class="hero-feels">
+                Feels like <span id="heroFeelsLike">--°C</span>
+              </div>
+            </div>
+
+            <div class="hero-condition-wrap">
+              <div class="hero-icon-glass-orb" id="heroIconGlassOrb">
+                <i id="heroConditionIcon" class="fa-solid fa-cloud-sun hero-weather-icon" style="color: #f59e0b;"></i>
+              </div>
+              <div id="heroConditionDesc" class="hero-condition-text">Loading Weather...</div>
+              <div class="hero-high-low">
+                <span><i class="fa-solid fa-arrow-up" style="color: #ef4444;"></i> Max: <strong id="heroMaxToday">--°</strong></span>
+                <span><i class="fa-solid fa-arrow-down" style="color: #38bdf8;"></i> Min: <strong id="heroMinToday">--°</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Middle: Atmospheric Telemetry Pill Bar & 5-Hour Trend Capsule -->
+          <div class="hero-mid-section">
+            <div class="hero-telemetry-strip">
+              <div class="hero-pill-badge" title="Atmospheric Dew Point">
+                <i class="fa-solid fa-droplet-degree" style="color: #38bdf8;"></i>
+                <span>Dew Point: <strong id="heroDewPoint">23°C</strong></span>
+              </div>
+              <div class="hero-pill-badge" title="Precipitation Probability">
+                <i class="fa-solid fa-umbrella" style="color: #0284c7;"></i>
+                <span>Rain Chance: <strong id="heroRainProb">15%</strong></span>
+              </div>
+              <div class="hero-pill-badge" title="Air Quality Index Status">
+                <i class="fa-solid fa-leaf" style="color: #10b981;"></i>
+                <span>AQI: <strong id="heroAqiLevel">Good (38)</strong></span>
+              </div>
+              <div class="hero-pill-badge feed-status" title="Observational Data Feed">
+                <span class="live-dot-green"></span>
+                <span id="heroFeedSource">IMD Radar Feed</span>
+              </div>
+            </div>
+
+            <!-- 5-Hour Hourly Trend Capsule Strip -->
+            <div class="hero-hourly-strip" id="heroHourlyMiniStrip">
+              <div class="hourly-mini-pill active">
+                <span class="hourly-mini-time">Now</span>
+                <i class="fa-solid fa-cloud-sun hourly-mini-icon" style="color: #f59e0b;"></i>
+                <span class="hourly-mini-temp">27°</span>
+              </div>
+              <div class="hourly-mini-pill">
+                <span class="hourly-mini-time">01:00 AM</span>
+                <i class="fa-solid fa-cloud hourly-mini-icon" style="color: #94a3b8;"></i>
+                <span class="hourly-mini-temp">27°</span>
+              </div>
+              <div class="hourly-mini-pill">
+                <span class="hourly-mini-time">02:00 AM</span>
+                <i class="fa-solid fa-cloud-rain hourly-mini-icon" style="color: #38bdf8;"></i>
+                <span class="hourly-mini-temp">26°</span>
+              </div>
+              <div class="hourly-mini-pill">
+                <span class="hourly-mini-time">03:00 AM</span>
+                <i class="fa-solid fa-cloud hourly-mini-icon" style="color: #94a3b8;"></i>
+                <span class="hourly-mini-temp">26°</span>
+              </div>
+              <div class="hourly-mini-pill">
+                <span class="hourly-mini-time">04:00 AM</span>
+                <i class="fa-solid fa-cloud-sun hourly-mini-icon" style="color: #f59e0b;"></i>
+                <span class="hourly-mini-temp">25°</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8 Key Metrics Grid (FR-1) -->
+          <div class="metrics-grid">
+            <!-- 1. Precipitation -->
+            <div class="metric-card">
+              <div class="metric-header">
+                <span>Rainfall</span>
+                <div class="metric-icon-glass icon-glass-rain">
+                  <i class="fa-solid fa-cloud-rain"></i>
+                </div>
+              </div>
+              <div id="metricPrecipitation" class="metric-value">-- mm</div>
+              <div class="metric-sub">Current precip</div>
+            </div>
+
+            <!-- 2. Humidity -->
+            <div class="metric-card">
+              <div class="metric-header">
+                <span>Humidity</span>
+                <div class="metric-icon-glass icon-glass-humidity">
+                  <i class="fa-solid fa-droplet"></i>
+                </div>
+              </div>
+              <div id="metricHumidity" class="metric-value">-- %</div>
+              <div class="metric-sub">Rel moisture</div>
+            </div>
+
+            <!-- 3. Wind Speed & Direction -->
+            <div class="metric-card">
+              <div class="metric-header">
+                <span>Wind</span>
+                <div class="metric-icon-glass icon-glass-wind">
+                  <i class="fa-solid fa-wind"></i>
+                </div>
+              </div>
+              <div id="metricWind" class="metric-value">-- km/h</div>
+              <div id="metricWindSub" class="metric-sub">
+                <i class="fa-solid fa-location-arrow compass-dial"></i> N/A
+              </div>
+            </div>
+
+            <!-- 4. Surface Pressure -->
+            <div class="metric-card">
+              <div class="metric-header">
+                <span>Pressure</span>
+                <div class="metric-icon-glass icon-glass-pressure">
+                  <i class="fa-solid fa-gauge-high"></i>
+                </div>
+              </div>
+              <div id="metricPressure" class="metric-value">-- hPa</div>
+              <div class="metric-sub">Barometric</div>
+            </div>
+
+            <!-- 5. UV Index -->
+            <div class="metric-card">
+              <div class="metric-header">
+                <span>UV Index</span>
+                <div class="metric-icon-glass icon-glass-uv">
+                  <i class="fa-solid fa-sun"></i>
+                </div>
+              </div>
+              <div id="metricUv" class="metric-value">--</div>
+              <div id="metricUvSub" class="metric-sub">
+                <span class="uv-badge uv-mod">Moderate</span>
+              </div>
+            </div>
+
+            <!-- 6. Visibility -->
+            <div class="metric-card">
+              <div class="metric-header">
+                <span>Visibility</span>
+                <div class="metric-icon-glass icon-glass-visibility">
+                  <i class="fa-solid fa-eye"></i>
+                </div>
+              </div>
+              <div id="metricVisibility" class="metric-value">10 km</div>
+              <div class="metric-sub">Clarity</div>
+            </div>
+
+            <!-- 7. Sunrise -->
+            <div class="metric-card">
+              <div class="metric-header">
+                <span>Sunrise</span>
+                <div class="metric-icon-glass icon-glass-sunrise">
+                  <i class="fa-solid fa-mountain-sun"></i>
+                </div>
+              </div>
+              <div id="metricSunrise" class="metric-value">--:--</div>
+              <div class="metric-sub">Dawn (IST)</div>
+            </div>
+
+            <!-- 8. Sunset -->
+            <div class="metric-card">
+              <div class="metric-header">
+                <span>Sunset</span>
+                <div class="metric-icon-glass icon-glass-sunset">
+                  <i class="fa-solid fa-moon"></i>
+                </div>
+              </div>
+              <div id="metricSunset" class="metric-value">--:--</div>
+              <div class="metric-sub">Dusk (IST)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Leaflet Map of India (FR-2) -->
+        <div class="map-card-wrapper">
+          <div class="map-card-header">
+            <div>
+              <div class="map-title">
+                <i class="fa-solid fa-map-location-dot" style="color: var(--accent-primary);"></i>
+                <span>Interactive Weather Map</span>
+              </div>
+            </div>
+            <div class="map-layer-toggles">
+              <button class="layer-btn active" data-layer="weather">Weather Stations</button>
+              <button class="layer-btn active" data-layer="citizen">Citizen Reports</button>
+              <button class="layer-btn active" data-layer="social">Public Notices</button>
+            </div>
+          </div>
+          <div id="indiaMap" class="map-container">
+            <button id="mapFullscreenBtn" class="map-fullscreen-btn" title="Toggle Fullscreen" onclick="NWAMap.toggleFullscreen()">
+              <i class="fa-solid fa-expand" id="mapFullscreenIcon"></i>
+            </button>
+          </div>
+          <!-- Map Footer Bar: Tip & Real-Time Hover Telemetry (State, Lat, Lng) -->
+          <div class="map-card-footer" id="mapCardFooter">
+            <div class="map-tip-text">
+              <i class="fa-solid fa-arrow-pointer" style="color: var(--accent-primary); margin-right: 5px; font-size: 0.75rem;"></i>
+              <strong>Tip:</strong> Click any state to zoom in; click a district to view live weather telemetry.
+            </div>
+            <div class="map-telemetry-box" id="mapTelemetryBox">
+              <div class="map-telemetry-state" id="mapHoverState">
+                <i class="fa-solid fa-map-pin" style="color: var(--accent-primary); font-size: 0.7rem; margin-right: 4px;"></i>
+                <span id="mapHoverStateName">India</span>
+              </div>
+              <div class="map-telemetry-coords">
+                <span id="mapHoverLat">Lat: 22.8000° N,</span>
+                <span id="mapHoverLng">Lng: 82.5000° E</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 24-Hour Diurnal Progression Strip -->
+      <div class="chart-card diurnal-card-container">
+        <div class="diurnal-section-header">
+          <div class="chart-title">
+            <i class="fa-regular fa-clock" style="color: var(--accent-primary);"></i>
+            <span>24-Hour Diurnal Progression</span>
+          </div>
+          <div class="diurnal-subtitle">
+            <i class="fa-regular fa-hand-pointer"></i>
+            <span>Click any hour for detailed conditions</span>
+          </div>
+        </div>
+
+        <!-- 24-Hour Horizontal Scroll Card Strip -->
+        <div id="diurnalCardsStrip" class="diurnal-cards-strip">
+          <!-- Populated dynamically via NWACharts.renderDiurnalProgression() -->
+        </div>
+
+        <!-- Interactive Detailed Temperature Drawer -->
+        <div id="diurnalDetailBox" class="diurnal-detail-drawer" style="display: none;">
+          <!-- Populated when an hour card is clicked -->
+        </div>
+      </div>
+
+      <!-- =========================================================
+           Weather Forecast & Daily Breakdown
+           ========================================================= -->
+      <div class="forecast-table-card chart-card">
+        <!-- Top Controls: Range Filter Pills & Mode Indicator -->
+        <div class="forecast-table-top-bar">
+          <div class="forecast-range-switcher" id="forecastRangeSwitcher">
+            <button class="forecast-range-pill" data-days="1" onclick="NWAApp.setForecastRange(1)">Today (24h)</button>
+            <button class="forecast-range-pill" data-days="3" onclick="NWAApp.setForecastRange(3)">3 Days</button>
+            <button class="forecast-range-pill" data-days="7" onclick="NWAApp.setForecastRange(7)">7 Days</button>
+            <button class="forecast-range-pill active" data-days="10" onclick="NWAApp.setForecastRange(10)">10 Days</button>
+          </div>
+          <div class="forecast-mode-badge" id="forecastModeBadge">
+            <span class="forecast-mode-dot"></span>
+            <span id="forecastModeText">10-Day Forecast Table View</span>
+          </div>
+        </div>
+
+        <!-- Location Context Badges Bar -->
+        <div class="forecast-context-bar">
+          <div class="forecast-context-left">
+            <span class="forecast-badge forecast-badge-primary" id="forecastContextLocation">Delhi</span>
+            <span class="forecast-badge forecast-badge-accent" id="forecastContextRegion">State Overview</span>
+            <span class="forecast-badge forecast-badge-coords" id="forecastContextCoords">28.6139° N, 77.2090° E</span>
+          </div>
+          <div class="forecast-context-right" id="forecastContextTimestamp">
+            <i class="fa-regular fa-clock"></i> Station Data • Updated Just Now
+          </div>
+        </div>
+
+        <!-- Main Card Header: Title, Subtitle, and CSV Download -->
+        <div class="forecast-table-header">
+          <div>
+            <h3 class="forecast-table-title" id="forecastTableTitle">
+              <i class="fa-regular fa-calendar-days" style="color: var(--accent-primary);"></i>
+              <span>10-Day Extended Weather Forecast</span>
+            </h3>
+            <p class="forecast-table-subtitle">Daily meteorological forecast, expected temperature ranges, and rain probabilities</p>
+          </div>
+          <div>
+            <button class="btn btn-outline download-csv-btn" onclick="NWAApp.downloadForecastCsv()" title="Export forecast data to CSV">
+              <i class="fa-solid fa-file-csv" style="color: #10b981;"></i>
+              <span>Download CSV</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Trend / Forecast Chart Section -->
+        <div class="forecast-trajectory-section">
+          <div class="trajectory-header">
+            <div class="trajectory-title" id="trajectoryHeaderTitle">
+              <i class="fa-solid fa-chart-line" style="color: var(--accent-primary);"></i>
+              <span id="trajectoryChartTitleText">Temperature & Rain Probability Trend</span>
+            </div>
+            <div class="trajectory-legend" id="trajectoryLegendWrap">
+              <span class="trajectory-legend-item" id="legItem1"><span class="legend-dot dot-max-temp"></span> <span id="legText1">Max Temp</span></span>
+              <span class="trajectory-legend-item" id="legItem2"><span class="legend-dot dot-min-temp"></span> <span id="legText2">Min Temp</span></span>
+              <span class="trajectory-legend-item" id="legItem3"><span class="legend-dot dot-rain"></span> <span id="legText3">Rain %</span></span>
+            </div>
+          </div>
+          <div class="trajectory-canvas-wrap">
+            <canvas id="forecastTrajectoryChart" style="height: 175px; max-height: 190px; width: 100%;"></canvas>
+          </div>
+        </div>
+
+        <!-- Comprehensive Meteorological Forecast Table -->
+        <div class="forecast-table-responsive-wrapper">
+          <table class="forecast-full-table" id="forecastFullTable">
+            <thead>
+              <tr>
+                <th id="thDateCol">DATE & DAY</th>
+                <th>CONDITION</th>
+                <th>MAX TEMP</th>
+                <th>MIN TEMP</th>
+                <th>FEELS LIKE</th>
+                <th>HUMIDITY</th>
+                <th>WIND SPEED</th>
+                <th>WIND DIR</th>
+                <th>RAIN PROBABILITY</th>
+                <th>TEMP RANGE</th>
+              </tr>
+            </thead>
+            <tbody id="forecastTableBody">
+              <!-- Populated dynamically via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 4-Day Outlook Strip (FR-4) -->
+      <div class="forecast-section">
+        <div class="section-header-row">
+          <div class="section-title">
+            <i class="fa-solid fa-calendar-days" style="color: var(--accent-primary);"></i>
+            <span>4-Day Extended Forecast Outlook</span>
+          </div>
+        </div>
+        <div id="forecastCardsGrid" class="forecast-cards-grid">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+
+      <!-- Export Report Action Bar (FR-5) -->
+      <div class="export-bar">
+        <div class="export-info">
+          <i class="fa-solid fa-file-arrow-down"></i>
+          <div>
+            <h4>Download Weather Intelligence Report</h4>
+            <p>Export current meteorological observations, 4-day forecast data, and station records.</p>
+          </div>
+        </div>
+        <div class="export-actions">
+          <button class="btn btn-outline" onclick="NWAExport.exportToExcel()">
+            <i class="fa-solid fa-file-excel" style="color: #10b981;"></i> Download Excel (.xlsx)
+          </button>
+          <button class="btn btn-primary" onclick="NWAExport.exportToPDF()">
+            <i class="fa-solid fa-file-pdf" style="color: #fff;"></i> Download PDF (.pdf)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         VIEW 2: Citizen Crowd Reporting & Moderation (Phase 2)
+         ======================================================= -->
+    <section id="citizen-reports-view" class="tab-view">
+      <div class="citizen-grid">
+        
+        <!-- Moderation & Live Feed (FR-8, FR-9) -->
+        <div class="reports-feed-card">
+          <div class="filter-bar" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+            <div class="section-title" style="margin-bottom: 0;">
+              <i class="fa-solid fa-list-check" style="color: var(--accent-primary);"></i>
+              <span>Crowd Reports & Verification Queue</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+              <button type="button" class="btn btn-accent btn-sm" onclick="NWAReports.openReportModal()" style="font-weight: 600;">
+                <i class="fa-solid fa-bullhorn"></i> Report Severe Event
+              </button>
+              <div class="filter-buttons">
+                <button class="filter-pill active" data-status="all" onclick="NWAReports.filterReports('all')">All Reports</button>
+                <button class="filter-pill" data-status="unverified" onclick="NWAReports.filterReports('unverified')">Pending Verification</button>
+                <button class="filter-pill" data-status="verified" onclick="NWAReports.filterReports('verified')">Verified</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="reportsListContainer" class="reports-list">
+            <!-- Populated via reports.js -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================
+         VIEW 3: #IMD Social Media Intelligence (Phase 3)
+         ======================================================= -->
+    <section id="social-stream-view" class="tab-view">
+      <div class="social-stream-container">
+        
+        <!-- Live Ticker Feed -->
+        <div>
+          <div class="feed-header-banner" style="flex-direction: column; align-items: stretch; gap: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+              <div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
+                  <i class="fa-solid fa-tower-cell" style="color: var(--accent-primary);"></i>
+                  <span>Multi-Platform Weather Intelligence Stream</span>
+                </h3>
+                <p style="font-size: 0.82rem; color: var(--text-secondary);">
+                  Real-time signals aggregated live from <strong>Google News / Intelligence</strong>, <strong>X / Twitter</strong>, and <strong>IMD Official Feeds</strong>.
+                </p>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <button id="fetchLiveSignalsBtn" class="btn btn-sm btn-outline" onclick="NWASocial.fetchLiveSignals()" title="Trigger Live Ingestion from Google News & Social API">
+                  <i class="fa-solid fa-rotate"></i> Fetch Live Signals
+                </button>
+                <span id="socialLiveBadge" class="cached-tag" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">
+                  <i class="fa-solid fa-circle-dot"></i> LIVE STREAM ON
+                </span>
+              </div>
+            </div>
+
+            <!-- Platform Filter Pills -->
+            <div class="filter-buttons" style="border-top: 1px solid var(--border-color); padding-top: 0.75rem; margin-top: 0.25rem;">
+              <button class="filter-pill active" data-platform="all" onclick="NWASocial.filterSocialByPlatform('all')">
+                <i class="fa-solid fa-globe"></i> All Platforms
+              </button>
+              <button class="filter-pill" data-platform="google" onclick="NWASocial.filterSocialByPlatform('google')">
+                <i class="fa-brands fa-google" style="color: #4285F4;"></i> Google News
+              </button>
+              <button class="filter-pill" data-platform="twitter" onclick="NWASocial.filterSocialByPlatform('twitter')">
+                <i class="fa-brands fa-x-twitter"></i> X / Twitter
+              </button>
+              <button class="filter-pill" data-platform="imd" onclick="NWASocial.filterSocialByPlatform('imd')">
+                <i class="fa-solid fa-satellite-dish" style="color: #0284c7;"></i> IMD Official
+              </button>
+            </div>
+          </div>
+
+          <div id="socialPostsList" class="social-cards-list">
+            <!-- Populated via social.js -->
+          </div>
+        </div>
+
+        <!-- Sidebar Insights & Trending Tags -->
+        <div class="social-sidebar">
+          
+          <div class="insight-card">
+            <h4><i class="fa-solid fa-hashtag" style="color: var(--accent-primary);"></i> Monitored Weather Tags</h4>
+            <div class="trending-tags-list">
+              <span class="trending-tag" data-tag="#IMD" onclick="NWASocial.filterSocialByHashtag('#IMD')">#IMD</span>
+              <span class="trending-tag" data-tag="#CycloneAlert" onclick="NWASocial.filterSocialByHashtag('#CycloneAlert')">#CycloneAlert</span>
+              <span class="trending-tag" data-tag="#MumbaiRains" onclick="NWASocial.filterSocialByHashtag('#MumbaiRains')">#MumbaiRains</span>
+              <span class="trending-tag" data-tag="#DelhiWeather" onclick="NWASocial.filterSocialByHashtag('#DelhiWeather')">#DelhiWeather</span>
+              <span class="trending-tag" data-tag="#FogAlert" onclick="NWASocial.filterSocialByHashtag('#FogAlert')">#FogAlert</span>
+              <span class="trending-tag" data-tag="#DustStorm" onclick="NWASocial.filterSocialByHashtag('#DustStorm')">#DustStorm</span>
+              <span class="trending-tag" data-tag="#HighWinds" onclick="NWASocial.filterSocialByHashtag('#HighWinds')">#HighWinds</span>
+              <span class="trending-tag" data-tag="#ChennaiRains" onclick="NWASocial.filterSocialByHashtag('#ChennaiRains')">#ChennaiRains</span>
+              <span class="trending-tag" data-tag="#Monsoon" onclick="NWASocial.filterSocialByHashtag('#Monsoon')">#Monsoon</span>
+              <span class="trending-tag" data-tag="all" onclick="NWASocial.filterSocialByHashtag('all')">Show All</span>
+            </div>
+          </div>
+
+          <div class="insight-card">
+            <h4><i class="fa-solid fa-circle-info" style="color: var(--accent-primary);"></i> Ingestion Overview</h4>
+            <div style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6;">
+              <p>• <strong>Sources:</strong> Official IMD notices & public weather accounts</p>
+              <p>• <strong>Classification:</strong> Rainfall, storms, heatwaves, and flooding</p>
+              <p>• <strong>Geotargeting:</strong> Station & district proximity matching</p>
+              <p>• <strong>Update Cadence:</strong> Continuous streaming telemetry</p>
+            </div>
+          </div>
+
+          <div class="insight-card">
+            <h4><i class="fa-solid fa-shield-halved" style="color: var(--text-secondary);"></i> Privacy Notice</h4>
+            <div style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5;">
+              Public feed contents are aggregated for meteorological situational awareness. Handles and identifiers are anonymized.
+              <div style="margin-top: 0.5rem; display: flex; gap: 0.5rem;">
+                <a href="/privacy.html" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">Privacy Policy</a>
+                <span>|</span>
+                <a href="/terms.html" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">Terms & Conditions</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================
+         VIEW 4: Analytics & Trends View (FR-13)
+         ======================================================= -->
+    <section id="analytics-view" class="tab-view">
+      
+      <!-- High-Level KPIs -->
+      <div class="analytics-kpis-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon-wrap blue">
+            <i class="fa-solid fa-tower-broadcast"></i>
+          </div>
+          <div>
+            <div id="kpiTotalEvents" class="kpi-val">--</div>
+            <div class="kpi-label">Total Monitored Events</div>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon-wrap green">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <div>
+            <div id="kpiCitizenCount" class="kpi-val">--</div>
+            <div class="kpi-label">Citizen Field Reports</div>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon-wrap orange">
+            <i class="fa-brands fa-x-twitter"></i>
+          </div>
+          <div>
+            <div id="kpiSocialCount" class="kpi-val">--</div>
+            <div class="kpi-label">Social Advisory Signals</div>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon-wrap teal">
+            <i class="fa-solid fa-shield-check"></i>
+          </div>
+          <div>
+            <div id="kpiAccuracy" class="kpi-val">--%</div>
+            <div class="kpi-label">Data Verification Rate</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Analytics Charts Grid -->
+      <div class="analytics-charts-grid">
+        <div class="analytics-chart-box">
+          <h3>
+            <i class="fa-solid fa-chart-pie" style="color: var(--accent-primary);"></i>
+            Weather Event Breakdown by Category
+          </h3>
+          <div class="canvas-wrapper">
+            <canvas id="analyticsCategoryChart"></canvas>
+          </div>
+        </div>
+
+        <div class="analytics-chart-box">
+          <h3>
+            <i class="fa-solid fa-chart-column" style="color: var(--accent-success);"></i>
+            Event Frequency by Indian State
+          </h3>
+          <div class="canvas-wrapper">
+            <canvas id="analyticsStatesChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Regional Meteorological Station Telemetry Grid -->
+      <div class="analytics-chart-box" style="margin-top: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+          <h3 style="margin: 0; font-size: 1.05rem;">
+            <i class="fa-solid fa-tower-broadcast" style="color: var(--accent-primary);"></i>
+            Regional Weather Station Observations
+          </h3>
+          <span class="cached-tag" style="background: var(--bg-tertiary); color: var(--text-secondary); border: 1px solid var(--border-color);">
+            <i class="fa-solid fa-satellite"></i> Live Meteorological Feed
+          </span>
+        </div>
+        <div id="analyticsStationMatrix" class="metrics-grid" style="margin-top: 0;">
+          <!-- Loaded live via NWASocial.loadLiveStationMatrix() -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- =======================================================
+         VIEW 5: Official Reports & Data Export Center
+         ======================================================= -->
+    <section id="official-reports-view" class="tab-view">
+      
+      <!-- Export Hero Banner -->
+      <div class="report-export-header">
+        <div class="report-export-intro">
+          <h2><i class="fa-solid fa-file-shield" style="color: var(--accent-primary);"></i> Official Meteorological Intelligence Report</h2>
+          <p>Verified atmospheric snapshot, 4-day predictive window, and station telemetry formatted for administrative documentation, engineering, and civil preparedness.</p>
+        </div>
+        <div class="report-export-buttons">
+          <button class="btn btn-outline" onclick="NWAExport.exportToExcel()">
+            <i class="fa-solid fa-file-excel" style="color: #10b981;"></i> Download Excel (.xlsx)
+          </button>
+          <button class="btn btn-primary" onclick="NWAExport.exportToPDF()">
+            <i class="fa-solid fa-file-pdf" style="color: #fff;"></i> Download PDF (.pdf)
+          </button>
+          <button class="btn btn-outline" onclick="window.print()">
+            <i class="fa-solid fa-print"></i> Print Report
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Report Target Location Meta Card -->
+      <div class="report-meta-card">
+        <div class="report-meta-main">
+          <div class="report-meta-icon">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <div>
+            <div id="reportPreviewLocation" class="report-location-title">New Delhi, Delhi</div>
+            <div id="reportPreviewMeta" class="report-meta-sub">Coordinates: Lat 28.6139, Lon 77.2090 | Sync: Live Open-Meteo & IMD Models</div>
+          </div>
+        </div>
+        <div class="report-meta-badge">
+          <span class="cached-tag" style="background: var(--bg-tertiary); color: var(--text-secondary); border: 1px solid var(--border-color);">
+            <i class="fa-solid fa-circle-check" style="color: var(--accent-success);"></i> Document Ready
+          </span>
+        </div>
+      </div>
+
+      <!-- Section 1: Current Observations Table -->
+      <div class="report-table-card">
+        <div class="report-card-title">
+          <i class="fa-solid fa-gauge-high" style="color: var(--accent-primary);"></i>
+          <span>1. Current Surface Meteorological Observations</span>
+        </div>
+        <div class="report-table-wrapper">
+          <table class="report-data-table">
+            <thead>
+              <tr>
+                <th style="width: 35%;">Meteorological Parameter</th>
+                <th style="width: 25%;">Recorded Value</th>
+                <th style="width: 40%;">Sensor & Observation Remarks</th>
+              </tr>
+            </thead>
+            <tbody id="reportPreviewCurrentBody">
+              <!-- Populated via NWAExport.updateReportPreview() -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 2: 4-Day Extended Forecast Outlook Table -->
+      <div class="report-table-card">
+        <div class="report-card-title">
+          <i class="fa-solid fa-calendar-days" style="color: var(--accent-primary);"></i>
+          <span>2. 4-Day Forward Forecast Outlook</span>
+        </div>
+        <div class="report-table-wrapper">
+          <table class="report-data-table">
+            <thead>
+              <tr>
+                <th>Day / Date</th>
+                <th>Forecast Condition</th>
+                <th>High / Low Temp</th>
+                <th>Rainfall (mm)</th>
+                <th>Peak Wind (km/h)</th>
+                <th>Max UV Index</th>
+              </tr>
+            </thead>
+            <tbody id="reportPreviewForecastBody">
+              <!-- Populated via NWAExport.updateReportPreview() -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 3: Data Provenance & Accreditation Card -->
+      <div class="report-provenance-card">
+        <h4><i class="fa-solid fa-shield-halved" style="color: var(--accent-primary);"></i> Data Provenance & Accreditation</h4>
+        <p>This report compiles sensor feeds calibrated against standard World Meteorological Organization (WMO) benchmarks. Numerical forecasts are synthesized from open observational models. Data is provided for public interest and situational awareness.</p>
+        <div class="report-provenance-footer">
+          <span>Official Distribution • National Weather Analytics</span>
+          <div style="display: flex; gap: 0.5rem;">
+            <a href="/privacy.html" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">Privacy Policy</a>
+            <span>•</span>
+            <a href="/terms.html" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- =======================================================
+         VIEW 6: Operator / Admin Moderation Panel (Phase 4)
+         ======================================================= -->
+    <section id="admin-panel-view" class="tab-view">
+      <div class="admin-panel-container">
+
+        <!-- Admin Auth Gate (Shown when not authenticated) -->
+        <div id="adminAuthGate" class="admin-auth-gate" style="display: flex;">
+          <div class="admin-login-card">
+            <div class="admin-login-shield-badge">
+              <i class="fa-solid fa-shield-halved"></i> NWA SECURITY ACCESS
+            </div>
+            <div class="admin-login-icon">
+              <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <h3>Admin Portal Login</h3>
+            <p>Please enter your administrative credentials to access the moderation queue, verification controls, and AI audit telemetry.</p>
+            <form id="adminLoginForm" onsubmit="event.preventDefault(); if (window.NWAAdmin) NWAAdmin.handleLogin();">
+              <div class="form-group admin-login-field">
+                <label class="form-label" for="adminPasswordInput">
+                  <i class="fa-solid fa-key" style="color: var(--accent-primary);"></i> Admin Password
+                </label>
+                <div class="admin-password-box">
+                  <input type="password" id="adminPasswordInput" class="form-control" placeholder="Enter password (default: admin@imd2026)" required autocomplete="current-password" />
+                  <button type="button" class="password-toggle-btn" id="toggleAdminPassBtn" onclick="NWAAdmin.togglePasswordVisibility()" title="Show/Hide Password" aria-label="Toggle password visibility">
+                    <i class="fa-solid fa-eye" id="adminPassEyeIcon"></i>
+                  </button>
+                </div>
+              </div>
+              <div id="adminLoginError" class="admin-login-error" style="display: none;"></div>
+              <button type="submit" class="btn btn-primary admin-login-submit-btn" id="adminLoginSubmitBtn">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <span>Log In to Admin Portal</span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Authenticated Admin Content -->
+        <div id="adminMainContent" style="display: none;">
+          <!-- Supervisory Header Card -->
+          <div class="admin-header-card">
+            <div class="admin-header-top-row">
+              <div class="admin-header-left">
+                <div class="admin-title-badge-row">
+                  <span class="admin-portal-badge"><i class="fa-solid fa-shield-halved"></i> Authorized Console</span>
+                  <span class="admin-live-pulse"><span class="pulse-dot"></span> Live Moderation Active</span>
+                </div>
+                <h2>
+                  <i class="fa-solid fa-user-shield" style="color: var(--accent-primary);"></i>
+                  <span>Admin Portal</span>
+                  <span class="admin-title-sub">— Weather Intelligence & Incident Moderation</span>
+                </h2>
+                <p>
+                  Central operational dashboard to review incoming citizen weather reports, analyze AI credibility scores, resolve duplicate clusters, and verify official meteorological observations.
+                </p>
+              </div>
+
+              <!-- Top-Right Admin Header Controls & Logout / Session Button -->
+              <div class="admin-header-top-right">
+                <div class="admin-user-pill">
+                  <span class="admin-status-dot"></span>
+                  <span class="admin-user-name">Master Admin</span>
+                </div>
+                <button class="btn btn-logout-danger" id="adminLogoutBtn" onclick="NWAAdmin.handleLogout()" title="Log out from admin session">
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                  <span>Logout</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Header Quick Action Bar -->
+            <div class="admin-header-toolbar">
+              <div class="admin-toolbar-left">
+                <span class="admin-toolbar-label"><i class="fa-solid fa-screwdriver-wrench"></i> Tools:</span>
+                <button class="btn btn-sm btn-outline" id="adminDeduplicateBtn" onclick="NWAAdmin.runDeduplication()" title="Scan and consolidate duplicate event clusters">
+                  <i class="fa-solid fa-clone" style="color: #f59e0b;"></i> Deduplicate Reports
+                </button>
+                <button class="btn btn-sm btn-outline" id="adminExportCsvBtn" onclick="NWAAdmin.exportAuditCSV()" title="Export filtered audit table as CSV">
+                  <i class="fa-solid fa-file-arrow-down" style="color: #10b981;"></i> Export CSV
+                </button>
+              </div>
+              <div class="admin-toolbar-right">
+                <button class="btn btn-sm btn-primary" id="adminRefreshBtn" onclick="NWAAdmin.loadAdminData()" title="Refresh queue">
+                  <i class="fa-solid fa-rotate"></i> Refresh Queue
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- KPI Metrics Matrix -->
+          <div class="admin-stats-matrix">
+            <div class="admin-stat-card stat-card-total">
+              <div class="admin-stat-card-title">
+                <i class="fa-solid fa-database" style="color: var(--accent-primary);"></i> Total Reports
+              </div>
+              <div class="admin-stat-card-val" id="adminStatTotal">--</div>
+              <div class="admin-stat-card-sub" id="adminStatFiltered">Across All States & UTs</div>
+            </div>
+            <div class="admin-stat-card stat-card-verified">
+              <div class="admin-stat-card-title">
+                <i class="fa-solid fa-shield-check" style="color: #10b981;"></i> Verification Rate
+              </div>
+              <div class="admin-stat-card-val" id="adminStatAuthenticity" style="color: #10b981;">--%</div>
+              <div class="admin-stat-card-sub" id="adminStatVerifiedCount">Verified Observations</div>
+            </div>
+            <div class="admin-stat-card stat-card-flagged">
+              <div class="admin-stat-card-title">
+                <i class="fa-solid fa-triangle-exclamation" style="color: #ef4444;"></i> Flagged Reports
+              </div>
+              <div class="admin-stat-card-val" id="adminStatFake" style="color: #ef4444;">--</div>
+              <div class="admin-stat-card-sub">Credibility Flags & Discrepancies</div>
+            </div>
+            <div class="admin-stat-card stat-card-duplicates">
+              <div class="admin-stat-card-title">
+                <i class="fa-solid fa-clone" style="color: #f59e0b;"></i> Duplicate Clusters
+              </div>
+              <div class="admin-stat-card-val" id="adminStatDuplicates" style="color: #f59e0b;">--</div>
+              <div class="admin-stat-card-sub">Location & Time Clusters</div>
+            </div>
+          </div>
+
+          <!-- Multi-Criteria Filtering Console -->
+          <div class="admin-filter-console">
+            <div class="admin-filter-console-header">
+              <div class="admin-filter-console-title">
+                <i class="fa-solid fa-sliders" style="color: var(--accent-primary);"></i>
+                <span>Incident Filters & Spatial Search</span>
+              </div>
+              <button class="btn btn-sm btn-outline" onclick="NWAAdmin.resetFilters()">
+                <i class="fa-solid fa-rotate-left"></i> Reset Filters
+              </button>
+            </div>
+
+            <div class="admin-filter-grid">
+              <!-- 1. Date Filter -->
+              <div class="admin-filter-item">
+                <label for="adminDateFrom"><i class="fa-solid fa-calendar-day"></i> Date Range</label>
+                <div class="admin-date-inputs">
+                  <input type="date" id="adminDateFrom" class="form-control" title="From Date" onchange="NWAAdmin.applyFilters()" />
+                  <span class="admin-date-sep">to</span>
+                  <input type="date" id="adminDateTo" class="form-control" title="To Date" onchange="NWAAdmin.applyFilters()" />
+                </div>
+                <div class="admin-date-presets">
+                  <button type="button" class="admin-date-preset-btn active" data-range="all" onclick="NWAAdmin.setDateRange('all', this)">All Time</button>
+                  <button type="button" class="admin-date-preset-btn" data-range="today" onclick="NWAAdmin.setDateRange('today', this)">Today (24h)</button>
+                  <button type="button" class="admin-date-preset-btn" data-range="7days" onclick="NWAAdmin.setDateRange('7days', this)">7 Days</button>
+                  <button type="button" class="admin-date-preset-btn" data-range="30days" onclick="NWAAdmin.setDateRange('30days', this)">30 Days</button>
+                </div>
+              </div>
+
+              <!-- 2. Event Category Filter -->
+              <div class="admin-filter-item">
+                <label for="adminFilterCategory"><i class="fa-solid fa-cloud-bolt"></i> Event Category</label>
+                <select id="adminFilterCategory" class="form-control admin-select" onchange="NWAAdmin.applyFilters(true)">
+                  <option value="all">All Weather Event Types</option>
+                  <option value="heavy_rain">Heavy Rain / Downpour</option>
+                  <option value="thunderstorm">Thunderstorm & Lightning</option>
+                  <option value="flood">Flash Flood / Waterlogging</option>
+                  <option value="heatwave">Heatwave / Extreme Heat</option>
+                  <option value="fog">Dense Fog / Low Visibility</option>
+                  <option value="dust_storm">Dust Storm / Sandstorm</option>
+                  <option value="strong_winds">Strong Winds / Gale</option>
+                  <option value="hailstorm">Hailstorm</option>
+                  <option value="cyclone">Cyclone / Deep Depression</option>
+                  <option value="other">Other Severe Phenomenon</option>
+                </select>
+              </div>
+
+              <!-- 3. State Filter -->
+              <div class="admin-filter-item">
+                <label for="adminFilterState"><i class="fa-solid fa-location-dot"></i> State / UT</label>
+                <select id="adminFilterState" class="form-control admin-select" onchange="NWAAdmin.applyFilters(true)">
+                  <option value="all">All States & Union Territories</option>
+                </select>
+              </div>
+
+              <!-- 4. City / Landmark Filter -->
+              <div class="admin-filter-item">
+                <label for="adminFilterCity"><i class="fa-solid fa-city"></i> City / Landmark</label>
+                <div class="admin-input-icon-wrap">
+                  <i class="fa-solid fa-magnifying-glass input-icon"></i>
+                  <input type="text" id="adminFilterCity" class="form-control" placeholder="Filter by City or Landmark..." oninput="NWAAdmin.applyFilters()" />
+                </div>
+              </div>
+
+              <!-- 5. Verification Status Dropdown (Syncs with Tabs) -->
+              <div class="admin-filter-item">
+                <label for="adminFilterStatus"><i class="fa-solid fa-list-check"></i> Verification Status</label>
+                <select id="adminFilterStatus" class="form-control admin-select" onchange="NWAAdmin.onStatusDropdownChange(this.value)">
+                  <option value="all">All Statuses</option>
+                  <option value="unverified">Pending Verification</option>
+                  <option value="verified">Verified Observations</option>
+                  <option value="flagged_fake">Flagged Fake / Misleading</option>
+                  <option value="duplicate">Duplicate Detected</option>
+                  <option value="rejected">Rejected Submissions</option>
+                </select>
+              </div>
+
+              <!-- 6. AI Risk Level Filter -->
+              <div class="admin-filter-item">
+                <label for="adminFilterFakeRisk"><i class="fa-solid fa-brain"></i> AI Credibility Risk</label>
+                <select id="adminFilterFakeRisk" class="form-control admin-select" onchange="NWAAdmin.applyFilters(true)">
+                  <option value="all">All AI Risk Levels</option>
+                  <option value="low">Low Risk (Credible)</option>
+                  <option value="medium">Medium Risk (Review Needed)</option>
+                  <option value="high">High Risk (Discrepancy)</option>
+                </select>
+              </div>
+
+              <!-- 7 & 8: Free-text Search spanning across -->
+              <div class="admin-filter-item admin-filter-span-2">
+                <label for="adminSearchInput"><i class="fa-solid fa-search"></i> Search Reports</label>
+                <div class="admin-input-icon-wrap">
+                  <i class="fa-solid fa-magnifying-glass input-icon"></i>
+                  <input type="text" id="adminSearchInput" class="form-control" placeholder="Search report text, reporter name, ID, or coordinates..." oninput="NWAAdmin.applyFilters()" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Moderation Queue Table Card with Status Section Tabs -->
+          <div class="admin-table-card">
+            <div class="admin-table-progress-bar" id="adminTableProgressBar"></div>
+            <!-- Section Division Tabs: All Reports, Pending Verification, Verified, Flagged Fake -->
+            <div class="admin-queue-tabs-bar">
+              <div class="admin-queue-tabs">
+                <button type="button" class="admin-tab-pill active" data-status="all" onclick="NWAAdmin.setStatusFilterTab('all')">
+                  <i class="fa-solid fa-layer-group"></i>
+                  <span>All Reports</span>
+                  <span class="admin-tab-count" id="adminTabCountAll">0</span>
+                </button>
+                <button type="button" class="admin-tab-pill" data-status="unverified" onclick="NWAAdmin.setStatusFilterTab('unverified')">
+                  <i class="fa-solid fa-hourglass-half" style="color: #f59e0b;"></i>
+                  <span>Pending Verification</span>
+                  <span class="admin-tab-count count-pending" id="adminTabCountPending">0</span>
+                </button>
+                <button type="button" class="admin-tab-pill" data-status="verified" onclick="NWAAdmin.setStatusFilterTab('verified')">
+                  <i class="fa-solid fa-circle-check" style="color: #10b981;"></i>
+                  <span>Verified</span>
+                  <span class="admin-tab-count count-verified" id="adminTabCountVerified">0</span>
+                </button>
+                <button type="button" class="admin-tab-pill" data-status="flagged_fake" onclick="NWAAdmin.setStatusFilterTab('flagged_fake')">
+                  <i class="fa-solid fa-triangle-exclamation" style="color: #ef4444;"></i>
+                  <span>Flagged Fake</span>
+                  <span class="admin-tab-count count-flagged" id="adminTabCountFlagged">0</span>
+                </button>
+              </div>
+              <div class="admin-table-meta-badge">
+                <i class="fa-solid fa-shield-halved" style="color: var(--accent-primary);"></i>
+                <span id="adminTableBadge">0 Records</span>
+              </div>
+            </div>
+
+            <div class="admin-table-container">
+              <table class="admin-data-table">
+                <thead>
+                  <tr>
+                    <th>Timestamp (IST)</th>
+                    <th>Source & Trust</th>
+                    <th>Event Category</th>
+                    <th>Location & GPS</th>
+                    <th>Observation & Evidence</th>
+                    <th>Credibility Score</th>
+                    <th>Verification Status</th>
+                    <th style="text-align: right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminTableBody">
+                  <!-- Populated dynamically via reports.js / NWAAdmin -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    </main>
+
+    <!-- Institutional Global Footer -->
+    <footer class="app-global-footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand-title">
+            <i class="fa-solid fa-cloud-bolt"></i> National Weather Analytics (NWA)
+          </div>
+          <p class="footer-brand-desc">
+            Authoritative meteorological monitoring, real-time severe weather intelligence, and community incident verification across Indian states and union territories.
+          </p>
+          <div class="footer-domain-badge">
+            <i class="fa-solid fa-globe"></i> Connected Domain: <strong>weatheranalytics.in</strong>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-heading">Emergency & Meteorological Desk</div>
+          <ul class="footer-list">
+            <li>
+              <a href="tel:+911124611792" class="footer-link">
+                <i class="fa-solid fa-phone"></i> +91 11 2461 1792 (Control Room)
+              </a>
+            </li>
+            <li>
+              <a href="mailto:support@weatheranalytics.in" class="footer-link">
+                <i class="fa-solid fa-envelope"></i> support@weatheranalytics.in
+              </a>
+            </li>
+            <li>
+              <span class="footer-text"><i class="fa-solid fa-location-dot"></i> Lodhi Road Meteorological Complex, New Delhi 110003</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-heading">Legal & Operational Policies</div>
+          <ul class="footer-list">
+            <li><a href="/privacy.html" class="footer-link"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</a></li>
+            <li><a href="/terms.html" class="footer-link"><i class="fa-solid fa-scale-balanced"></i> Terms of Service</a></li>
+            <li><a href="/empty.html" class="footer-link"><i class="fa-solid fa-database"></i> Historical Observation Archive</a></li>
+            <li><a href="/api/v1/health" class="footer-link" target="_blank"><i class="fa-solid fa-server"></i> System Telemetry & Health Status</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>&copy; 2026 National Weather Analytics (NWA). All rights reserved. Operating under WMO open observational data standards.</div>
+        <div class="footer-bottom-links">
+          <a href="/privacy.html">Privacy Policy</a>
+          <span>•</span>
+          <a href="/terms.html">Terms of Use</a>
+          <span>•</span>
+          <a href="mailto:support@weatheranalytics.in">Help Desk</a>
+        </div>
+      </div>
+    </footer>
+
+    </div>
+  </div>
+
+  <!-- =========================================================
+       Citizen Report Modal - Quick Submit
+       ========================================================= -->
+  <div id="reportModal" class="modal-backdrop" onclick="if(event.target===this) NWAReports.closeReportModal();">
+    <div class="modal-card" style="max-width: 560px; width: 95%;">
+      <div class="modal-header">
+        <h3 style="display: flex; align-items: center; gap: 0.5rem; margin: 0; font-size: 1.15rem;">
+          <i class="fa-solid fa-bullhorn" style="color: var(--accent-primary);"></i>
+          <span>Report Local Weather Event</span>
+        </h3>
+        <button id="closeReportModalBtn" class="close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 1.25rem 1.5rem;">
+        <form id="citizenReportForm">
+          <!-- GPS / Active Location Auto-Fill Button -->
+          <div style="margin-bottom: 1rem;">
+            <button type="button" class="btn btn-outline" id="reportUseActiveLocationBtn" style="width: 100%; justify-content: center; font-size: 0.82rem; padding: 0.55rem 0.85rem; border-style: dashed;">
+              <i class="fa-solid fa-location-crosshairs" style="color: var(--accent-primary);"></i>
+              <span>Auto-Fill from Active Location / GPS</span>
+            </button>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0.85rem;">
+            <label class="form-label" for="reportCategory">Event Category *</label>
+            <select id="reportCategory" class="form-control" required>
+              <option value="heavy_rain">Heavy Rain / Downpour</option>
+              <option value="thunderstorm">Thunderstorm & Lightning</option>
+              <option value="flood">Flash Flood / Waterlogging</option>
+              <option value="heatwave">Heatwave / Extreme Heat</option>
+              <option value="fog">Dense Fog / Low Visibility</option>
+              <option value="dust_storm">Dust Storm / Sandstorm</option>
+              <option value="strong_winds">Strong Winds / Gale</option>
+              <option value="hailstorm">Hailstorm</option>
+              <option value="cyclone">Cyclone / Deep Depression</option>
+              <option value="other">Other Severe Phenomenon</option>
+            </select>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.85rem;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label" for="reportState">State / UT *</label>
+              <select id="reportState" class="form-control" required>
+                <option value="">Select State</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label" for="reportCitySelect">City / District</label>
+              <select id="reportCitySelect" class="form-control">
+                <option value="">Select City / District</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0.85rem;">
+            <label class="form-label" for="reportLocation">Location / Landmark *</label>
+            <input type="text" id="reportLocation" class="form-control" placeholder="e.g., Marine Drive, Churchgate" required />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.85rem;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label" for="reportLat">Latitude *</label>
+              <input type="number" step="0.0001" id="reportLat" class="form-control" placeholder="19.0760" required />
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label" for="reportLon">Longitude *</label>
+              <input type="number" step="0.0001" id="reportLon" class="form-control" placeholder="72.8777" required />
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0.85rem;">
+            <label class="form-label" for="reportDescription">Description & Impact</label>
+            <textarea id="reportDescription" class="form-control" rows="3" placeholder="Describe water levels, road blocks, tree falls, wind damage, or severe conditions..."></textarea>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0.85rem;">
+            <label class="form-label" for="reportReporterName">Your Name / Organization</label>
+            <input type="text" id="reportReporterName" class="form-control" placeholder="e.g., Rohit Verma" />
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0.85rem;">
+            <label class="form-label" for="reportVideo">
+              <i class="fa-solid fa-video" style="color: var(--accent-primary);"></i> Video Telemetry Link (Optional)
+            </label>
+            <input type="url" id="reportVideo" class="form-control" placeholder="e.g., https://youtu.be/... or video stream URL" />
+          </div>
+
+          <div class="form-group photo-upload-group" style="margin-bottom: 1.15rem;">
+            <label class="form-label" for="reportPhoto">Attach Photo (Optional)</label>
+            <div class="photo-upload-wrapper">
+              <input type="file" id="reportPhoto" accept="image/*" class="photo-file-input" />
+              <label class="photo-upload-box" for="reportPhoto" id="photoUploadLabel">
+                <div class="upload-icon-circle">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+                <div class="upload-content">
+                  <div class="upload-title">Click or drag image to attach photo</div>
+                  <div class="upload-subtitle">Supports JPG, PNG, WebP (Max 4MB)</div>
+                </div>
+                <div class="upload-action-pill">
+                  <i class="fa-solid fa-camera"></i> Browse Photo
+                </div>
+              </label>
+              <div id="photoPreviewContainer" class="photo-preview-container" style="display: none;">
+                <img id="previewThumbnail" class="preview-thumbnail" alt="Attached weather photo preview" />
+                <div class="preview-info">
+                  <div class="preview-name" id="previewFileName">Photo Attached</div>
+                  <div class="preview-status"><i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Ready for submission</div>
+                </div>
+                <button type="button" class="photo-remove-btn" id="removePhotoBtn" onclick="NWAReports.clearPhotoAttachment()" title="Remove photo">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="reportSubmitBtn" style="width: 100%; justify-content: center; padding: 0.75rem; font-size: 0.95rem; font-weight: 600;">
+            <i class="fa-solid fa-paper-plane"></i> Submit Weather Report
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- External JavaScript Libraries -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+  <!-- NWA Application Modules -->
+  <script src="js/weather.js?v=3"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/map.js?v=3"></script>
+  <script src="js/reports.js?v=4"></script>
+  <script src="js/admin.js?v=7"></script>
+  <script src="js/social.js"></script>
+  <script src="js/export.js"></script>
+  <script src="js/weather_animation.js?v=1"></script>
+  <script src="js/app.js?v=7"></script>
+</body>
+</html>
