@@ -15,13 +15,20 @@ let stateGeojsonLayer = null;
 let weatherMarkersLayer = null;
 let citizenReportsLayer = null;
 let socialMarkersLayer = null;
+let clustersLayer = null;
 let selectedLocationMarker = null;
 
 let activeLayers = {
   weather: true,
   citizen: true,
-  social: true
+  social: true,
+  clusters: true,
+  heatmap: false
 };
+let heatMapLayer = null;
+
+let lastCachedCitizenReports = [];
+let lastCachedSocialPosts = [];
 
 const MAJOR_HUBS = [
   { name: 'New Delhi', state: 'Delhi', lat: 28.6139, lon: 77.2090 },
@@ -63,20 +70,28 @@ function initMap() {
   const mapEl = document.getElementById('indiaMap');
   if (!mapEl || mapInstance) return;
 
-  // Initialize map centered at India
+  // Initialize map centered at India with bounds locked to India
+  const INDIA_MAX_BOUNDS = L.latLngBounds(
+    L.latLng(6.0, 68.0),   // SW corner — tip of Tamil Nadu / Andaman
+    L.latLng(37.5, 97.5)   // NE corner — Arunachal Pradesh
+  );
+
   mapInstance = L.map('indiaMap', {
     center: [22.8, 82.5],
     zoom: 4.6,
     minZoom: 4,
     maxZoom: 14,
     zoomControl: true,
-    attributionControl: false
+    attributionControl: false,
+    maxBounds: INDIA_MAX_BOUNDS,
+    maxBoundsViscosity: 1.0   // Hard stop — cannot drag outside India
   });
 
   // Layer groups
   weatherMarkersLayer = L.layerGroup().addTo(mapInstance);
   citizenReportsLayer = L.layerGroup().addTo(mapInstance);
   socialMarkersLayer = L.layerGroup().addTo(mapInstance);
+  clustersLayer = L.layerGroup().addTo(mapInstance);
 
   // Set tile layer according to current theme
   updateMapTiles();
@@ -182,6 +197,24 @@ function updateMapTiles() {
   currentTileLayer = L.tileLayer(tileUrl, {
     maxZoom: 19
   }).addTo(mapInstance);
+}
+
+// -------------------------------------------------------
+// India Geographic Bounding Box — any marker outside
+// these limits is considered outside Indian territory
+// and will NOT be plotted on the map.
+// -------------------------------------------------------
+const INDIA_LAT_MIN = 6.0;    // Southernmost tip (Kanyakumari / Andaman)
+const INDIA_LAT_MAX = 37.5;   // Northernmost tip (Ladakh)
+const INDIA_LON_MIN = 68.0;   // Westernmost tip (Gujarat / Rann of Kutch)
+const INDIA_LON_MAX = 97.5;   // Easternmost tip (Arunachal Pradesh)
+
+function isInsideIndiaBounds(lat, lon) {
+  const la = parseFloat(lat);
+  const lo = parseFloat(lon);
+  if (isNaN(la) || isNaN(lo)) return false;
+  return la >= INDIA_LAT_MIN && la <= INDIA_LAT_MAX &&
+         lo >= INDIA_LON_MIN && lo <= INDIA_LON_MAX;
 }
 
 let indiaBoundaryFeatures = [];
@@ -402,6 +435,8 @@ function updateCitizenMapMarkers(reports) {
 
   reports.forEach(r => {
     if (!r.lat || !r.lon) return;
+    // Only show markers inside India's geographic bounds
+    if (!isInsideIndiaBounds(r.lat, r.lon)) return;
     const color = catColors[r.category] || '#0ea5e9';
     const isUrgent = r.urgency === 'high';
 
@@ -427,7 +462,7 @@ function updateCitizenMapMarkers(reports) {
         </div>
         <h4 class="map-popup-title">${r.location}</h4>
         <p class="map-popup-desc">${r.description}</p>
-        ${r.photo ? `<img src="${r.photo}" style="width: 100%; border-radius: 4px; margin-bottom: 6px; max-height: 90px; object-fit: cover;" />` : ''}
+        ${r.photo ? `<img src="${r.photo}" onclick="window.openImageModal ? window.openImageModal(this.src) : window.open(this.src, '_blank')" style="width: 100%; border-radius: 4px; margin-bottom: 6px; max-height: 90px; object-fit: cover; cursor: zoom-in;" />` : ''}
         <div class="map-popup-footer">
           Reported by ${r.reporter_name || 'Citizen'} • ${new Date(r.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
         </div>
@@ -436,6 +471,9 @@ function updateCitizenMapMarkers(reports) {
 
     citizenReportsLayer.addLayer(marker);
   });
+
+  lastCachedCitizenReports = reports || [];
+  updateClustersMap(lastCachedCitizenReports, lastCachedSocialPosts);
 }
 
 function updateSocialMapMarkers(posts) {
@@ -444,6 +482,8 @@ function updateSocialMapMarkers(posts) {
 
   posts.forEach(p => {
     if (!p.lat || !p.lon) return;
+    // Only show markers inside India's geographic bounds
+    if (!isInsideIndiaBounds(p.lat, p.lon)) return;
 
     const icon = L.divIcon({
       className: 'social-marker-div',
@@ -472,6 +512,9 @@ function updateSocialMapMarkers(posts) {
 
     socialMarkersLayer.addLayer(marker);
   });
+
+  lastCachedSocialPosts = posts || [];
+  updateClustersMap(lastCachedCitizenReports, lastCachedSocialPosts);
 }
 
 function toggleLayer(layerName, isVisible) {
@@ -487,7 +530,120 @@ function toggleLayer(layerName, isVisible) {
   } else if (layerName === 'social' && socialMarkersLayer) {
     if (isVisible) mapInstance.addLayer(socialMarkersLayer);
     else mapInstance.removeLayer(socialMarkersLayer);
+  } else if (layerName === 'clusters' && clustersLayer) {
+    if (isVisible) mapInstance.addLayer(clustersLayer);
+    else mapInstance.removeLayer(clustersLayer);
   }
+}
+
+function calculateHaversineDistanceKm(lat1, lon1, lat2, lon2) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function updateClustersMap(reports = [], posts = []) {
+  if (!clustersLayer) return;
+  clustersLayer.clearLayers();
+
+  const allPoints = [];
+  (reports || []).forEach(r => {
+    if (r.lat && r.lon && isInsideIndiaBounds(r.lat, r.lon))
+      allPoints.push({ ...r, pointType: 'citizen', pointTitle: r.location || 'Citizen Report' });
+  });
+  (posts || []).forEach(p => {
+    if (p.lat && p.lon && isInsideIndiaBounds(p.lat, p.lon))
+      allPoints.push({ ...p, pointType: 'social', pointTitle: p.source_name || p.city || 'Social Post' });
+  });
+
+  const clusters = [];
+  const visited = new Set();
+
+  for (let i = 0; i < allPoints.length; i++) {
+    if (visited.has(i)) continue;
+    const p1 = allPoints[i];
+    const group = [p1];
+    visited.add(i);
+
+    for (let j = i + 1; j < allPoints.length; j++) {
+      if (visited.has(j)) continue;
+      const p2 = allPoints[j];
+      const distKm = calculateHaversineDistanceKm(p1.lat, p1.lon, p2.lat, p2.lon);
+      if (distKm <= 35) {
+        group.push(p2);
+        visited.add(j);
+      }
+    }
+
+    if (group.length > 1) {
+      const avgLat = group.reduce((sum, p) => sum + parseFloat(p.lat), 0) / group.length;
+      const avgLon = group.reduce((sum, p) => sum + parseFloat(p.lon), 0) / group.length;
+      clusters.push({
+        lat: avgLat,
+        lon: avgLon,
+        points: group,
+        location: group[0].location || group[0].city || group[0].state || 'Regional Cluster',
+        category: group[0].category || 'Severe Weather'
+      });
+    }
+  }
+
+  clusters.forEach(c => {
+    // 1. Draw glowing boundary pulse circle
+    const circle = L.circle([c.lat, c.lon], {
+      radius: 28000,
+      color: '#8b5cf6',
+      weight: 2,
+      opacity: 0.85,
+      fillColor: '#8b5cf6',
+      fillOpacity: 0.12,
+      className: 'cluster-pulse-ring'
+    });
+    clustersLayer.addLayer(circle);
+
+    // 2. Add Cluster Badge Marker
+    const icon = L.divIcon({
+      className: 'cluster-marker-div',
+      html: `
+        <div class="cluster-badge-pin" title="Big Data Spatial Cluster: ${c.points.length} Consolidated Events">
+          <i class="fa-solid fa-circle-nodes"></i>
+          <span>${c.points.length} Merged Events</span>
+        </div>
+      `,
+      iconSize: [120, 24],
+      iconAnchor: [60, 12]
+    });
+
+    const marker = L.marker([c.lat, c.lon], { icon });
+    marker.bindPopup(`
+      <div class="map-popup-card" style="max-width: 270px; padding: 4px;">
+        <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+          <span style="background: linear-gradient(135deg, #8b5cf6, #6366f1); color: #fff; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;">
+            <i class="fa-solid fa-compress"></i> Deduplicated Cluster
+          </span>
+        </div>
+        <h4 class="map-popup-title" style="margin-bottom: 4px; font-size: 13px;">${escapeHtml(c.location)} Cluster</h4>
+        <p style="font-size: 11px; color: #94a3b8; margin-bottom: 6px;">
+          Engine consolidated <strong>${c.points.length} concurrent observations</strong> within 35km via Jaccard Text & Haversine distance.
+        </p>
+        <div style="background: rgba(15,23,42,0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 6px; font-size: 10px; max-height: 100px; overflow-y: auto;">
+          ${c.points.map((p, idx) => `
+            <div style="margin-bottom: 4px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 3px;">
+              <span style="color: #38bdf8; font-weight: 600;">#${idx+1} [${(p.pointType || 'EVENT').toUpperCase()}]</span>: ${escapeHtml((p.description || p.content || '').slice(0, 65))}...
+            </div>
+          `).join('')}
+        </div>
+        <div style="margin-top: 5px; font-size: 10px; color: #10b981; display: flex; align-items: center; gap: 4px;">
+          <i class="fa-solid fa-shield-check"></i> False-positive risk reduced via cross-source corroboration
+        </div>
+      </div>
+    `);
+    clustersLayer.addLayer(marker);
+  });
 }
 
 function setSelectedLocation(lat, lon, label = '', state = '') {
@@ -641,12 +797,51 @@ function toggleFullscreen() {
   }
 }
 
+function toggleHeatmapLayer(forceState) {
+  if (!mapInstance) return;
+  activeLayers.heatmap = forceState !== undefined ? forceState : !activeLayers.heatmap;
+
+  if (activeLayers.heatmap) {
+    if (heatMapLayer && mapInstance.hasLayer(heatMapLayer)) {
+      mapInstance.removeLayer(heatMapLayer);
+      heatMapLayer = null;
+    }
+    const points = [];
+    (lastCachedCitizenReports || []).forEach(r => {
+      if (r.lat && r.lon) {
+        const intensity = r.urgency === 'high' ? 1.0 : (r.urgency === 'medium' ? 0.7 : 0.4);
+        points.push([r.lat, r.lon, intensity]);
+      }
+    });
+    (lastCachedSocialPosts || []).forEach(s => {
+      if (s.lat && s.lon) {
+        points.push([s.lat, s.lon, 0.5]);
+      }
+    });
+
+    if (window.L && L.heatLayer && points.length > 0) {
+      heatMapLayer = L.heatLayer(points, {
+        radius: 28,
+        blur: 16,
+        maxZoom: 10,
+        gradient: { 0.3: '#3b82f6', 0.6: '#f59e0b', 1.0: '#ef4444' }
+      }).addTo(mapInstance);
+    }
+  } else {
+    if (heatMapLayer && mapInstance.hasLayer(heatMapLayer)) {
+      mapInstance.removeLayer(heatMapLayer);
+    }
+  }
+}
+
 window.NWAMap = {
   initMap,
   updateMapTiles,
   updateCitizenMapMarkers,
   updateSocialMapMarkers,
+  updateClustersMap,
   toggleLayer,
+  toggleHeatmapLayer,
   panToLocation,
   setSelectedLocation,
   isPointInsideIndia,

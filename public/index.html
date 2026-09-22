@@ -49,6 +49,10 @@
             <i class="fa-solid fa-cloud-sun-rain"></i>
             <span class="tab-btn-text">Live Forecast & Map</span>
           </button>
+          <button class="tab-btn" data-tab="weather-alerts-view" id="navWeatherAlertsBtn" title="Early Warning & Severe Weather Alerts">
+            <i class="fa-solid fa-triangle-exclamation" style="color: #ef4444;"></i>
+            <span class="tab-btn-text">Weather Alerts</span>
+          </button>
           <button class="tab-btn" data-tab="citizen-reports-view" title="Citizen Reports">
             <i class="fa-solid fa-users"></i>
             <span class="tab-btn-text">Citizen Reports</span>
@@ -151,13 +155,10 @@
               <i class="fa-solid fa-user-shield" style="color: var(--accent-primary);"></i>
               <span id="topNavAdminBtnText">Admin Portal</span>
             </button>
-
-            <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle Dark/Light Mode">
-              <i class="fa-solid fa-moon"></i>
-            </button>
           </div>
         </div>
       </header>
+
 
       <!-- Main Content Container -->
       <main class="app-container app-main-content">
@@ -202,67 +203,49 @@
         </div>
       </div>
 
-      <!-- Interactive Panoramic Animated Weather Scenery Banner -->
-      <div class="weather-scenery-banner-wrap" id="weatherSceneryBannerWrap">
-        <div class="weather-scenery-banner" id="weatherSceneryBanner">
-          <canvas id="sceneryAnimCanvas" class="scenery-canvas"></canvas>
-          <div class="scenery-overlay-content">
-            <div class="scenery-info-left">
-              <span class="scenery-live-tag"><span class="live-dot-green"></span> <span id="sceneryModeText">Live Weather Dynamic Landscape</span></span>
-              <h3 id="sceneryConditionTitle" class="scenery-title">Loading Scene...</h3>
-              <p id="scenerySubtitle" class="scenery-desc">Interactive landscape simulation with atmospheric light beams & environmental physics</p>
-            </div>
-            <div class="scenery-controls" id="sceneryControls">
-              <span class="scenery-ctrl-label"><i class="fa-solid fa-wand-magic-sparkles"></i> Preview:</span>
-              <button class="scene-pill-btn active" data-scene="auto" title="Sync automatically with live city weather"><i class="fa-solid fa-arrows-rotate"></i> Live Auto</button>
-              <button class="scene-pill-btn" data-scene="thunder" title="Thunderstorm with lightning bolts and storm light beams">⛈️ Thunder</button>
-              <button class="scene-pill-btn" data-scene="heavyRain" title="Heavy Downpour">🌊 Heavy Rain</button>
-              <button class="scene-pill-btn" data-scene="rain" title="Rainfall & Puddles">🌧️ Rain</button>
-              <button class="scene-pill-btn" data-scene="sunny" title="Bright Sunny Meadow">☀️ Sunny</button>
-              <button class="scene-pill-btn" data-scene="night" title="Starry Night & Fireflies">🌙 Night</button>
-              <button class="scene-pill-btn" data-scene="partlyCloudy" title="Partly Cloudy & Sunbeams">⛅ Clouds</button>
-              <button class="scene-pill-btn" data-scene="snow" title="Snowy Cottage & Blizzard">❄️ Snow</button>
-              <button class="scene-pill-btn" data-scene="fog" title="Atmospheric Mist & Fog">🌫️ Fog</button>
-              <button class="scene-pill-btn" data-scene="heatwave" title="Extreme Heat Shimmer">🔥 Heat</button>
-              <button class="scene-pill-btn" data-scene="hail" title="Hailstorm & Ice Bounces">🌨️ Hail</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <!-- Main Weather Hero + Interactive Map Grid -->
       <div class="dashboard-grid">
         
         <!-- Left: Hero Weather & 8 Metrics -->
         <div class="hero-weather-card">
-          <div class="hero-main-row">
-            <div>
-              <div class="hero-temp-group">
-                <span id="heroTemperature" class="hero-temp">--</span>
-                <span class="hero-temp-unit">°C</span>
+          <!-- Cinematic Live Weather Panorama Banner -->
+          <div class="hero-cinematic-banner" id="heroCinematicBanner">
+            <div class="hero-cinematic-bg active" id="heroCinematicBgA"></div>
+            <div class="hero-cinematic-bg" id="heroCinematicBgB"></div>
+            <canvas class="hero-cinematic-canvas" id="heroCinematicCanvas"></canvas>
+            <div class="hero-cinematic-glass"></div>
+
+            <div class="hero-main-row">
+              <div>
+                <div class="hero-temp-group">
+                  <span id="heroTemperature" class="hero-temp">--</span>
+                  <span class="hero-temp-unit">°C</span>
+                </div>
+                <div class="hero-feels">
+                  Feels like <span id="heroFeelsLike">--°C</span>
+                </div>
               </div>
-              <div class="hero-feels">
-                Feels like <span id="heroFeelsLike">--°C</span>
+
+              <div class="hero-condition-wrap">
+                <div class="hero-icon-glass-orb" id="heroIconGlassOrb">
+                  <i id="heroConditionIcon" class="fa-solid fa-cloud-sun hero-weather-icon" style="color: #f59e0b;"></i>
+                </div>
+                <div id="heroConditionDesc" class="hero-condition-text">Loading Weather...</div>
+                <div class="hero-high-low">
+                  <span><i class="fa-solid fa-arrow-up" style="color: #ef4444;"></i> Max: <strong id="heroMaxToday">--°</strong></span>
+                  <span><i class="fa-solid fa-arrow-down" style="color: #38bdf8;"></i> Min: <strong id="heroMinToday">--°</strong></span>
+                </div>
               </div>
             </div>
 
-            <div class="hero-condition-wrap">
-              <div class="hero-icon-glass-orb" id="heroIconGlassOrb">
-                <i id="heroConditionIcon" class="fa-solid fa-cloud-sun hero-weather-icon" style="color: #f59e0b;"></i>
-              </div>
-              <div id="heroConditionDesc" class="hero-condition-text">Loading Weather...</div>
-              <div class="hero-high-low">
-                <span><i class="fa-solid fa-arrow-up" style="color: #ef4444;"></i> Max: <strong id="heroMaxToday">--°</strong></span>
-                <span><i class="fa-solid fa-arrow-down" style="color: #38bdf8;"></i> Min: <strong id="heroMinToday">--°</strong></span>
-              </div>
-            </div>
           </div>
 
           <!-- Middle: Atmospheric Telemetry Pill Bar & 5-Hour Trend Capsule -->
           <div class="hero-mid-section">
             <div class="hero-telemetry-strip">
               <div class="hero-pill-badge" title="Atmospheric Dew Point">
-                <i class="fa-solid fa-droplet-degree" style="color: #38bdf8;"></i>
+                <i class="fa-solid fa-droplet" style="color: #38bdf8;"></i>
                 <span>Dew Point: <strong id="heroDewPoint">23°C</strong></span>
               </div>
               <div class="hero-pill-badge" title="Precipitation Probability">
@@ -270,8 +253,8 @@
                 <span>Rain Chance: <strong id="heroRainProb">15%</strong></span>
               </div>
               <div class="hero-pill-badge" title="Air Quality Index Status">
-                <i class="fa-solid fa-leaf" style="color: #10b981;"></i>
-                <span>AQI: <strong id="heroAqiLevel">Good (38)</strong></span>
+                <i class="fa-solid fa-leaf" id="heroAqiIcon" style="color: #10b981;"></i>
+                <span>AQI: <strong id="heroAqiLevel">--</strong></span>
               </div>
               <div class="hero-pill-badge feed-status" title="Observational Data Feed">
                 <span class="live-dot-green"></span>
@@ -426,13 +409,15 @@
               <button class="layer-btn active" data-layer="weather">Weather Stations</button>
               <button class="layer-btn active" data-layer="citizen">Citizen Reports</button>
               <button class="layer-btn active" data-layer="social">Public Notices</button>
+              <button class="layer-btn active" data-layer="clusters" id="layerBtnClusters" title="Big Data Spatial Deduplication Clusters"><i class="fa-solid fa-circle-nodes"></i> Deduplication Clusters</button>
+              <button class="layer-btn" data-layer="heatmap" id="layerBtnHeatmap" onclick="this.classList.toggle('active'); NWAMap.toggleHeatmapLayer();" title="Toggle Severe Weather Density Heatmap"><i class="fa-solid fa-fire-flame-curved" style="color: #ef4444;"></i> Heatmap</button>
             </div>
           </div>
-          <div id="indiaMap" class="map-container">
-            <button id="mapFullscreenBtn" class="map-fullscreen-btn" title="Toggle Fullscreen" onclick="NWAMap.toggleFullscreen()">
-              <i class="fa-solid fa-expand" id="mapFullscreenIcon"></i>
-            </button>
-          </div>
+          <div id="indiaMap" class="map-container"></div>
+          <!-- Fullscreen toggle button - direct child of map-card-wrapper so it's always visible in fullscreen -->
+          <button id="mapFullscreenBtn" class="map-fullscreen-btn" title="Toggle Fullscreen" onclick="NWAMap.toggleFullscreen()">
+            <i class="fa-solid fa-expand" id="mapFullscreenIcon"></i>
+          </button>
           <!-- Map Footer Bar: Tip & Real-Time Hover Telemetry (State, Lat, Lng) -->
           <div class="map-card-footer" id="mapCardFooter">
             <div class="map-tip-text">
@@ -456,14 +441,54 @@
       <!-- 24-Hour Diurnal Progression Strip -->
       <div class="chart-card diurnal-card-container">
         <div class="diurnal-section-header">
-          <div class="chart-title">
-            <i class="fa-regular fa-clock" style="color: var(--accent-primary);"></i>
-            <span>24-Hour Diurnal Progression</span>
+          <div class="diurnal-header-left">
+            <div class="chart-title">
+              <i class="fa-regular fa-clock" style="color: var(--accent-primary);"></i>
+              <span>24-Hour Diurnal Progression</span>
+            </div>
+            <div class="diurnal-selected-date-badge" id="diurnalDateBadge">
+              <i class="fa-regular fa-calendar-check" style="color: var(--accent-primary);"></i>
+              <span id="diurnalDateBadgeText">Today's 24-Hour Report</span>
+            </div>
           </div>
-          <div class="diurnal-subtitle">
-            <i class="fa-regular fa-hand-pointer"></i>
-            <span>Click any hour for detailed conditions</span>
+
+          <!-- Date Selector Tabs & Filter Group -->
+          <div class="diurnal-controls-toolbar">
+            <div class="diurnal-date-switcher" id="diurnalDateSwitcher">
+              <button type="button" class="diurnal-date-pill active" id="diurnalBtnToday" onclick="NWACharts.switchDiurnalDate('today')" title="View Today's 24-Hour Forecast">
+                <i class="fa-solid fa-sun"></i>
+                <span>Today</span>
+              </button>
+              <button type="button" class="diurnal-date-pill" id="diurnalBtnTomorrow" onclick="NWACharts.switchDiurnalDate('tomorrow')" title="View Tomorrow's 24-Hour Forecast">
+                <i class="fa-solid fa-cloud-sun"></i>
+                <span>Tomorrow</span>
+              </button>
+              <button type="button" class="diurnal-date-pill" id="diurnalBtnDayAfter" onclick="NWACharts.switchDiurnalDate('dayAfter')" title="View Day After Tomorrow's 24-Hour Forecast">
+                <i class="fa-solid fa-calendar-day"></i>
+                <span>Day After Tomorrow</span>
+              </button>
+
+              <!-- Custom Date Picker Trigger -->
+              <div class="diurnal-custom-date-wrap">
+                <button type="button" class="diurnal-date-pill diurnal-date-pill-custom" id="diurnalBtnCustom" onclick="NWACharts.openCustomDatePicker(event)" title="Choose date within 16-day forecast or observational range">
+                  <i class="fa-regular fa-calendar-days"></i>
+                  <span id="diurnalCustomLabelText">Pick Custom Date</span>
+                </button>
+                <input type="date" id="diurnalCustomDateInput" class="diurnal-native-date-input" aria-label="Select custom date within 16-day forecast or historical range" min="1940-01-01" onclick="try{this.showPicker&&this.showPicker();}catch(e){}" onchange="NWACharts.switchDiurnalCustomDate(this.value)">
+              </div>
+            </div>
+
+            <div class="diurnal-subtitle">
+              <i class="fa-regular fa-hand-pointer"></i>
+              <span>Click any hour for detailed conditions</span>
+            </div>
           </div>
+        </div>
+
+        <!-- Custom Date Loading Indicator -->
+        <div id="diurnalLoadingIndicator" class="diurnal-loading-banner" style="display: none;">
+          <i class="fa-solid fa-circle-notch fa-spin"></i>
+          <span>Retrieving meteorological telemetry for selected date...</span>
         </div>
 
         <!-- 24-Hour Horizontal Scroll Card Strip -->
@@ -529,16 +554,20 @@
           <div class="trajectory-header">
             <div class="trajectory-title" id="trajectoryHeaderTitle">
               <i class="fa-solid fa-chart-line" style="color: var(--accent-primary);"></i>
-              <span id="trajectoryChartTitleText">Temperature & Rain Probability Trend</span>
+              <span id="trajectoryChartTitleText">10-Day Temperature & Rain Forecast Trend</span>
+              <span class="trajectory-ml-badge" id="trajectoryMlBadge" title="NWA Machine Learning NWP-MOS Model calibrated with localized station telemetry">
+                <i class="fa-solid fa-brain"></i> ML Calibrated
+              </span>
             </div>
             <div class="trajectory-legend" id="trajectoryLegendWrap">
-              <span class="trajectory-legend-item" id="legItem1"><span class="legend-dot dot-max-temp"></span> <span id="legText1">Max Temp</span></span>
-              <span class="trajectory-legend-item" id="legItem2"><span class="legend-dot dot-min-temp"></span> <span id="legText2">Min Temp</span></span>
-              <span class="trajectory-legend-item" id="legItem3"><span class="legend-dot dot-rain"></span> <span id="legText3">Rain %</span></span>
+              <span class="trajectory-legend-item" id="legItem1"><span class="legend-dot dot-max-temp"></span> <span id="legText1">Max Temp (°C)</span></span>
+              <span class="trajectory-legend-item" id="legItem2"><span class="legend-dot dot-min-temp"></span> <span id="legText2">Min Temp (°C)</span></span>
+              <span class="trajectory-legend-item" id="legItemML"><span class="legend-dot dot-ml-trend"></span> <span id="legTextML">ML Trend (°C)</span></span>
+              <span class="trajectory-legend-item" id="legItem3"><span class="legend-dot dot-rain"></span> <span id="legText3">Rain Probability (%)</span></span>
             </div>
           </div>
           <div class="trajectory-canvas-wrap">
-            <canvas id="forecastTrajectoryChart" style="height: 175px; max-height: 190px; width: 100%;"></canvas>
+            <canvas id="forecastTrajectoryChart" style="height: 190px; max-height: 205px; width: 100%;"></canvas>
           </div>
         </div>
 
@@ -600,6 +629,319 @@
     </section>
 
     <!-- =======================================================
+         VIEW: National Severe Weather Alerts & Early-Warning Hub
+         ======================================================= -->
+    <section id="weather-alerts-view" class="tab-view">
+      
+      <!-- Top Alert Center Header Banner -->
+      <div class="alerts-header-banner">
+        <div class="alerts-header-text">
+          <div class="alerts-surveillance-indicator">
+            <span class="pulse-dot red"></span>
+            <span>NATIONAL WEATHER SURVEILLANCE & EARLY WARNING</span>
+          </div>
+          <h2 class="alerts-main-title">Active Severe Weather Warnings & Personal Alert Hub</h2>
+          <p class="alerts-subtitle">
+            Surveillance of all geographical areas highly affected by intense monsoon downpours, severe heatwaves, cyclonic depressions, and flash floods across India. Set personalized early-warning alerts for your region.
+          </p>
+        </div>
+        <div class="alerts-header-actions">
+          <button type="button" class="btn btn-accent" onclick="NWAAlerts.openDispatchModal()" title="Emergency Weather Desk: Dispatch National Weather Warning" style="background: linear-gradient(135deg, #ef4444, #b91c1c); color: #fff; font-weight: 700;">
+            <i class="fa-solid fa-tower-broadcast"></i> Dispatch Agency Alert
+          </button>
+          <button type="button" class="btn btn-primary" onclick="NWAAlerts.testAlertNotification()" title="Simulate alert with sound siren and push notification">
+            <i class="fa-solid fa-volume-high"></i> Test Alert Audio & Push
+          </button>
+          <button type="button" class="btn btn-outline" onclick="NWAAlerts.loadNationalAlerts()" title="Refresh national weather warnings">
+            <i class="fa-solid fa-rotate-right"></i> Refresh Warnings
+          </button>
+        </div>
+      </div>
+
+      <!-- National Warning Statistics Ticker -->
+      <div id="alertsSummaryStats" class="alerts-summary-ticker">
+        <!-- Dynamically rendered by NWAAlerts.loadNationalAlerts() -->
+      </div>
+
+      <!-- Two-Column Hub: Set Custom Alert & Active Subscriptions -->
+      <div class="alerts-hub-grid">
+        
+        <!-- Left: Set Personal Weather Alert Card -->
+        <div class="alert-config-card">
+          <div class="alert-card-title-bar">
+            <div class="title-with-icon">
+              <i class="fa-solid fa-bell" style="color: #0284c7;"></i>
+              <h3>Set Personal Weather Alert</h3>
+            </div>
+            <span class="badge badge-accent">Automated Monitor</span>
+          </div>
+          <p class="alert-config-desc">
+            Configure an automated trigger for your area. The platform monitors real-time telemetry and sends instant browser notifications and audio sirens when dangerous weather thresholds are reached.
+          </p>
+
+          <form id="userAlertForm" class="alert-config-form" onsubmit="NWAAlerts.handleAlertFormSubmit(event)">
+            <!-- Hidden device GPS inputs -->
+            <input type="hidden" id="alertLat" />
+            <input type="hidden" id="alertLon" />
+
+            <div class="alert-form-group">
+              <label for="alertCityInput">
+                <i class="fa-solid fa-location-dot"></i> Monitored Location / City
+              </label>
+              <div class="input-with-action">
+                <input 
+                  type="text" 
+                  id="alertCityInput" 
+                  class="form-control" 
+                  placeholder="e.g., Mumbai, New Delhi, Kolkata..." 
+                  required
+                />
+                <button type="button" class="btn-input-action" id="alertCurrentGpsBtn" onclick="NWAAlerts.useCurrentLocationForAlert()" title="Use Current Device GPS Location">
+                  <i class="fa-solid fa-crosshairs"></i> Current GPS
+                </button>
+              </div>
+            </div>
+
+            <div class="alert-form-row">
+              <div class="alert-form-group flex-1">
+                <label for="alertHazardType">
+                  <i class="fa-solid fa-cloud-bolt"></i> Weather Hazard Trigger
+                </label>
+                <select id="alertHazardType" class="form-control" onchange="NWAAlerts.handleHazardTypeChange()">
+                  <option value="heavy_rain" selected>Torrential / Heavy Rain (mm/h)</option>
+                  <option value="heatwave">Extreme Heatwave (°C)</option>
+                  <option value="thunderstorm">Severe Thunderstorm / Gale (km/h)</option>
+                  <option value="cold_wave">Severe Cold Wave (°C)</option>
+                </select>
+              </div>
+
+              <div class="alert-form-group flex-1">
+                <label for="alertThresholdInput">
+                  <i class="fa-solid fa-gauge-high"></i> Alert Threshold (<span id="alertThresholdUnitLabel">mm/h</span>)
+                </label>
+                <div class="threshold-input-wrapper">
+                  <input 
+                    type="number" 
+                    id="alertThresholdInput" 
+                    class="form-control" 
+                    value="15" 
+                    min="5" 
+                    max="150" 
+                    step="5" 
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div id="alertThresholdHelpText" class="alert-threshold-help">
+              IMD criterion: Moderate (5-15mm/h), Heavy (15-64mm/h), Very Heavy (>64mm/h)
+            </div>
+
+            <!-- Audio Tone Selection -->
+            <div class="alert-form-group" style="margin-top: 0.75rem;">
+              <label for="alertSoundSelect">
+                <i class="fa-solid fa-volume-high"></i> Alert Audio Tone
+              </label>
+              <div class="input-with-action">
+                <select id="alertSoundSelect" class="form-control" onchange="NWAAlerts.previewAlertSound(this.value)">
+                  <option value="eas_broadcast" selected>Emergency Broadcast Siren (EAS 853/960Hz)</option>
+                  <option value="disaster_siren">Municipal Disaster Alarm (Wailing Siren)</option>
+                  <option value="pulse_staccato">High-Alert Pulse Staccato</option>
+                  <option value="sonar_ping">Radar Sonar Ping</option>
+                  <option value="advisory_bell">Melodic Advisory Bell</option>
+                </select>
+                <button type="button" class="btn-input-action" onclick="NWAAlerts.previewAlertSound()" title="Preview selected audio tone">
+                  <i class="fa-solid fa-play"></i> Preview
+                </button>
+              </div>
+            </div>
+
+            <!-- Notification Channels -->
+            <div class="alert-channels-group">
+              <div class="channels-title">Notification Channels:</div>
+              <div class="channels-options">
+                <label class="channel-toggle-label">
+                  <input type="checkbox" id="alertNotifyBrowser" checked />
+                  <span><i class="fa-solid fa-globe"></i> Browser Push Notification</span>
+                </label>
+                <label class="channel-toggle-label">
+                  <input type="checkbox" id="alertNotifyAudio" checked />
+                  <span><i class="fa-solid fa-volume-high"></i> Acoustic Siren / Chime</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="alert-form-group" style="margin-top: 0.75rem;">
+              <label for="alertEmailInput">
+                <i class="fa-solid fa-envelope"></i> Email Alert Dispatch (Optional)
+              </label>
+              <input 
+                type="email" 
+                id="alertEmailInput" 
+                class="form-control" 
+                placeholder="your.email@example.com (optional)"
+              />
+            </div>
+
+            <div class="alert-form-actions">
+              <button type="submit" class="btn btn-primary" id="btnActivateAlert" style="flex: 1; justify-content: center;">
+                <i class="fa-solid fa-shield-halved"></i> Activate Weather Alert
+              </button>
+              <button type="button" class="btn btn-secondary" onclick="NWAAlerts.testAlertNotification()" title="Test Alert Audio and System Notification">
+                <i class="fa-solid fa-play"></i> Test Notification
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Right: Active Monitored Subscriptions -->
+        <div class="alert-subscriptions-card">
+          <div class="alert-card-title-bar">
+            <div class="title-with-icon">
+              <i class="fa-solid fa-tower-broadcast" style="color: #10b981;"></i>
+              <h3>My Active Alerts</h3>
+            </div>
+            <span class="badge badge-success"><i class="fa-solid fa-circle-check"></i> Active Guard</span>
+          </div>
+          <p class="alert-config-desc">
+            Your active early-warning subscriptions. Alerts are continuously cross-checked against incoming Open-Meteo satellite feeds and numerical prediction models.
+          </p>
+
+          <div id="userSubscriptionsList" class="user-subscriptions-container">
+            <!-- Dynamically populated by NWAAlerts.renderUserSubscriptions() -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Highly Affected Weather Areas in India -->
+      <div class="affected-areas-section">
+        <div class="section-title-bar">
+          <div>
+            <h3 class="section-heading">
+              <i class="fa-solid fa-triangle-exclamation" style="color: #ef4444;"></i>
+              Areas Highly Affected by Extreme Weather
+            </h3>
+            <p class="section-subtext">
+              Real-time radar tracking of regions currently under Red Warnings, Orange Alerts, or Yellow Watches for heavy rain, heatwaves, cyclones, or floods.
+            </p>
+          </div>
+
+          <!-- Filter Controls -->
+          <div class="alerts-filter-bar">
+            <div class="filter-group">
+              <span class="filter-label">Hazard:</span>
+              <button type="button" class="hazard-filter-pill active" data-category="all" onclick="NWAAlerts.setHazardFilter('all')">All</button>
+              <button type="button" class="hazard-filter-pill" data-category="heavy_rain" onclick="NWAAlerts.setHazardFilter('heavy_rain')">
+                <i class="fa-solid fa-cloud-showers-heavy"></i> Heavy Rain
+              </button>
+              <button type="button" class="hazard-filter-pill" data-category="heatwave" onclick="NWAAlerts.setHazardFilter('heatwave')">
+                <i class="fa-solid fa-temperature-arrow-up"></i> Heatwave
+              </button>
+              <button type="button" class="hazard-filter-pill" data-category="cyclone" onclick="NWAAlerts.setHazardFilter('cyclone')">
+                <i class="fa-solid fa-hurricane"></i> Cyclone/Wind
+              </button>
+              <button type="button" class="hazard-filter-pill" data-category="flood" onclick="NWAAlerts.setHazardFilter('flood')">
+                <i class="fa-solid fa-house-flood-water"></i> Flood
+              </button>
+            </div>
+
+            <div class="filter-group">
+              <span class="filter-label">Severity:</span>
+              <button type="button" class="severity-filter-pill active" data-severity="all" onclick="NWAAlerts.setSeverityFilter('all')">All</button>
+              <button type="button" class="severity-filter-pill severity-red" data-severity="red" onclick="NWAAlerts.setSeverityFilter('red')">Red (Warning)</button>
+              <button type="button" class="severity-filter-pill severity-orange" data-severity="orange" onclick="NWAAlerts.setSeverityFilter('orange')">Orange (Alert)</button>
+              <button type="button" class="severity-filter-pill severity-yellow" data-severity="yellow" onclick="NWAAlerts.setSeverityFilter('yellow')">Yellow (Watch)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grid of Affected Area Cards -->
+        <div id="alertsCardsGrid" class="alerts-cards-grid">
+          <!-- Dynamically populated by NWAAlerts.loadNationalAlerts() -->
+        </div>
+      </div>
+
+      <!-- Emergency Disaster Protocols & IMD Color Code Reference -->
+      <div class="alert-protocols-card">
+        <div class="protocols-header">
+          <h4><i class="fa-solid fa-shield-halved" style="color: var(--accent-primary);"></i> Authoritative Warning Standards & Emergency Helplines</h4>
+          <span class="protocols-tag">National Disaster Guidelines</span>
+        </div>
+        <div class="protocols-grid">
+          <div class="protocol-item red">
+            <div class="protocol-badge red">RED WARNING</div>
+            <div class="protocol-desc"><strong>Take Action:</strong> Extreme weather imminent. Life & property hazard. Cease non-essential travel and follow local administration orders.</div>
+          </div>
+          <div class="protocol-item orange">
+            <div class="protocol-badge orange">ORANGE ALERT</div>
+            <div class="protocol-desc"><strong>Be Prepared:</strong> Severe weather likely. Significant transport, waterlogging, or heat exhaustion disruptions expected.</div>
+          </div>
+          <div class="protocol-item yellow">
+            <div class="protocol-badge yellow">YELLOW WATCH</div>
+            <div class="protocol-desc"><strong>Be Updated:</strong> Changing meteorological conditions. Keep track of daily weather advisories.</div>
+          </div>
+          <div class="protocol-item green">
+            <div class="protocol-badge green">GREEN STATUS</div>
+            <div class="protocol-desc"><strong>No Warning:</strong> Atmospheric conditions remain well within seasonal safe parameters.</div>
+          </div>
+        </div>
+
+        <div class="helplines-strip">
+          <div class="helpline-col">
+            <i class="fa-solid fa-phone-volume"></i>
+            <div>
+              <strong>NDRF National Disaster Helpline:</strong> 1078 / 011-24363260
+            </div>
+          </div>
+          <div class="helpline-col">
+            <i class="fa-solid fa-truck-medical"></i>
+            <div>
+              <strong>National All-Emergency Helpline:</strong> 112
+            </div>
+          </div>
+          <div class="helpline-col">
+            <i class="fa-solid fa-tower-observation"></i>
+            <div>
+              <strong>IMD Weather Service Cell:</strong> 1800-180-1717
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Registered Community Weather Reports Section (FR: Registered Reports Shown Below) -->
+      <div class="alerts-registered-reports-section" style="margin-top: 2rem;">
+        <div class="section-title-bar" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fa-solid fa-clipboard-list" style="color: var(--accent-primary);"></i>
+              <span>Registered Community Incident Reports & Ground Bulletins</span>
+            </h3>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0;">
+              Real-time ground incident reports registered by citizens nationwide. Synchronized across all users in real time.
+            </p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <button type="button" class="btn btn-accent btn-sm" onclick="if(window.NWAReports) { NWAReports.openReportModal(); } else { document.getElementById('reportModal')?.classList.add('active'); }" style="font-weight: 600;">
+              <i class="fa-solid fa-bullhorn"></i> Submit Ground Report
+            </button>
+            <div class="alert-rep-filter-buttons">
+              <button type="button" class="alert-rep-filter-pill active" data-status="all" onclick="NWAAlerts.setAlertsReportsFilter('all')">All</button>
+              <button type="button" class="alert-rep-filter-pill" data-status="verified" onclick="NWAAlerts.setAlertsReportsFilter('verified')">Verified</button>
+              <button type="button" class="alert-rep-filter-pill" data-status="unverified" onclick="NWAAlerts.setAlertsReportsFilter('unverified')">Pending</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grid for registered reports in alerts view -->
+        <div id="alertsRegisteredReportsContainer" class="alerts-registered-reports-grid">
+          <!-- Dynamically populated by NWAAlerts.loadAlertsRegisteredReports() -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- =======================================================
          VIEW 2: Citizen Crowd Reporting & Moderation (Phase 2)
          ======================================================= -->
     <section id="citizen-reports-view" class="tab-view">
@@ -648,15 +990,15 @@
                   <span>Multi-Platform Weather Intelligence Stream</span>
                 </h3>
                 <p style="font-size: 0.82rem; color: var(--text-secondary);">
-                  Real-time signals aggregated live from <strong>Google News / Intelligence</strong>, <strong>X / Twitter</strong>, and <strong>IMD Official Feeds</strong>.
+                  Real-time signals aggregated live from <strong>UN GDACS Disaster Alerting</strong>, <strong>Google News RSS</strong>, <strong>X / Twitter (API v2)</strong>, <strong>Instagram (Graph API)</strong>, and <strong>IMD Feeds</strong>.
                 </p>
               </div>
               <div style="display: flex; align-items: center; gap: 0.5rem;">
-                <button id="fetchLiveSignalsBtn" class="btn btn-sm btn-outline" onclick="NWASocial.fetchLiveSignals()" title="Trigger Live Ingestion from Google News & Social API">
+                <button id="fetchLiveSignalsBtn" class="btn btn-sm btn-outline" onclick="NWASocial.fetchLiveSignals()" title="Trigger Live Ingestion from Google News, GDACS & Social API">
                   <i class="fa-solid fa-rotate"></i> Fetch Live Signals
                 </button>
                 <span id="socialLiveBadge" class="cached-tag" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">
-                  <i class="fa-solid fa-circle-dot"></i> LIVE STREAM ON
+                  <i class="fa-solid fa-circle-dot"></i> MULTI-SOURCE INGESTION ACTIVE
                 </span>
               </div>
             </div>
@@ -666,14 +1008,20 @@
               <button class="filter-pill active" data-platform="all" onclick="NWASocial.filterSocialByPlatform('all')">
                 <i class="fa-solid fa-globe"></i> All Platforms
               </button>
+              <button class="filter-pill" data-platform="gdacs" onclick="NWASocial.filterSocialByPlatform('gdacs')">
+                <i class="fa-solid fa-shield-halved" style="color: #ef4444;"></i> UN GDACS Disaster Alerts
+              </button>
               <button class="filter-pill" data-platform="google" onclick="NWASocial.filterSocialByPlatform('google')">
-                <i class="fa-brands fa-google" style="color: #4285F4;"></i> Google News
+                <i class="fa-brands fa-google" style="color: #4285F4;"></i> Google News RSS
               </button>
               <button class="filter-pill" data-platform="twitter" onclick="NWASocial.filterSocialByPlatform('twitter')">
-                <i class="fa-brands fa-x-twitter"></i> X / Twitter
+                <i class="fa-brands fa-x-twitter"></i> X / Twitter (API v2)
               </button>
               <button class="filter-pill" data-platform="imd" onclick="NWASocial.filterSocialByPlatform('imd')">
                 <i class="fa-solid fa-satellite-dish" style="color: #0284c7;"></i> IMD Official
+              </button>
+              <button class="filter-pill" data-platform="instagram" onclick="NWASocial.filterSocialByPlatform('instagram')">
+                <i class="fa-brands fa-instagram" style="color: #E1306C;"></i> Instagram
               </button>
             </div>
           </div>
@@ -734,6 +1082,22 @@
          ======================================================= -->
     <section id="analytics-view" class="tab-view">
       
+      <!-- Analytics Header Action Bar -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem;">
+        <div>
+          <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin: 0 0 0.2rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-chart-pie" style="color: var(--accent-primary);"></i> National Weather Analytics
+          </h2>
+          <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0;">Real-time meteorological intelligence from citizen reports, social streams & national stations</p>
+        </div>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+
+          <button type="button" onclick="window.NWASocial && window.NWASocial.loadAnalyticsData()" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; border-radius: 6px; background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-color); font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: background 0.2s;" title="Refresh analytics data">
+            <i class="fa-solid fa-rotate-right"></i> Refresh Data
+          </button>
+        </div>
+      </div>
+
       <!-- High-Level KPIs -->
       <div class="analytics-kpis-grid">
         <div class="kpi-card">
@@ -768,7 +1132,7 @@
 
         <div class="kpi-card">
           <div class="kpi-icon-wrap teal">
-            <i class="fa-solid fa-shield-check"></i>
+            <i class="fa-solid fa-clipboard-check"></i>
           </div>
           <div>
             <div id="kpiAccuracy" class="kpi-val">--%</div>
@@ -974,7 +1338,7 @@
                 <h2>
                   <i class="fa-solid fa-user-shield" style="color: var(--accent-primary);"></i>
                   <span>Admin Portal</span>
-                  <span class="admin-title-sub">— Weather Intelligence & Incident Moderation</span>
+                  <span class="admin-title-sub">| Weather Intelligence & Incident Moderation</span>
                 </h2>
                 <p>
                   Central operational dashboard to review incoming citizen weather reports, analyze AI credibility scores, resolve duplicate clusters, and verify official meteorological observations.
@@ -1004,16 +1368,43 @@
                 <button class="btn btn-sm btn-outline" id="adminExportCsvBtn" onclick="NWAAdmin.exportAuditCSV()" title="Export filtered audit table as CSV">
                   <i class="fa-solid fa-file-arrow-down" style="color: #10b981;"></i> Export CSV
                 </button>
+                <div id="liveSyncStatusBadge" class="live-sync-badge active" title="Real-Time Server-Sent Events Push Stream Connected" style="display: inline-flex; align-items: center; padding: 0 0.5rem; border-radius: 6px; font-size: 0.75rem;">
+                  <span class="live-sync-dot"></span>
+                  <span class="live-sync-text">LIVE SYNC ACTIVE</span>
+                </div>
+                <button id="topNavBigDataBtn" class="btn btn-sm btn-outline" title="Open Big Data Pipeline & OSS Architecture" onclick="window.NWABigData && window.NWABigData.openModal()" style="border-color: rgba(56,189,248,0.4); color: #38bdf8;">
+                  <i class="fa-solid fa-server" style="color: #38bdf8;"></i>
+                  <span>Big Data Pipeline</span>
+                </button>
               </div>
               <div class="admin-toolbar-right">
-                <button class="btn btn-sm btn-primary" id="adminRefreshBtn" onclick="NWAAdmin.loadAdminData()" title="Refresh queue">
-                  <i class="fa-solid fa-rotate"></i> Refresh Queue
+                <button class="btn btn-sm btn-primary" id="adminRefreshBtn" onclick="NWAAdmin.handleRefreshQueue()" title="Refresh admin queue">
+                  <i class="fa-solid fa-rotate" id="adminRefreshIcon"></i> <span id="adminRefreshText">Refresh Queue</span>
                 </button>
               </div>
             </div>
           </div>
 
-          <!-- KPI Metrics Matrix -->
+          <!-- Admin Multi-Tab Navigation -->
+          <div class="admin-main-nav-tabs">
+            <button type="button" class="admin-main-tab-btn active" data-admin-tab="moderation" onclick="NWAAdmin.switchAdminTab('moderation')">
+              <i class="fa-solid fa-list-check"></i> Citizen Incident Moderation
+            </button>
+            <button type="button" class="admin-main-tab-btn" data-admin-tab="weather-alerts" onclick="NWAAdmin.switchAdminTab('weather-alerts')">
+              <i class="fa-solid fa-triangle-exclamation"></i> Weather Alerts & Warnings Management
+            </button>
+            <button type="button" class="admin-main-tab-btn" data-admin-tab="bigdata-pipeline" onclick="NWAAdmin.switchAdminTab('bigdata-pipeline')">
+              <i class="fa-solid fa-network-wired" style="color: #38bdf8;"></i> Big Data Pipeline & Ingestion Architecture
+            </button>
+            <button type="button" class="admin-main-tab-btn" data-admin-tab="cluster-scalability" onclick="NWAAdmin.switchAdminTab('cluster-scalability')">
+              <i class="fa-solid fa-server" style="color: #10b981;"></i> Horizontal Cluster &amp; K8s Scalability
+            </button>
+          </div>
+
+          <!-- Section 1: Citizen Reports Moderation -->
+          <div id="adminModerationSection">
+
+            <!-- KPI Metrics Matrix -->
           <div class="admin-stats-matrix">
             <div class="admin-stat-card stat-card-total">
               <div class="admin-stat-card-title">
@@ -1024,7 +1415,7 @@
             </div>
             <div class="admin-stat-card stat-card-verified">
               <div class="admin-stat-card-title">
-                <i class="fa-solid fa-shield-check" style="color: #10b981;"></i> Verification Rate
+                <i class="fa-solid fa-clipboard-check" style="color: #10b981;"></i> Verification Rate
               </div>
               <div class="admin-stat-card-val" id="adminStatAuthenticity" style="color: #10b981;">--%</div>
               <div class="admin-stat-card-sub" id="adminStatVerifiedCount">Verified Observations</div>
@@ -1197,6 +1588,557 @@
               </table>
             </div>
           </div>
+          </div> <!-- Close adminModerationSection -->
+
+          <!-- Section 2: Weather Alerts & Warnings Management Hub -->
+          <div id="adminWeatherAlertsSection" style="display: none;">
+            <!-- Alert KPI Metrics -->
+            <div class="admin-stats-matrix">
+              <div class="admin-stat-card stat-card-total">
+                <div class="admin-stat-card-title">
+                  <i class="fa-solid fa-triangle-exclamation" style="color: #ef4444;"></i> Active Weather Warnings
+                </div>
+                <div class="admin-stat-card-val" id="adminAlertsTotal">--</div>
+                <div class="admin-stat-card-sub">Monitored Hazard Zones</div>
+              </div>
+              <div class="admin-stat-card stat-card-flagged">
+                <div class="admin-stat-card-title">
+                  <i class="fa-solid fa-radiation" style="color: #ef4444;"></i> Red Severe Warnings
+                </div>
+                <div class="admin-stat-card-val" id="adminAlertsRed" style="color: #ef4444;">--</div>
+                <div class="admin-stat-card-sub">Highest Hazard Priority</div>
+              </div>
+              <div class="admin-stat-card stat-card-verified" style="border-top-color: #f59e0b;">
+                <div class="admin-stat-card-title">
+                  <i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b;"></i> Orange Alerts
+                </div>
+                <div class="admin-stat-card-val" id="adminAlertsOrange" style="color: #f59e0b;">--</div>
+                <div class="admin-stat-card-sub">Preparedness Horizon</div>
+              </div>
+              <div class="admin-stat-card stat-card-total" style="border-top-color: #0284c7;">
+                <div class="admin-stat-card-title">
+                  <i class="fa-solid fa-bell" style="color: #0284c7;"></i> User Early-Warning Alerts
+                </div>
+                <div class="admin-stat-card-val" id="adminAlertsSubs" style="color: #0284c7;">--</div>
+                <div class="admin-stat-card-sub">Active Subscriptions</div>
+              </div>
+            </div>
+
+            <!-- Broadcast Official Warning Form Card -->
+            <div class="admin-broadcast-card">
+              <div class="admin-broadcast-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+                <div>
+                  <h3 style="margin: 0; font-size: 1.15rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fa-solid fa-bullhorn" style="color: #ef4444;"></i>
+                    <span>Broadcast Official Emergency Weather Warning</span>
+                  </h3>
+                  <p style="margin: 0.25rem 0 0; font-size: 0.82rem; color: var(--text-secondary);">
+                    Dispatches an immediate authoritative warning across the national alerts network and alerts all connected users.
+                  </p>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline" id="adminBroadcastGpsBtn" onclick="NWAAdmin.useDeviceLocationForBroadcast()" style="display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; padding: 0.45rem 0.85rem; border-color: #0284c7; color: #0284c7; cursor: pointer;" title="Detect Current Device GPS and Auto-fill Form">
+                  <i class="fa-solid fa-location-crosshairs"></i>
+                  <span>Detect Device GPS</span>
+                </button>
+              </div>
+
+              <form id="adminBroadcastAlertForm" onsubmit="NWAAdmin.handleAdminBroadcastAlert(event)" style="margin-top: 1rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                  <div class="form-group" style="margin: 0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                      <label class="form-label" for="adminAlertCity" style="margin: 0;"><i class="fa-solid fa-city"></i> City / Region *</label>
+                      <button type="button" class="btn-input-action" onclick="NWAAdmin.useDeviceLocationForBroadcast()" style="font-size: 0.75rem; padding: 0.15rem 0.5rem;" title="Fill from Device GPS">
+                        <i class="fa-solid fa-crosshairs"></i> Use GPS
+                      </button>
+                    </div>
+                    <input type="text" id="adminAlertCity" class="form-control" placeholder="e.g., Chennai, Coastal Tamil Nadu" required />
+                  </div>
+                  <div class="form-group" style="margin: 0;">
+                    <label class="form-label" for="adminAlertState"><i class="fa-solid fa-map"></i> State / UT *</label>
+                    <input type="text" id="adminAlertState" class="form-control" placeholder="e.g., Tamil Nadu" required />
+                  </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
+                  <div class="form-group" style="margin: 0;">
+                    <label class="form-label" for="adminAlertLat">Latitude</label>
+                    <input type="number" step="0.0001" id="adminAlertLat" class="form-control" placeholder="13.0827" value="13.0827" />
+                  </div>
+                  <div class="form-group" style="margin: 0;">
+                    <label class="form-label" for="adminAlertLon">Longitude</label>
+                    <input type="number" step="0.0001" id="adminAlertLon" class="form-control" placeholder="80.2707" value="80.2707" />
+                  </div>
+                  <div class="form-group" style="margin: 0;">
+                    <label class="form-label" for="adminAlertHazard">Hazard Category *</label>
+                    <select id="adminAlertHazard" class="form-control" required>
+                      <option value="heavy_rain" selected>Heavy Rain / Inundation</option>
+                      <option value="heatwave">Extreme Heatwave</option>
+                      <option value="cyclone">Cyclone / Storm</option>
+                      <option value="flood">Flash Flood</option>
+                      <option value="thunderstorm">Severe Thunderstorm & Gale</option>
+                      <option value="cold_wave">Severe Cold Wave</option>
+                    </select>
+                  </div>
+                  <div class="form-group" style="margin: 0;">
+                    <label class="form-label" for="adminAlertSeverity">Warning Level *</label>
+                    <select id="adminAlertSeverity" class="form-control" required>
+                      <option value="red" selected>RED (Take Action)</option>
+                      <option value="orange">ORANGE (Be Prepared)</option>
+                      <option value="yellow">YELLOW (Be Updated)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 1rem;">
+                  <label class="form-label" for="adminAlertHeadline">Warning Headline *</label>
+                  <input type="text" id="adminAlertHeadline" class="form-control" placeholder="e.g., Extremely intense rainfall exceeding 150mm forecast in next 18 hours" required />
+                </div>
+
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+                  <div class="form-group" style="margin: 0;">
+                    <label class="form-label" for="adminAlertAdvisory">Public Safety Advisory</label>
+                    <input type="text" id="adminAlertAdvisory" class="form-control" placeholder="e.g., Avoid waterlogged underpasses, keep emergency numbers active, follow civil instructions." />
+                  </div>
+                  <div class="form-group" style="margin: 0;">
+                    <label class="form-label" for="adminAlertValid">Validity Horizon</label>
+                    <select id="adminAlertValid" class="form-control">
+                      <option value="Next 12 Hours">Next 12 Hours</option>
+                      <option value="Next 24 Hours" selected>Next 24 Hours</option>
+                      <option value="Next 48 Hours">Next 48 Hours</option>
+                      <option value="Next 72 Hours">Next 72 Hours</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+                  <button type="submit" class="btn btn-primary" id="adminBroadcastSubmitBtn" style="font-weight: 600;">
+                    <i class="fa-solid fa-bullhorn"></i> Broadcast Emergency Warning
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Active Alerts Network Table -->
+            <div class="admin-table-card" style="margin-top: 1.5rem;">
+              <div class="admin-table-card-header">
+                <div class="title-with-icon">
+                  <i class="fa-solid fa-tower-broadcast" style="color: #ef4444;"></i>
+                  <h4>Active National Severe Weather Alerts</h4>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline" id="adminRefreshAlertsBtn" onclick="NWAAdmin.handleRefreshAlerts()" title="Refresh alerts list">
+                  <i class="fa-solid fa-rotate" id="adminRefreshAlertsIcon"></i> <span id="adminRefreshAlertsText">Refresh Alerts</span>
+                </button>
+              </div>
+
+              <div class="admin-table-container">
+                <table class="admin-data-table">
+                  <thead>
+                    <tr>
+                      <th>Location / GPS</th>
+                      <th>Hazard</th>
+                      <th>Severity</th>
+                      <th>Headline & Advisory</th>
+                      <th>Validity</th>
+                      <th>Authority</th>
+                      <th style="text-align: right;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminAlertsTableBody">
+                    <!-- Populated dynamically via NWAAdmin.loadAdminAlertsData() -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div> <!-- Close adminWeatherAlertsSection -->
+
+          <!-- Section 3: Big Data Streaming Pipeline & Ingestion Architecture -->
+          <div id="adminBigDataSection" style="display: none;">
+            
+            <!-- Big Data Architecture Telemetry Cards -->
+            <div class="admin-stats-matrix">
+              <div class="admin-stat-card">
+                <div class="admin-stat-card-title">
+                  <i class="fa-solid fa-gauge-high" style="color: #38bdf8;"></i> Stream Throughput
+                </div>
+                <div class="admin-stat-card-val" id="bigDataThroughputVal" style="color: #38bdf8;">-- rec/s</div>
+                <div class="admin-stat-card-sub" id="bigDataConnectorName">Engine: Apache Kafka Partition Buffer</div>
+              </div>
+
+              <div class="admin-stat-card">
+                <div class="admin-stat-card-title">
+                  <i class="fa-solid fa-layer-group" style="color: #f59e0b;"></i> Buffer Queue Depth
+                </div>
+                <div class="admin-stat-card-val" id="bigDataQueueDepthVal" style="color: #f59e0b;">--</div>
+                <div class="admin-stat-card-sub" id="bigDataCapacitySub">Capacity: 10,000 in-memory</div>
+              </div>
+
+              <div class="admin-stat-card">
+                <div class="admin-stat-card-title">
+                  <i class="fa-solid fa-server" style="color: #10b981;"></i> Total Stream Ingested
+                </div>
+                <div class="admin-stat-card-val" id="bigDataTotalIngestedVal" style="color: #10b981;">--</div>
+                <div class="admin-stat-card-sub" id="bigDataProcessedSub">0 Dropped Packets (100% QoS)</div>
+              </div>
+
+              <div class="admin-stat-card">
+                <div class="admin-stat-card-title">
+                  <i class="fa-solid fa-bolt" style="color: #6366f1;"></i> End-to-End Latency
+                </div>
+                <div class="admin-stat-card-val" id="bigDataLatencyVal" style="color: #6366f1;">&lt; 15 ms</div>
+                <div class="admin-stat-card-sub">AI Feature Vectorization + DB Sync</div>
+              </div>
+            </div>
+
+            <!-- Big Data Architecture Topology Diagram Card -->
+            <div class="admin-table-card" style="margin-top: 1.5rem;">
+              <div class="admin-table-card-header">
+                <div class="title-with-icon">
+                  <i class="fa-solid fa-diagram-project" style="color: var(--accent-primary);"></i>
+                  <h4>Live Streaming Pipeline Architecture Topology</h4>
+                </div>
+                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                  <label for="bigDataConnectorSelect" style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);">Active Ingestion Engine:</label>
+                  <select id="bigDataConnectorSelect" class="form-control admin-select" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; width: auto;" onchange="NWAAdmin.changeConnector(this.value)">
+                    <option value="KAFKA">Apache Kafka (4 Partitions)</option>
+                    <option value="CLICKHOUSE">ClickHouse Columnar Buffer</option>
+                    <option value="SPARK">Apache Spark Structured Streaming</option>
+                    <option value="BIGQUERY">Google BigQuery Real-Time Stream</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="padding: 1.5rem;">
+                <!-- Animated Streaming Architecture Topology Flow -->
+                <div class="pipeline-topology-container">
+                  <div class="pipeline-node edge-source">
+                    <div class="node-icon"><i class="fa-solid fa-satellite-dish"></i></div>
+                    <div class="node-title">Edge Ingestion</div>
+                    <div class="node-desc">IMD Radars &bull; Citizen Web &bull; Social RSS</div>
+                    <div class="node-badge">HTTP / SSE / REST</div>
+                  </div>
+
+                  <div class="pipeline-flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
+                  <div class="pipeline-node message-buffer">
+                    <div class="node-icon"><i class="fa-solid fa-bars-staggered"></i></div>
+                    <div class="node-title" id="topologyBufferTitle">Kafka Buffer</div>
+                    <div class="node-desc">4 Ingestion Partitions (Snappy Comp.)</div>
+                    <div class="node-badge" id="topologyBufferBadge">nwa-meteorological-stream</div>
+                  </div>
+
+                  <div class="pipeline-flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
+                  <div class="pipeline-node ai-worker">
+                    <div class="node-icon"><i class="fa-solid fa-brain"></i></div>
+                    <div class="node-title">AI NLP &amp; CV Worker</div>
+                    <div class="node-desc">TF-IDF Vectorizer &bull; Naive Bayes &bull; EXIF Forensics</div>
+                    <div class="node-badge">Multiprocess Async</div>
+                  </div>
+
+                  <div class="pipeline-flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
+                  <div class="pipeline-node storage-sink">
+                    <div class="node-icon"><i class="fa-solid fa-database"></i></div>
+                    <div class="node-title">Storage Warehouse</div>
+                    <div class="node-desc">SQLite WAL + Partitioned GIS Analytics</div>
+                    <div class="node-badge">ACID WAL High-QoS</div>
+                  </div>
+                </div>
+
+                <!-- Kafka Multi-Partition Visualizer Strip -->
+                <div class="kafka-partition-strip" id="kafkaPartitionStrip">
+                  <div class="partition-box" id="partBox0">
+                    <div class="part-header"><span>Partition 0 (North)</span><span class="part-lag">Lag: 4ms</span></div>
+                    <div class="part-meter"><div class="part-fill" style="width: 15%;"></div></div>
+                  </div>
+                  <div class="partition-box" id="partBox1">
+                    <div class="part-header"><span>Partition 1 (South)</span><span class="part-lag">Lag: 6ms</span></div>
+                    <div class="part-meter"><div class="part-fill" style="width: 25%;"></div></div>
+                  </div>
+                  <div class="partition-box" id="partBox2">
+                    <div class="part-header"><span>Partition 2 (East)</span><span class="part-lag">Lag: 5ms</span></div>
+                    <div class="part-meter"><div class="part-fill" style="width: 18%;"></div></div>
+                  </div>
+                  <div class="partition-box" id="partBox3">
+                    <div class="part-header"><span>Partition 3 (West)</span><span class="part-lag">Lag: 3ms</span></div>
+                    <div class="part-meter"><div class="part-fill" style="width: 12%;"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- High-Volume Big Data Batch Benchmark Card -->
+            <div class="admin-table-card" style="margin-top: 1.5rem;">
+              <div class="admin-table-card-header">
+                <div class="title-with-icon">
+                  <i class="fa-solid fa-rocket" style="color: #10b981;"></i>
+                  <h4>High-Volume Stream Ingestion Scalability Benchmark</h4>
+                </div>
+                <div class="benchmark-controls">
+                  <button type="button" class="btn btn-sm btn-primary" id="runBenchmarkBtn" onclick="NWAAdmin.runIngestionBenchmark()">
+                    <i class="fa-solid fa-play"></i> Trigger 1,000 Event Benchmark
+                  </button>
+                </div>
+              </div>
+
+              <div style="padding: 1.25rem 1.5rem;">
+                <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 1rem;">
+                  Simulate high-velocity severe meteorological storm telemetry by blasting 1,000 continuous synthetic weather stream records across 4 message buffer partitions in under 2 seconds. Demonstrates asynchronous queuing, zero dropped packets, and real-time database batch commit.
+                </p>
+
+                <!-- Benchmark Live Progress Bar -->
+                <div id="benchmarkProgressBox" style="display: none; margin-bottom: 1.25rem;">
+                  <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 600; margin-bottom: 0.4rem;">
+                    <span id="benchmarkProgressLabel">Ingesting Synthetic Meteorological Stream...</span>
+                    <span id="benchmarkPercentLabel">0%</span>
+                  </div>
+                  <div style="height: 8px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden;">
+                    <div id="benchmarkProgressBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #0284c7, #10b981); transition: width 0.2s ease;"></div>
+                  </div>
+                </div>
+
+                <!-- Benchmark Results Container -->
+                <div id="benchmarkResultReport" style="display: none; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px; padding: 1rem 1.25rem;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+                    <div>
+                      <h5 style="margin: 0 0 0.25rem 0; color: #10b981; font-size: 0.95rem;">
+                        <i class="fa-solid fa-circle-check"></i> Benchmark Ingestion Test Passed
+                      </h5>
+                      <div id="benchmarkSummaryText" style="font-size: 0.82rem; color: var(--text-primary);">
+                        Ingested 1,000 records in 1,240 ms &bull; <strong>806 records/sec</strong>
+                      </div>
+                    </div>
+                    <div id="benchmarkMetricsPills" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                      <span class="telemetry-pill"><i class="fa-solid fa-microchip"></i> Buffer: 100% QoS</span>
+                      <span class="telemetry-pill"><i class="fa-solid fa-database"></i> SQLite WAL Synchronized</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div> <!-- Close adminBigDataSection -->
+
+          <!-- Section 4: Horizontal Cluster & Cloud Scalability (Audit Finding 6 Fix) -->
+          <div id="adminClusterSection" style="display: none;">
+
+            <!-- Cluster KPI Metrics Matrix -->
+            <div class="admin-stats-matrix" style="grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));">
+              <div class="admin-stat-card" style="border-left: 4px solid #10b981;">
+                <div class="admin-stat-card-title">
+                  <i class="fa-solid fa-server" style="color: #10b981;"></i> Active Cluster Nodes
+                </div>
+                <div class="admin-stat-card-val" id="clusterActiveNodesVal" style="color: #10b981;">4 / 4 Nodes</div>
+                <div class="admin-stat-card-sub" id="clusterSupervisorState">Supervisor: Self-Healing Active</div>
+              </div>
+
+              <div class="admin-stat-card" style="border-left: 4px solid #38bdf8;">
+                <div class="admin-stat-card-title">
+                  <i class="fa-solid fa-microchip" style="color: #38bdf8;"></i> Host CPU Topology
+                </div>
+                <div class="admin-stat-card-val" id="clusterHostCoresVal" style="color: #38bdf8;">-- Cores</div>
+                <div class="admin-stat-card-sub" id="clusterHostCpuUsage">CPU Load: Nominal</div>
+              </div>
+
+              <div class="admin-stat-card" style="border-left: 4px solid #8b5cf6;">
+                <div class="admin-stat-card-title">
+                  <i class="fa-solid fa-cubes" style="color: #8b5cf6;"></i> Kubernetes HPA
+                </div>
+                <div class="admin-stat-card-val" id="clusterK8sHpaVal" style="color: #8b5cf6;">3 &rarr; 50 Pods</div>
+                <div class="admin-stat-card-sub" id="clusterK8sTarget">Target: 70% CPU / 80% Mem</div>
+              </div>
+
+              <div class="admin-stat-card" style="border-left: 4px solid #f59e0b;">
+                <div class="admin-stat-card-title">
+                  <i class="fa-solid fa-network-wired" style="color: #f59e0b;"></i> Layer-7 Load Balancer
+                </div>
+                <div class="admin-stat-card-val" id="clusterLbAlgorithmVal" style="color: #f59e0b;">NGINX Least-Conn</div>
+                <div class="admin-stat-card-sub">Zero-Downtime Rolling Reload</div>
+              </div>
+            </div>
+
+            <!-- Main Scalability Dashboard Grid -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+
+              <!-- Panel 1: Live Multi-Worker Process Topology -->
+              <div class="admin-panel" style="margin-bottom: 0;">
+                <div class="admin-panel-header" style="display: flex; justify-content: space-between; align-items: center;">
+                  <h3 class="admin-panel-title" style="margin: 0; font-size: 0.92rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fa-solid fa-diagram-project" style="color: #10b981;"></i>
+                    Multi-Worker Node Pool (IPC Mesh)
+                  </h3>
+                  <button class="btn btn-sm btn-outline" onclick="NWAAdmin.loadClusterTelemetry()" style="padding: 0.2rem 0.6rem; font-size: 0.75rem;">
+                    <i class="fa-solid fa-arrows-rotate"></i> Refresh
+                  </button>
+                </div>
+                <div class="admin-panel-body" style="padding: 1rem;">
+                  <div id="clusterNodesListGrid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                    <!-- Dynamically populated worker cards -->
+                    <div style="padding: 1.5rem; text-align: center; color: var(--text-muted); grid-column: span 2;">
+                      <i class="fa-solid fa-spinner fa-spin"></i> Discovering cluster worker nodes...
+                    </div>
+                  </div>
+
+                  <!-- Self Healing Failover Simulation Control -->
+                  <div style="margin-top: 1rem; padding: 0.9rem; background: rgba(16, 185, 129, 0.05); border: 1px dashed rgba(16, 185, 129, 0.3); border-radius: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                      <div>
+                        <div style="font-size: 0.8rem; font-weight: 700; color: #10b981;"><i class="fa-solid fa-shield-halved"></i> Fault-Tolerance & Self-Healing</div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted);">Simulate worker crash and observe instant zero-downtime revival</div>
+                      </div>
+                      <button id="clusterSimFailoverBtn" class="btn btn-sm btn-outline" onclick="NWAAdmin.simulateClusterFailover()" style="border-color: #10b981; color: #10b981; font-size: 0.75rem; padding: 0.3rem 0.7rem;">
+                        <i class="fa-solid fa-heart-pulse"></i> Test Self-Healing
+                      </button>
+                    </div>
+                    <div id="clusterFailoverResultBox" style="display: none; margin-top: 0.6rem; font-size: 0.75rem; padding: 0.5rem 0.75rem; border-radius: 6px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Panel 2: Microservices Mesh & Cloud-Native Topology -->
+              <div class="admin-panel" style="margin-bottom: 0;">
+                <div class="admin-panel-header">
+                  <h3 class="admin-panel-title" style="margin: 0; font-size: 0.92rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fa-solid fa-cubes-stacked" style="color: #38bdf8;"></i>
+                    Microservices Architecture & Gateway Mesh
+                  </h3>
+                </div>
+                <div class="admin-panel-body" style="padding: 1rem;">
+                  <div id="clusterMicroservicesTable" style="display: flex; flex-direction: column; gap: 0.6rem;">
+                    <!-- Dynamically populated microservice components -->
+                    <div style="padding: 1rem; text-align: center; color: var(--text-muted);">
+                      <i class="fa-solid fa-spinner fa-spin"></i> Polling microservice registry...
+                    </div>
+                  </div>
+
+                  <!-- Containerization & Orchestration Specs Callout -->
+                  <div style="margin-top: 1rem; padding: 0.75rem 0.9rem; background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; font-weight: 600; color: #38bdf8; margin-bottom: 0.4rem;">
+                      <span><i class="fa-brands fa-docker"></i> Container & K8s Manifests Ready</span>
+                      <span style="font-size: 0.7rem; background: rgba(56,189,248,0.2); padding: 0.1rem 0.4rem; border-radius: 4px;">v2.4.0-cloud-native</span>
+                    </div>
+                    <div style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.4;">
+                      Production <code>Dockerfile</code>, <code>docker-compose.yml</code> (NGINX LB + 3 Nodes + Redis + Kafka + ClickHouse), and Kubernetes <code>k8s/hpa.yaml</code> autoscaler enabled.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div> <!-- Close 2-col Grid -->
+
+            <!-- High-Concurrency Multi-Worker Scalability Benchmark Tester -->
+            <div class="admin-panel">
+              <div class="admin-panel-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+                <div>
+                  <h3 class="admin-panel-title" style="margin: 0; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fa-solid fa-bolt" style="color: #f59e0b;"></i>
+                    High-Concurrency Multi-Node Scalability Benchmark
+                  </h3>
+                  <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">
+                    Execute parallel stress traffic across worker pool and verify horizontal speedup vs single-node architecture
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <label for="clusterBenchConcurrencySelect" style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);">Concurrency Load:</label>
+                  <select id="clusterBenchConcurrencySelect" class="form-control admin-select" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; width: auto;">
+                    <option value="500">500 Concurrent Requests</option>
+                    <option value="1000" selected>1,000 Concurrent Requests (Standard)</option>
+                    <option value="2500">2,500 Concurrent Requests (Heavy Load)</option>
+                    <option value="5000">5,000 Concurrent Requests (National Surge)</option>
+                  </select>
+                  <button id="clusterRunBenchBtn" class="btn btn-sm btn-primary" onclick="NWAAdmin.runClusterBenchmark()" style="display: flex; align-items: center; gap: 0.4rem; background: linear-gradient(135deg, #f59e0b, #d97706); border: none; font-weight: 600; padding: 0.35rem 0.9rem;">
+                    <i class="fa-solid fa-play"></i> Run Scalability Benchmark
+                  </button>
+                </div>
+              </div>
+
+              <div class="admin-panel-body" style="padding: 1.25rem;">
+                
+                <!-- Benchmark Result Panel -->
+                <div id="clusterBenchResultsContainer" style="display: none;">
+                  <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 10px; padding: 1.25rem;">
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.75rem;">
+                      <div>
+                        <div id="clusterBenchTitle" style="font-size: 1rem; font-weight: 700; color: #fbbf24;">
+                          <i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Scalability Benchmark Succeeded
+                        </div>
+                        <div id="clusterBenchSubtitle" style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.15rem;">
+                          Processed 1,000 concurrent requests across 4 workers in 74ms
+                        </div>
+                      </div>
+                      <div id="clusterBenchSpeedupBadge" style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; font-weight: 700; font-size: 0.85rem; padding: 0.3rem 0.8rem; border-radius: 20px;">
+                        <i class="fa-solid fa-gauge-simple-high"></i> 3.28x vs Single Node
+                      </div>
+                    </div>
+
+                    <!-- Metrics 4-Column Grid -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
+                      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 0.75rem; text-align: center;">
+                        <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Throughput</div>
+                        <div id="clusterBenchThroughputVal" style="font-size: 1.3rem; font-weight: 700; color: #38bdf8; margin-top: 0.2rem;">-- req/s</div>
+                        <div style="font-size: 0.68rem; color: #10b981; margin-top: 0.2rem;"><i class="fa-solid fa-check"></i> High Concurrency</div>
+                      </div>
+
+                      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 0.75rem; text-align: center;">
+                        <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">P50 Median Latency</div>
+                        <div id="clusterBenchP50Val" style="font-size: 1.3rem; font-weight: 700; color: #10b981; margin-top: 0.2rem;">-- ms</div>
+                        <div style="font-size: 0.68rem; color: var(--text-muted); margin-top: 0.2rem;">Sub-10ms response</div>
+                      </div>
+
+                      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 0.75rem; text-align: center;">
+                        <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">P95 Latency (SLA)</div>
+                        <div id="clusterBenchP95Val" style="font-size: 1.3rem; font-weight: 700; color: #f59e0b; margin-top: 0.2rem;">-- ms</div>
+                        <div style="font-size: 0.68rem; color: #10b981; margin-top: 0.2rem;"><i class="fa-solid fa-check"></i> 100% SLA Compliant</div>
+                      </div>
+
+                      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 0.75rem; text-align: center;">
+                        <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">P99 Tail Latency</div>
+                        <div id="clusterBenchP99Val" style="font-size: 1.3rem; font-weight: 700; color: #a78bfa; margin-top: 0.2rem;">-- ms</div>
+                        <div style="font-size: 0.68rem; color: var(--text-muted); margin-top: 0.2rem;">Zero queue starvation</div>
+                      </div>
+                    </div>
+
+                    <!-- Worker Distribution Bars & K8s HPA Forecast -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                      <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 0.9rem;">
+                        <div style="font-size: 0.78rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.6rem;">
+                          <i class="fa-solid fa-scale-balanced" style="color: #38bdf8;"></i> Worker Traffic Distribution
+                        </div>
+                        <div id="clusterWorkerDistributionBars" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                          <!-- Worker load bars dynamically injected -->
+                        </div>
+                      </div>
+
+                      <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 0.9rem;">
+                        <div style="font-size: 0.78rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.6rem;">
+                          <i class="fa-solid fa-cloud-arrow-up" style="color: #8b5cf6;"></i> Kubernetes HPA Forecast
+                        </div>
+                        <div id="clusterK8sPredictionBox" style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.5;">
+                          <div>Current Cluster Capacity: <strong>100% Operational</strong></div>
+                          <div>Autoscaling Threshold: <strong>70% CPU / 15s window</strong></div>
+                          <div style="margin-top: 0.4rem; color: #34d399;"><i class="fa-solid fa-circle-check"></i> Pod autoscaling scale-up triggered automatically for &gt; 5,000 req/s national emergency alerts.</div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- Initial Idle Placeholder -->
+                <div id="clusterBenchIdlePlaceholder" style="padding: 2rem; text-align: center; color: var(--text-muted); border: 1px dashed rgba(255,255,255,0.1); border-radius: 10px;">
+                  <i class="fa-solid fa-gauge-high" style="font-size: 2.2rem; color: #f59e0b; opacity: 0.6; margin-bottom: 0.75rem;"></i>
+                  <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary);">Scalability Stress Testing Engine Ready</div>
+                  <div style="font-size: 0.78rem; max-width: 520px; margin: 0.3rem auto 0 auto;">
+                    Select the concurrency level above and click <strong>Run Scalability Benchmark</strong> to test parallel horizontal request throughput, response latency percentiles, and multi-core speedup.
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div> <!-- Close adminClusterSection -->
         </div>
 
       </div>
@@ -1390,8 +2332,554 @@
   <!-- Toast Notification Container -->
   <div id="toastContainer" class="toast-container"></div>
 
-  <!-- External JavaScript Libraries -->
+  <!-- ============================================================
+       AI Multi-Modal Forensics & Credibility Inspector Modal
+       ============================================================ -->
+  <div id="aiForensicsModal" style="display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 1rem;">
+    <div style="background: var(--bg-secondary, #1e293b); border: 1px solid var(--border-color, #334155); border-radius: 16px; width: 100%; max-width: 820px; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 65px rgba(0,0,0,0.6); position: relative; color: #f1f5f9;">
+      
+      <!-- Modal Header -->
+      <div style="background: linear-gradient(135deg, #0f172a, #1e293b); border-bottom: 1px solid var(--border-color, #334155); padding: 1.25rem 1.5rem; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div style="width: 42px; height: 42px; border-radius: 10px; background: linear-gradient(135deg, #0ea5e9, #6366f1); display: flex; align-items: center; justify-content: center;">
+            <i class="fa-solid fa-brain" style="color: #fff; font-size: 1.2rem;"></i>
+          </div>
+          <div>
+            <div style="font-size: 1.15rem; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 0.5rem;">
+              <span>AI Multi-Modal Credibility &amp; Forensics Inspector</span>
+              <span id="forensicsGradeBadge" class="ai-trust-grade grade-a">Grade A</span>
+            </div>
+            <div style="font-size: 0.76rem; color: #94a3b8;">TF-IDF NLP Vectorizer · GIS Boundary Corroboration · Visual Forensics v2.5</div>
+          </div>
+        </div>
+        <button onclick="window.NWAReports && window.NWAReports.closeAITrustModal()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: #94a3b8; border-radius: 8px; padding: 0.4rem 0.65rem; cursor: pointer; font-size: 1rem;" title="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div style="padding: 1.5rem;">
+        <!-- Report Summary Strip -->
+        <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 1rem; margin-bottom: 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase;">Observation Telemetry &amp; Location</div>
+            <div id="forensicsRepLoc" style="font-size: 0.95rem; font-weight: 700; color: #38bdf8;">Marine Drive, Mumbai (Maharashtra)</div>
+            <div id="forensicsRepDesc" style="font-size: 0.8rem; color: #cbd5e1; margin-top: 0.25rem; font-style: italic;">"Waterlogging up to 1.5 ft near Churchgate station."</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase;">Composite Trust Score</div>
+            <div id="forensicsTrustScore" style="font-size: 1.8rem; font-weight: 900; color: #10b981; line-height: 1.1;">88%</div>
+            <div style="font-size: 0.72rem; color: #94a3b8;">Low False-Positive Risk</div>
+          </div>
+        </div>
+
+        <!-- 4-Quadrant Verification Matrix -->
+        <div class="forensics-matrix-grid">
+          <!-- 1. NLP Credibility -->
+          <div class="forensics-card">
+            <div class="forensics-card-header">
+              <span><i class="fa-solid fa-file-lines" style="color: #38bdf8;"></i> 1. NLP &amp; Sentiment</span>
+              <span id="forensicsNlpVal" style="font-weight: 700; color: #38bdf8;">88%</span>
+            </div>
+            <div class="forensics-card-score">
+              <span id="forensicsNlpScore">0.88</span> <small>/ 1.0</small>
+            </div>
+            <div class="forensics-progress-bar">
+              <div id="forensicsNlpFill" class="forensics-progress-fill" style="width: 88%; background: #38bdf8;"></div>
+            </div>
+            <div class="forensics-card-detail">
+              TF-IDF Term Frequency matched against official IMD meteorological taxonomy. Anti-spam cosine distance verified.
+            </div>
+          </div>
+
+          <!-- 2. Geospatial Corroboration -->
+          <div class="forensics-card">
+            <div class="forensics-card-header">
+              <span><i class="fa-solid fa-map-pin" style="color: #10b981;"></i> 2. Geospatial Validation</span>
+              <span id="forensicsGeoVal" style="font-weight: 700; color: #10b981;">95%</span>
+            </div>
+            <div class="forensics-card-score">
+              <span id="forensicsGeoScore">0.95</span> <small>/ 1.0</small>
+            </div>
+            <div class="forensics-progress-bar">
+              <div id="forensicsGeoFill" class="forensics-progress-fill" style="width: 95%; background: #10b981;"></div>
+            </div>
+            <div class="forensics-card-detail">
+              GPS coordinates verified inside Indian sovereign land boundaries. Anomaly check: Inland cyclone probability cleared.
+            </div>
+          </div>
+
+          <!-- 3. Multi-Modal Vision -->
+          <div class="forensics-card">
+            <div class="forensics-card-header">
+              <span><i class="fa-solid fa-camera" style="color: #a855f7;"></i> 3. Visual Media Forensic</span>
+              <span id="forensicsVisVal" style="font-weight: 700; color: #a855f7;">82%</span>
+            </div>
+            <div class="forensics-card-score">
+              <span id="forensicsVisScore">0.82</span> <small>/ 1.0</small>
+            </div>
+            <div class="forensics-progress-bar">
+              <div id="forensicsVisFill" class="forensics-progress-fill" style="width: 82%; background: #a855f7;"></div>
+            </div>
+            <div class="forensics-card-detail">
+              Visual scene corroboration confirmed weather phenomenon (convective cloud / waterlogging). Deepfake &amp; stock photo manipulation test passed.
+            </div>
+          </div>
+
+          <!-- 4. Station Corroboration -->
+          <div class="forensics-card">
+            <div class="forensics-card-header">
+              <span><i class="fa-solid fa-tower-observation" style="color: #f59e0b;"></i> 4. Ground Station Match</span>
+              <span id="forensicsCompVal" style="font-weight: 700; color: #f59e0b;">86%</span>
+            </div>
+            <div class="forensics-card-score">
+              <span id="forensicsCompScore">0.86</span> <small>/ 1.0</small>
+            </div>
+            <div class="forensics-progress-bar">
+              <div id="forensicsCompFill" class="forensics-progress-fill" style="width: 86%; background: #f59e0b;"></div>
+            </div>
+            <div class="forensics-card-detail">
+              Corroborated with active IMD Doppler weather radar &amp; regional automated weather stations (AWS) telemetry.
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Explainability & Audit Decision Log -->
+        <div class="forensics-log-box">
+          <div class="forensics-log-title">
+            <i class="fa-solid fa-list-check" style="color: #38bdf8;"></i>
+            <span>AI Verification Reasoning &amp; Decision Trail (Explainable AI):</span>
+          </div>
+          <ul id="forensicsReasonList" class="forensics-log-list">
+            <!-- Dynamically populated -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       Emergency Weather Desk: Multi-Agency Warning Dispatcher Modal
+       ============================================================ -->
+  <div id="alertDispatchModal" style="display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.72); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 1rem;">
+    <div style="background: var(--bg-secondary, #1e293b); border: 1px solid #ef4444; border-radius: 16px; width: 100%; max-width: 620px; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 65px rgba(239, 68, 68, 0.25); position: relative; color: #f1f5f9;">
+      
+      <!-- Header -->
+      <div style="background: linear-gradient(135deg, #450a0a, #1e293b); border-bottom: 1px solid rgba(239,68,68,0.3); padding: 1.25rem 1.5rem; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div style="width: 42px; height: 42px; border-radius: 10px; background: linear-gradient(135deg, #ef4444, #b91c1c); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(239,68,68,0.5);">
+            <i class="fa-solid fa-tower-broadcast" style="color: #fff; font-size: 1.2rem;"></i>
+          </div>
+          <div>
+            <div style="font-size: 1.1rem; font-weight: 800; color: #fca5a5;">Emergency Weather Desk: Warning Dispatcher</div>
+            <div style="font-size: 0.75rem; color: #cbd5e1;">National Early Warning Network · Multi-Agency Broadcast</div>
+          </div>
+        </div>
+        <button onclick="window.NWAAlerts && window.NWAAlerts.closeDispatchModal()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: #94a3b8; border-radius: 8px; padding: 0.4rem 0.65rem; cursor: pointer; font-size: 1rem;" title="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Form -->
+      <form id="alertDispatchForm" onsubmit="window.NWAAlerts && window.NWAAlerts.handleDispatchSubmit(event)" style="padding: 1.5rem;">
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.35rem;">
+            Emergency Warning Headline
+          </label>
+          <input type="text" id="dispatchHeadline" class="form-control" placeholder="e.g., RED ALERT: Severe Flash Flood &amp; Cloudburst Inundation Warning" required style="width: 100%; background: rgba(15,23,42,0.8); border: 1px solid #334155; color: #f8fafc; border-radius: 8px; padding: 0.6rem 0.8rem;" />
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.35rem;">Hazard Event</label>
+            <select id="dispatchHazard" class="form-control" style="width: 100%; background: rgba(15,23,42,0.8); border: 1px solid #334155; color: #f8fafc; border-radius: 8px; padding: 0.6rem 0.8rem;">
+              <option value="Cyclone">Tropical Cyclone</option>
+              <option value="Heavy Rain" selected>Severe Monsoon Downpour</option>
+              <option value="Flash Flood">Flash Flood / Inundation</option>
+              <option value="Heatwave">Extreme Heatwave (Loo)</option>
+              <option value="Thunderstorm">Thunderstorm &amp; Lightning</option>
+              <option value="Cloudburst">Cloudburst</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.35rem;">Severity Tier</label>
+            <select id="dispatchSeverity" class="form-control" style="width: 100%; background: rgba(15,23,42,0.8); border: 1px solid #334155; color: #f8fafc; border-radius: 8px; padding: 0.6rem 0.8rem;">
+              <option value="Red" selected>Red Alert (Take Action)</option>
+              <option value="Orange">Orange Alert (Be Prepared)</option>
+              <option value="Yellow">Yellow Warning (Be Aware)</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.35rem;">Target District / Coastal Belt</label>
+          <input type="text" id="dispatchRegion" class="form-control" placeholder="e.g., Coastal Odisha (Puri, Jagatsinghpur) or Greater Mumbai" required style="width: 100%; background: rgba(15,23,42,0.8); border: 1px solid #334155; color: #f8fafc; border-radius: 8px; padding: 0.6rem 0.8rem;" />
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.35rem;">Advisory &amp; Protective Action Instructions</label>
+          <textarea id="dispatchDesc" class="form-control" rows="3" placeholder="Evacuation shelters opened. Fishermen advised not to venture into sea. Avoid low-lying subways." required style="width: 100%; background: rgba(15,23,42,0.8); border: 1px solid #334155; color: #f8fafc; border-radius: 8px; padding: 0.6rem 0.8rem;"></textarea>
+        </div>
+
+        <!-- Target Dispatch Channels -->
+        <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 0.8rem; margin-bottom: 1.25rem;">
+          <div style="font-size: 0.75rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 0.4rem;">
+            Automated Emergency Broadcast Channels:
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.78rem; color: #cbd5e1;">
+            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+              <input type="checkbox" checked disabled />
+              <span>State Disaster Management Authority (SDMA) Emergency Desk</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+              <input type="checkbox" checked disabled />
+              <span>National Disaster Response Force (NDRF) Quick Reaction Cell</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+              <input type="checkbox" checked disabled />
+              <span>Citizen Emergency SMS Gateway &amp; Cell Broadcast Simulation</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+              <input type="checkbox" checked disabled />
+              <span>Live NWA Operational Stream Broadcast (SSE Push)</span>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" style="width: 100%; padding: 0.8rem; background: linear-gradient(135deg, #ef4444, #b91c1c); color: #ffffff; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(239,68,68,0.4);">
+          <i class="fa-solid fa-tower-broadcast"></i> Dispatch Emergency Multi-Agency Alert
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       Big Data Pipeline & Open-Source Telemetry Modal (Phase 2 & 3)
+       ============================================================ -->
+  <div id="bigDataModal" style="display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.65); backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 1rem;">
+    <div style="background: var(--bg-secondary, #1e293b); border: 1px solid var(--border-color, #334155); border-radius: 16px; width: 100%; max-width: 860px; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.5); position: relative;">
+      
+      <!-- Modal Header -->
+      <div style="background: linear-gradient(135deg, #0f172a, #1e293b); border-bottom: 1px solid var(--border-color, #334155); padding: 1.25rem 1.5rem; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div style="width: 42px; height: 42px; border-radius: 10px; background: linear-gradient(135deg, #0ea5e9, #8b5cf6); display: flex; align-items: center; justify-content: center;">
+            <i class="fa-solid fa-database" style="color: #fff; font-size: 1.1rem;"></i>
+          </div>
+          <div>
+            <div style="font-size: 1.1rem; font-weight: 700; color: #f1f5f9;">Big Data Pipeline &amp; OSS Architecture</div>
+            <div style="font-size: 0.77rem; color: #94a3b8;">Live SQLite WAL Engine | Streaming Ingestion | Open-Source Toolchain</div>
+          </div>
+        </div>
+        <button onclick="window.NWABigData && window.NWABigData.closeModal()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: #94a3b8; border-radius: 8px; padding: 0.4rem 0.65rem; cursor: pointer; font-size: 1rem; line-height: 1;" title="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div style="display: flex; gap: 0; border-bottom: 1px solid var(--border-color, #334155); background: var(--bg-primary, #0f172a);">
+        <button class="bd-tab-btn active" data-bd-tab="bdTabDatabase" onclick="window.NWABigData && window.NWABigData.switchTab('bdTabDatabase')" style="padding: 0.75rem 1.25rem; background: transparent; border: none; border-bottom: 2px solid transparent; color: #94a3b8; font-size: 0.82rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.35rem; transition: all 0.2s;">
+          <i class="fa-solid fa-hard-drive"></i> Database Engine
+        </button>
+        <button class="bd-tab-btn" data-bd-tab="bdTabStream" onclick="window.NWABigData && window.NWABigData.switchTab('bdTabStream')" style="padding: 0.75rem 1.25rem; background: transparent; border: none; border-bottom: 2px solid transparent; color: #94a3b8; font-size: 0.82rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.35rem; transition: all 0.2s;">
+          <i class="fa-solid fa-water"></i> Stream Pipeline
+        </button>
+        <button class="bd-tab-btn" data-bd-tab="bdTabOSS" onclick="window.NWABigData && window.NWABigData.switchTab('bdTabOSS')" style="padding: 0.75rem 1.25rem; background: transparent; border: none; border-bottom: 2px solid transparent; color: #94a3b8; font-size: 0.82rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.35rem; transition: all 0.2s;">
+          <i class="fa-brands fa-osi"></i> Open-Source Tools
+        </button>
+        <button class="bd-tab-btn" data-bd-tab="bdTabBenchmark" onclick="window.NWABigData && window.NWABigData.switchTab('bdTabBenchmark')" style="padding: 0.75rem 1.25rem; background: transparent; border: none; border-bottom: 2px solid transparent; color: #94a3b8; font-size: 0.82rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.35rem; transition: all 0.2s;">
+          <i class="fa-solid fa-bolt"></i> ACID Benchmark
+        </button>
+        <button class="bd-tab-btn" data-bd-tab="bdTabCluster" onclick="window.NWABigData && window.NWABigData.switchTab('bdTabCluster')" style="padding: 0.75rem 1.25rem; background: transparent; border: none; border-bottom: 2px solid transparent; color: #94a3b8; font-size: 0.82rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.35rem; transition: all 0.2s;">
+          <i class="fa-solid fa-server" style="color: #10b981;"></i> Cluster &amp; K8s
+        </button>
+      </div>
+
+      <div style="padding: 1.5rem;">
+
+        <!-- Tab 1: Database Engine -->
+        <div id="bdTabDatabase" class="bd-tab-content active">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+            <div style="background: var(--bg-card, #1e293b); border: 1px solid var(--border-color, #334155); border-radius: 10px; padding: 1rem;">
+              <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;"><i class="fa-solid fa-microchip"></i> Storage Engine</div>
+              <div id="bdEngine" style="font-size: 1rem; font-weight: 700; color: #38bdf8;">SQLite 3 WAL</div>
+            </div>
+            <div style="background: var(--bg-card, #1e293b); border: 1px solid var(--border-color, #334155); border-radius: 10px; padding: 1rem;">
+              <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;"><i class="fa-solid fa-book"></i> Journal Mode</div>
+              <div id="bdJournal" style="font-size: 1rem; font-weight: 700; color: #10b981;">WAL</div>
+            </div>
+            <div style="background: var(--bg-card, #1e293b); border: 1px solid var(--border-color, #334155); border-radius: 10px; padding: 1rem;">
+              <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;"><i class="fa-solid fa-weight-scale"></i> DB Size</div>
+              <div id="bdSize" style="font-size: 1rem; font-weight: 700; color: #f59e0b;">--</div>
+            </div>
+            <div style="background: var(--bg-card, #1e293b); border: 1px solid var(--border-color, #334155); border-radius: 10px; padding: 1rem;">
+              <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;"><i class="fa-solid fa-table"></i> Total Records</div>
+              <div id="bdTotalRecords" style="font-size: 1rem; font-weight: 700; color: #a78bfa;">--</div>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+            <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 8px; padding: 1rem; text-align: center;">
+              <div style="font-size: 0.7rem; color: #94a3b8; margin-bottom: 0.3rem;"><i class="fa-solid fa-clipboard-list"></i> Citizen Reports</div>
+              <div id="bdRepCount" style="font-size: 1.4rem; font-weight: 700; color: #38bdf8;">--</div>
+            </div>
+            <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 8px; padding: 1rem; text-align: center;">
+              <div style="font-size: 0.7rem; color: #94a3b8; margin-bottom: 0.3rem;"><i class="fa-solid fa-triangle-exclamation"></i> Weather Alerts</div>
+              <div id="bdAlertCount" style="font-size: 1.4rem; font-weight: 700; color: #ef4444;">--</div>
+            </div>
+            <div style="background: rgba(167, 139, 250, 0.08); border: 1px solid rgba(167, 139, 250, 0.2); border-radius: 8px; padding: 1rem; text-align: center;">
+              <div style="font-size: 0.7rem; color: #94a3b8; margin-bottom: 0.3rem;"><i class="fa-brands fa-x-twitter"></i> Social Stream</div>
+              <div id="bdSocCount" style="font-size: 1.4rem; font-weight: 700; color: #a78bfa;">--</div>
+            </div>
+          </div>
+          <div style="margin-top: 1.25rem; background: rgba(15,23,42,0.6); border: 1px solid rgba(51,65,85,0.6); border-radius: 8px; padding: 1rem;">
+            <div style="font-size: 0.78rem; font-weight: 700; color: #94a3b8; margin-bottom: 0.5rem;"><i class="fa-solid fa-list-check"></i> ACID Compliance Properties</div>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem; font-size: 0.75rem;">
+              <div style="color: #10b981;"><i class="fa-solid fa-circle-check"></i> <strong>Atomicity</strong>: Transactions commit as a whole or roll back entirely</div>
+              <div style="color: #10b981;"><i class="fa-solid fa-circle-check"></i> <strong>Consistency</strong>: Foreign key constraints and typed schema enforced</div>
+              <div style="color: #10b981;"><i class="fa-solid fa-circle-check"></i> <strong>Isolation</strong>: WAL mode provides concurrent read/write isolation</div>
+              <div style="color: #10b981;"><i class="fa-solid fa-circle-check"></i> <strong>Durability</strong>: Writes flushed to WAL file and persisted on disk</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Stream Pipeline -->
+        <div id="bdTabStream" class="bd-tab-content" style="display:none;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+            <div style="background: var(--bg-card, #1e293b); border: 1px solid var(--border-color, #334155); border-radius: 10px; padding: 1rem;">
+              <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;"><i class="fa-solid fa-wave-square"></i> Queue Depth</div>
+              <div id="bdStreamQueue" style="font-size: 1rem; font-weight: 700; color: #f59e0b;">0 / 5000</div>
+            </div>
+            <div style="background: var(--bg-card, #1e293b); border: 1px solid var(--border-color, #334155); border-radius: 10px; padding: 1rem;">
+              <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;"><i class="fa-solid fa-signal"></i> Pipeline Status</div>
+              <div id="bdStreamStatus" style="font-size: 1rem; font-weight: 700; color: #10b981;">NOMINAL_STREAMING</div>
+            </div>
+            <div style="background: var(--bg-card, #1e293b); border: 1px solid var(--border-color, #334155); border-radius: 10px; padding: 1rem;">
+              <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;"><i class="fa-solid fa-gauge-high"></i> Throughput</div>
+              <div id="bdStreamThroughput" style="font-size: 1rem; font-weight: 700; color: #38bdf8;">-- events/min</div>
+            </div>
+          </div>
+          <div style="background: rgba(15,23,42,0.6); border: 1px solid rgba(51,65,85,0.6); border-radius: 10px; padding: 1.2rem;">
+            <div style="font-size: 0.85rem; font-weight: 700; color: #e2e8f0; margin-bottom: 0.75rem;"><i class="fa-solid fa-diagram-project"></i> Ingestion Architecture</div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: #94a3b8; flex-wrap: wrap;">
+              <span style="background: rgba(14,165,233,0.15); border: 1px solid rgba(14,165,233,0.3); border-radius: 5px; padding: 0.3rem 0.65rem; color: #38bdf8;"><i class="fa-solid fa-rss"></i> Google News RSS</span>
+              <i class="fa-solid fa-arrow-right" style="color: #475569;"></i>
+              <span style="background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); border-radius: 5px; padding: 0.3rem 0.65rem; color: #f87171;"><i class="fa-solid fa-triangle-exclamation"></i> UN GDACS API</span>
+              <i class="fa-solid fa-arrow-right" style="color: #475569;"></i>
+              <span style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 5px; padding: 0.3rem 0.65rem;"><i class="fa-brands fa-x-twitter"></i> Twitter API v2</span>
+              <i class="fa-solid fa-arrow-right" style="color: #475569;"></i>
+              <span style="background: rgba(167,139,250,0.15); border: 1px solid rgba(167,139,250,0.3); border-radius: 5px; padding: 0.3rem 0.65rem; color: #a78bfa;"><i class="fa-solid fa-water"></i> StreamIngestionBuffer</span>
+              <i class="fa-solid fa-arrow-right" style="color: #475569;"></i>
+              <span style="background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); border-radius: 5px; padding: 0.3rem 0.65rem; color: #10b981;"><i class="fa-solid fa-database"></i> SQLite WAL</span>
+            </div>
+            <div style="margin-top: 0.75rem; font-size: 0.75rem; color: #64748b; line-height: 1.6;">
+              <i class="fa-solid fa-info-circle"></i> Buffer capacity: <strong style="color:#94a3b8;">5,000 events</strong> | Flush interval: <strong style="color:#94a3b8;">4 seconds</strong> | Batch size: <strong style="color:#94a3b8;">25 events</strong> | WAL concurrency: <strong style="color:#94a3b8;">Unlimited reads</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Open-Source Tools -->
+        <div id="bdTabOSS" class="bd-tab-content" style="display:none;">
+          <div style="margin-bottom: 0.75rem; font-size: 0.82rem; color: #94a3b8;"><i class="fa-brands fa-osi"></i> NWA is built entirely on open-source and open-standard technologies certified by international meteorological bodies.</div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.85rem;">
+            <div style="background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); border-radius: 10px; padding: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <span style="background:#10b981; color:#fff; border-radius:5px; padding:0.2rem 0.5rem; font-size:0.65rem; font-weight:700;">RUNTIME</span>
+                <strong style="color: #e2e8f0; font-size: 0.85rem;">Node.js 24 (LTS)</strong>
+              </div>
+              <div style="font-size: 0.75rem; color: #94a3b8; line-height: 1.5;">Event-driven, non-blocking JavaScript runtime for high-throughput async I/O. Built-in <code style="color:#38bdf8;">node:sqlite</code> module.</div>
+              <a href="https://nodejs.org" target="_blank" style="font-size:0.72rem; color:#10b981; text-decoration:none; margin-top:0.4rem; display:block;"><i class="fa-solid fa-arrow-up-right-from-square"></i> nodejs.org</a>
+            </div>
+            <div style="background: rgba(14,165,233,0.06); border: 1px solid rgba(14,165,233,0.2); border-radius: 10px; padding: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <span style="background:#0ea5e9; color:#fff; border-radius:5px; padding:0.2rem 0.5rem; font-size:0.65rem; font-weight:700;">DATABASE</span>
+                <strong style="color: #e2e8f0; font-size: 0.85rem;">SQLite 3 (WAL Mode)</strong>
+              </div>
+              <div style="font-size: 0.75rem; color: #94a3b8; line-height: 1.5;">ACID-compliant embedded relational database with Write-Ahead Logging for concurrent reads and atomic write transactions.</div>
+              <a href="https://sqlite.org" target="_blank" style="font-size:0.72rem; color:#0ea5e9; text-decoration:none; margin-top:0.4rem; display:block;"><i class="fa-solid fa-arrow-up-right-from-square"></i> sqlite.org</a>
+            </div>
+            <div style="background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: 10px; padding: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <span style="background:#f59e0b; color:#fff; border-radius:5px; padding:0.2rem 0.5rem; font-size:0.65rem; font-weight:700;">WEATHER API</span>
+                <strong style="color: #e2e8f0; font-size: 0.85rem;">Open-Meteo</strong>
+              </div>
+              <div style="font-size: 0.75rem; color: #94a3b8; line-height: 1.5;">Free, open-source, WMO-standard weather API. 16-day forecasts, hourly models, historical archive. No API key required.</div>
+              <a href="https://open-meteo.com" target="_blank" style="font-size:0.72rem; color:#f59e0b; text-decoration:none; margin-top:0.4rem; display:block;"><i class="fa-solid fa-arrow-up-right-from-square"></i> open-meteo.com</a>
+            </div>
+            <div style="background: rgba(167,139,250,0.06); border: 1px solid rgba(167,139,250,0.2); border-radius: 10px; padding: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <span style="background:#8b5cf6; color:#fff; border-radius:5px; padding:0.2rem 0.5rem; font-size:0.65rem; font-weight:700;">MAPS</span>
+                <strong style="color: #e2e8f0; font-size: 0.85rem;">Leaflet.js 1.9</strong>
+              </div>
+              <div style="font-size: 0.75rem; color: #94a3b8; line-height: 1.5;">Open-source interactive mapping library. Tile layers from OpenStreetMap (ODbL). Used for real-time geolocation and station markers.</div>
+              <a href="https://leafletjs.com" target="_blank" style="font-size:0.72rem; color:#8b5cf6; text-decoration:none; margin-top:0.4rem; display:block;"><i class="fa-solid fa-arrow-up-right-from-square"></i> leafletjs.com</a>
+            </div>
+            <div style="background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-radius: 10px; padding: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <span style="background:#ef4444; color:#fff; border-radius:5px; padding:0.2rem 0.5rem; font-size:0.65rem; font-weight:700;">DISASTER API</span>
+                <strong style="color: #e2e8f0; font-size: 0.85rem;">UN GDACS</strong>
+              </div>
+              <div style="font-size: 0.75rem; color: #94a3b8; line-height: 1.5;">Global Disaster Alert and Coordination System by the United Nations and European Commission. Real-time cyclone, flood, and storm RSS feeds.</div>
+              <a href="https://gdacs.org" target="_blank" style="font-size:0.72rem; color:#ef4444; text-decoration:none; margin-top:0.4rem; display:block;"><i class="fa-solid fa-arrow-up-right-from-square"></i> gdacs.org</a>
+            </div>
+            <div style="background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.2); border-radius: 10px; padding: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <span style="background:#38bdf8; color:#0f172a; border-radius:5px; padding:0.2rem 0.5rem; font-size:0.65rem; font-weight:700;">CHARTS</span>
+                <strong style="color: #e2e8f0; font-size: 0.85rem;">Chart.js 4</strong>
+              </div>
+              <div style="font-size: 0.75rem; color: #94a3b8; line-height: 1.5;">MIT-licensed responsive chart library used for category distribution, trend analysis, and state-wise event frequency plots.</div>
+              <a href="https://chartjs.org" target="_blank" style="font-size:0.72rem; color:#38bdf8; text-decoration:none; margin-top:0.4rem; display:block;"><i class="fa-solid fa-arrow-up-right-from-square"></i> chartjs.org</a>
+            </div>
+            <div style="background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); border-radius: 10px; padding: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <span style="background:#10b981; color:#fff; border-radius:5px; padding:0.2rem 0.5rem; font-size:0.65rem; font-weight:700;">EXPORT</span>
+                <strong style="color: #e2e8f0; font-size: 0.85rem;">SheetJS (xlsx) + jsPDF</strong>
+              </div>
+              <div style="font-size: 0.75rem; color: #94a3b8; line-height: 1.5;">Open-source spreadsheet (SheetJS) and PDF generation (jsPDF) for downloadable official meteorological reports.</div>
+              <a href="https://sheetjs.com" target="_blank" style="font-size:0.72rem; color:#10b981; text-decoration:none; margin-top:0.4rem; display:block;"><i class="fa-solid fa-arrow-up-right-from-square"></i> sheetjs.com</a>
+            </div>
+            <div style="background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: 10px; padding: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <span style="background:#f59e0b; color:#fff; border-radius:5px; padding:0.2rem 0.5rem; font-size:0.65rem; font-weight:700;">AI/NLP</span>
+                <strong style="color: #e2e8f0; font-size: 0.85rem;">TF-IDF + Naive Bayes</strong>
+              </div>
+              <div style="font-size: 0.75rem; color: #94a3b8; line-height: 1.5;">Custom NLP credibility engine built in pure Node.js. TF-IDF vectorization + Multinomial Naive Bayes classifier for report authenticity scoring.</div>
+              <span style="font-size:0.72rem; color:#94a3b8; margin-top:0.4rem; display:block;"><i class="fa-solid fa-code"></i> ai_classifier.js (custom built)</span>
+            </div>
+            <div style="background: rgba(14,165,233,0.06); border: 1px solid rgba(14,165,233,0.2); border-radius: 10px; padding: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <span style="background:#0ea5e9; color:#fff; border-radius:5px; padding:0.2rem 0.5rem; font-size:0.65rem; font-weight:700;">STANDARD</span>
+                <strong style="color: #e2e8f0; font-size: 0.85rem;">WMO BUFR/SYNOP</strong>
+              </div>
+              <div style="font-size: 0.75rem; color: #94a3b8; line-height: 1.5;">World Meteorological Organization code standards. Open-Meteo weather codes mapped to WMO BUFR present weather descriptions.</div>
+              <a href="https://wmo.int" target="_blank" style="font-size:0.72rem; color:#0ea5e9; text-decoration:none; margin-top:0.4rem; display:block;"><i class="fa-solid fa-arrow-up-right-from-square"></i> wmo.int</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: ACID Benchmark -->
+        <div id="bdTabBenchmark" class="bd-tab-content" style="display:none;">
+          <div style="background: rgba(15,23,42,0.6); border: 1px solid rgba(51,65,85,0.6); border-radius: 10px; padding: 1.2rem; margin-bottom: 1rem;">
+            <div style="font-size: 0.85rem; font-weight: 700; color: #e2e8f0; margin-bottom: 0.5rem;"><i class="fa-solid fa-bolt"></i> Concurrent ACID Performance Test</div>
+            <div style="font-size: 0.78rem; color: #94a3b8; line-height: 1.5; margin-bottom: 1rem;">This benchmark fires 10 concurrent HTTP requests to the SQLite database stats endpoint, measuring the total round-trip latency and demonstrating WAL-mode concurrent read throughput.</div>
+            <button id="bdRunBenchBtn" onclick="window.NWABigData && window.NWABigData.runBenchmark()" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.55rem 1.25rem; background: linear-gradient(135deg, #0ea5e9, #8b5cf6); color: #fff; border: none; border-radius: 7px; font-size: 0.82rem; font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px rgba(14,165,233,0.3);">
+              <i class="fa-solid fa-bolt"></i> Run Storage Latency Benchmark
+            </button>
+            <div id="bdBenchResult"></div>
+          </div>
+          <div style="font-size: 0.78rem; color: #64748b; line-height: 1.6;">
+            <i class="fa-solid fa-circle-info"></i> SQLite WAL mode allows <strong style="color:#94a3b8;">unlimited concurrent readers</strong> without blocking writes. This is critical for a real-time weather monitoring platform receiving simultaneous API requests from multiple users and sensors.
+          </div>
+        </div>
+
+        <!-- Tab 5: Horizontal Cluster & K8s Architecture (Finding 6 Fix) -->
+        <div id="bdTabCluster" class="bd-tab-content" style="display:none;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem;">
+            <div style="background: var(--bg-card, #1e293b); border: 1px solid var(--border-color, #334155); border-radius: 8px; padding: 0.75rem;">
+              <div style="font-size: 0.68rem; color: #94a3b8; text-transform: uppercase;"><i class="fa-solid fa-server"></i> Multi-Worker Nodes</div>
+              <div id="bdModalActiveNodes" style="font-size: 1rem; font-weight: 700; color: #10b981; margin-top: 0.2rem;">4 Active Workers</div>
+            </div>
+            <div style="background: var(--bg-card, #1e293b); border: 1px solid var(--border-color, #334155); border-radius: 8px; padding: 0.75rem;">
+              <div style="font-size: 0.68rem; color: #94a3b8; text-transform: uppercase;"><i class="fa-solid fa-microchip"></i> Load Balancing</div>
+              <div style="font-size: 1rem; font-weight: 700; color: #38bdf8; margin-top: 0.2rem;">NGINX Least-Conn</div>
+            </div>
+            <div style="background: var(--bg-card, #1e293b); border: 1px solid var(--border-color, #334155); border-radius: 8px; padding: 0.75rem;">
+              <div style="font-size: 0.68rem; color: #94a3b8; text-transform: uppercase;"><i class="fa-solid fa-cubes"></i> K8s HPA Scaling</div>
+              <div style="font-size: 1rem; font-weight: 700; color: #8b5cf6; margin-top: 0.2rem;">3 &rarr; 50 Pods</div>
+            </div>
+            <div style="background: var(--bg-card, #1e293b); border: 1px solid var(--border-color, #334155); border-radius: 8px; padding: 0.75rem;">
+              <div style="font-size: 0.68rem; color: #94a3b8; text-transform: uppercase;"><i class="fa-solid fa-shield-halved"></i> High Availability</div>
+              <div style="font-size: 1rem; font-weight: 700; color: #f59e0b; margin-top: 0.2rem;">Zero Downtime</div>
+            </div>
+          </div>
+
+          <div style="background: rgba(15,23,42,0.6); border: 1px solid rgba(51,65,85,0.6); border-radius: 10px; padding: 1rem; margin-bottom: 1rem;">
+            <div style="font-size: 0.82rem; font-weight: 700; color: #e2e8f0; margin-bottom: 0.5rem;"><i class="fa-solid fa-layer-group"></i> Microservices Mesh Architecture</div>
+            <div style="font-size: 0.75rem; color: #94a3b8; line-height: 1.5; margin-bottom: 0.75rem;">
+              Layer-7 NGINX gateway routes traffic with <code>least_conn</code> distribution to multi-core Node.js cluster workers, with Redis distributed caching, Apache Kafka event ingestion, and ClickHouse OLAP warehouse.
+            </div>
+            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; font-size: 0.72rem;">
+              <span style="background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); color: #34d399; padding: 0.2rem 0.5rem; border-radius: 4px;">Dockerfile Multi-Stage</span>
+              <span style="background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.3); color: #38bdf8; padding: 0.2rem 0.5rem; border-radius: 4px;">docker-compose.yml (5 Services)</span>
+              <span style="background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); color: #a78bfa; padding: 0.2rem 0.5rem; border-radius: 4px;">k8s/deployment.yaml</span>
+              <span style="background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); color: #fbbf24; padding: 0.2rem 0.5rem; border-radius: 4px;">k8s/hpa.yaml (Autoscaler)</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end modal body -->
+    </div>
+  </div>
+
+  <!-- Agency Warning Dispatch Modal (EAS Dispatch) -->
+  <div id="alertDispatchModal" class="modal-backdrop" style="display: none;" onclick="if(event.target===this) NWAAlerts.closeDispatchModal();">
+    <div class="modal-dialog" style="max-width: 580px; background: var(--card-bg, #1e293b); border-radius: 12px; border: 1px solid var(--border-color, #334155); box-shadow: 0 20px 50px rgba(0,0,0,0.5); overflow: hidden;">
+      <div class="modal-header" style="padding: 1.25rem 1.5rem; background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(185,28,28,0.25)); border-bottom: 1px solid rgba(239,68,68,0.3); display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <i class="fa-solid fa-tower-broadcast" style="color: #ef4444; font-size: 1.3rem;"></i>
+          <h3 style="margin: 0; font-size: 1.15rem; color: var(--text-primary, #ffffff);">Emergency Agency Weather Dispatch</h3>
+        </div>
+        <button type="button" class="close-btn" onclick="NWAAlerts.closeDispatchModal()" style="background: none; border: none; font-size: 1.4rem; color: var(--text-secondary, #94a3b8); cursor: pointer;">&times;</button>
+      </div>
+      <form id="alertDispatchForm" onsubmit="NWAAlerts.handleDispatchSubmit(event)" style="padding: 1.5rem;">
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label for="dispatchHeadline" style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 0.4rem; color: var(--text-primary, #ffffff);">
+            <i class="fa-solid fa-bullhorn"></i> Emergency Warning Headline
+          </label>
+          <input type="text" id="dispatchHeadline" class="form-control" placeholder="e.g., Red Alert: Severe Monsoon Inundation & Flash Flood Risk" required style="width: 100%;" />
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div class="form-group">
+            <label for="dispatchHazard" style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 0.4rem; color: var(--text-primary, #ffffff);">
+              <i class="fa-solid fa-cloud-bolt"></i> Meteorological Hazard
+            </label>
+            <select id="dispatchHazard" class="form-control" style="width: 100%;">
+              <option value="heavy_rain">Heavy Rainfall</option>
+              <option value="cyclone" selected>Cyclonic Storm</option>
+              <option value="heatwave">Severe Heatwave</option>
+              <option value="flood">Flash Flood / Inundation</option>
+              <option value="thunderstorm">Severe Thunderstorm & Gale</option>
+              <option value="cold_wave">Extreme Cold Wave</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="dispatchSeverity" style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 0.4rem; color: var(--text-primary, #ffffff);">
+              <i class="fa-solid fa-triangle-exclamation"></i> Warning Severity Level
+            </label>
+            <select id="dispatchSeverity" class="form-control" style="width: 100%;">
+              <option value="red" selected>Red Warning (Take Action)</option>
+              <option value="orange">Orange Alert (Be Prepared)</option>
+              <option value="yellow">Yellow Watch (Be Updated)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label for="dispatchRegion" style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 0.4rem; color: var(--text-primary, #ffffff);">
+            <i class="fa-solid fa-location-dot"></i> Targeted Impact Zone / State / District
+          </label>
+          <input type="text" id="dispatchRegion" class="form-control" placeholder="e.g., Coastal Konkan & Mumbai Metropolitan Region" required style="width: 100%;" />
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.25rem;">
+          <label for="dispatchDesc" style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 0.4rem; color: var(--text-primary, #ffffff);">
+            <i class="fa-solid fa-shield-heart"></i> Public Safety Advisory & Instructions
+          </label>
+          <textarea id="dispatchDesc" class="form-control" rows="3" placeholder="Specify evacuations, shelter guidelines, road closures, or safety steps..." required style="width: 100%; resize: vertical;"></textarea>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; justify-content: flex-end;">
+          <button type="button" class="btn btn-secondary" onclick="NWAAlerts.closeDispatchModal()">Cancel</button>
+          <button type="submit" class="btn btn-accent" style="background: linear-gradient(135deg, #ef4444, #b91c1c); color: #fff; font-weight: 700;">
+            <i class="fa-solid fa-tower-broadcast"></i> Dispatch Broadcast & Siren
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -1405,7 +2893,22 @@
   <script src="js/admin.js?v=7"></script>
   <script src="js/social.js"></script>
   <script src="js/export.js"></script>
+  <script src="js/alerts.js"></script>
   <script src="js/weather_animation.js?v=1"></script>
+  <script src="js/bigdata.js?v=2"></script>
   <script src="js/app.js?v=7"></script>
+  <!-- Image Enlarge Modal -->
+  <div id="imageEnlargeModal" style="display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); align-items: center; justify-content: center; padding: 2rem; cursor: zoom-out;" onclick="if(event.target === this) this.style.display='none'">
+    <div style="position: relative; display: inline-block; cursor: default;">
+      <button onclick="document.getElementById('imageEnlargeModal').style.display='none'" style="position: absolute; top: -15px; right: -15px; width: 32px; height: 32px; border-radius: 50%; background: #ffffff; color: #1e293b; border: 1px solid #cbd5e1; font-size: 20px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.4); z-index: 10001; line-height: 1;" title="Close">&times;</button>
+      <img id="imageEnlargeSrc" src="" style="max-width: 90vw; max-height: 90vh; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); object-fit: contain; display: block;" />
+    </div>
+  </div>
+  <script>
+    window.openImageModal = function(src) {
+      document.getElementById('imageEnlargeSrc').src = src;
+      document.getElementById('imageEnlargeModal').style.display = 'flex';
+    };
+  </script>
 </body>
 </html>

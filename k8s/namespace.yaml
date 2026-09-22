@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nwa-production
+  labels:
+    name: nwa-production
+    environment: production
+    app.kubernetes.io/part-of: nwa-platform

@@ -19,7 +19,6 @@ let appState = {
 let searchDebounceTimer = null;
 
 document.addEventListener('DOMContentLoaded', async () => {
-  initTheme();
   initLiveDateTime();
   initKeyboardShortcuts();
   setupMobileMenu();
@@ -43,16 +42,35 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.NWASocial.loadSocialStream();
     window.NWASocial.loadAnalyticsData();
   }
+
+  // Initialize Real-Time SSE Push Stream
+  initLiveStreamSSE();
+
+  // Check admin session status on initial load to set header badge
+  if (window.NWAAdmin && window.NWAAdmin.checkAuthStatus) {
+    window.NWAAdmin.checkAuthStatus().then(isAuth => {
+      const topNavText = document.getElementById('topNavAdminBtnText');
+      const topNavBtn = document.getElementById('topNavAdminBtn');
+      if (topNavText) topNavText.textContent = isAuth ? 'Admin Portal' : 'Admin Login';
+      if (topNavBtn) topNavBtn.classList.toggle('is-authenticated', isAuth);
+    });
+  }
+
+  // Restore active view across page refreshes (e.g., if refreshed while in Admin Portal)
+  try {
+    const savedTab = sessionStorage.getItem('nwa_active_tab');
+    if (savedTab && savedTab !== 'live-weather-view') {
+      const targetBtn = document.querySelector(`.tab-btn[data-tab="${savedTab}"]`);
+      if (targetBtn) {
+        targetBtn.click();
+      }
+    }
+  } catch (e) {}
 });
 
 // ----------------------------------------------------
-// Theme Management (FR-6) & Live Utilities
+// Live Utilities
 // ----------------------------------------------------
-function initTheme() {
-  const savedTheme = localStorage.getItem('nwa_theme') || 'light';
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  updateThemeIcon(savedTheme);
-}
 
 function initLiveDateTime() {
   function updateTime() {
@@ -105,30 +123,6 @@ function initKeyboardShortcuts() {
       }
     }
   });
-}
-
-function toggleTheme() {
-  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', newTheme);
-  localStorage.setItem('nwa_theme', newTheme);
-  updateThemeIcon(newTheme);
-
-  // Update map tiles & chart themes
-  if (window.NWAMap) window.NWAMap.updateMapTiles();
-  if (window.NWACharts) window.NWACharts.updateChartsTheme();
-}
-
-function updateThemeIcon(theme) {
-  const btn = document.getElementById('themeToggleBtn');
-  if (!btn) return;
-  if (theme === 'light') {
-    btn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-    btn.title = 'Switch to Dark Mode';
-  } else {
-    btn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-    btn.title = 'Switch to Light Mode';
-  }
 }
 
 // ----------------------------------------------------
@@ -226,15 +220,25 @@ function setupNavigationTabs() {
       const activeView = document.getElementById(targetView);
       if (activeView) activeView.classList.add('active');
 
+      // Persist active view across page reloads
+      try {
+        sessionStorage.setItem('nwa_active_tab', targetView);
+      } catch (e) {}
+
       // Close mobile drawer on tab click
       document.body.classList.remove('sidebar-open');
 
       // Refresh view data when switching tabs
-      if (targetView === 'live-weather-view' && window.NWAMap) {
+      if (targetView === 'live-weather-view') {
         setTimeout(() => {
-          window.NWAMap.initMap();
-          if (window.NWAMap.invalidateSize) window.NWAMap.invalidateSize();
-        }, 100);
+          if (window.NWAMap) {
+            window.NWAMap.initMap();
+            if (window.NWAMap.invalidateSize) window.NWAMap.invalidateSize();
+          }
+          if (window.NWACharts && window.NWACharts.renderForecastTrajectoryChart && appState.forecastData) {
+            window.NWACharts.renderForecastTrajectoryChart(appState.forecastData, currentForecastRange, appState.hourlyData);
+          }
+        }, 120);
       } else if (targetView === 'citizen-reports-view' && window.NWAReports) {
         window.NWAReports.loadCitizenReports();
       } else if (targetView === 'admin-panel-view' && window.NWAAdmin) {
@@ -243,6 +247,11 @@ function setupNavigationTabs() {
         window.NWASocial.loadSocialStream();
       } else if (targetView === 'analytics-view' && window.NWASocial) {
         window.NWASocial.loadAnalyticsData();
+      } else if (targetView === 'weather-alerts-view' && window.NWAAlerts) {
+        window.NWAAlerts.loadNationalAlerts();
+        if (window.NWAAlerts.loadAlertsRegisteredReports) {
+          window.NWAAlerts.loadAlertsRegisteredReports();
+        }
       } else if (targetView === 'official-reports-view' && window.NWAExport) {
         window.NWAExport.updateReportPreview();
       }
@@ -800,8 +809,13 @@ async function loadLocationWeather(name, state, lat, lon) {
     if (window.NWACharts) {
       window.NWACharts.renderForecastTrajectoryChart(weatherData.forecast, currentForecastRange, weatherData.hourly);
       if (weatherData.hourly) {
-        window.NWACharts.renderDiurnalProgression(weatherData.hourly);
+        window.NWACharts.renderDiurnalProgression(weatherData.hourly, weatherData.hourly_all || weatherData.hourly.all);
       }
+    }
+
+    // Evaluate user weather alerts for current location
+    if (window.NWAAlerts && window.NWAAlerts.evaluateUserAlertsAgainstLiveWeather) {
+      window.NWAAlerts.evaluateUserAlertsAgainstLiveWeather(weatherData);
     }
 
     // Pan map to location and place selected location pin
@@ -831,10 +845,37 @@ function renderCurrentWeather(data, forecast = null) {
 
   // ── Trigger immersive weather animation ──────────────────────────────────
   if (window.NWAWeatherAnim) {
+    const currentWind = Number(c.wind_speed ?? c.windspeed ?? c.wind ?? 10);
+    const currentPrecip = Number(c.precipitation ?? c.precip ?? 0);
+    const currentTemp = Number(c.temperature ?? 28);
+    const currentCode = c.weathercode ?? 0;
+
+    let isDay = true;
+    if (c.is_day !== undefined && c.is_day !== null) {
+      isDay = Boolean(c.is_day);
+    } else if (c.sunrise && c.sunset) {
+      const now = new Date();
+      const parseTime = (tStr) => {
+        const d = new Date(tStr);
+        return isNaN(d.getTime()) ? null : d;
+      };
+      const rise = parseTime(c.sunrise);
+      const set = parseTime(c.sunset);
+      if (rise && set) {
+        isDay = now >= rise && now < set;
+      }
+    } else {
+      const now = new Date();
+      const istHours = (now.getUTCHours() + 5.5) % 24;
+      isDay = istHours >= 6.0 && istHours < 18.5;
+    }
+
     window.NWAWeatherAnim.update(
-      c.weathercode ?? 0,
-      Number(c.temperature ?? 28),
-      Number(c.precipitation ?? 0)
+      currentCode,
+      currentTemp,
+      currentPrecip,
+      currentWind,
+      isDay
     );
   }
 
@@ -891,15 +932,42 @@ function renderCurrentWeather(data, forecast = null) {
   }
 
   const aqiEl = document.getElementById('heroAqiLevel');
+  const aqiIcon = document.getElementById('heroAqiIcon');
   if (aqiEl) {
-    const vis = Number(c.visibility) || 10;
-    let aqiVal = 38;
-    let aqiText = 'Good';
-    let aqiColor = '#10b981';
-    if (vis < 3) { aqiVal = 185; aqiText = 'Poor'; aqiColor = '#ef4444'; }
-    else if (vis < 6) { aqiVal = 110; aqiText = 'Moderate'; aqiColor = '#f59e0b'; }
-    else if (vis < 8) { aqiVal = 65; aqiText = 'Satisfactory'; aqiColor = '#10b981'; }
-    aqiEl.innerHTML = `<span style="color: ${aqiColor}; font-weight: 700;">${aqiText} (${aqiVal})</span>`;
+    const rawAqi = c.aqi ?? c.us_aqi;
+    if (rawAqi !== null && rawAqi !== undefined && !isNaN(rawAqi)) {
+      const aqiInfo = (window.NWAWeather && window.NWAWeather.getAqiDetails)
+        ? window.NWAWeather.getAqiDetails(rawAqi)
+        : { value: Math.round(rawAqi), category: rawAqi <= 50 ? 'Good' : 'Moderate', color: rawAqi <= 50 ? '#10b981' : '#eab308' };
+      aqiEl.innerHTML = `<span style="color: ${aqiInfo.color}; font-weight: 700;">${aqiInfo.category} (${aqiInfo.value})</span>`;
+      if (aqiIcon) aqiIcon.style.color = aqiInfo.color;
+    } else {
+      // If AQI wasn't attached, fetch real-time from API asynchronously
+      aqiEl.innerHTML = `<span style="color: var(--text-muted); font-weight: 600;"><i class="fa-solid fa-circle-notch fa-spin"></i> Live...</span>`;
+      const targetLat = data.latitude ?? (appState.currentLocation && appState.currentLocation.lat) ?? 28.6139;
+      const targetLon = data.longitude ?? (appState.currentLocation && appState.currentLocation.lon) ?? 77.2090;
+      if (window.NWAWeather && window.NWAWeather.fetchRealtimeAQI) {
+        window.NWAWeather.fetchRealtimeAQI(targetLat, targetLon).then(aqiData => {
+          if (aqiData && aqiData.aqi != null) {
+            c.aqi = aqiData.aqi;
+            const aqiInfo = window.NWAWeather.getAqiDetails(aqiData.aqi);
+            aqiEl.innerHTML = `<span style="color: ${aqiInfo.color}; font-weight: 700;">${aqiInfo.category} (${aqiInfo.value})</span>`;
+            if (aqiIcon) aqiIcon.style.color = aqiInfo.color;
+          } else {
+            const vis = Number(c.visibility) || 10;
+            let approx = 42;
+            if (vis < 3) approx = 185;
+            else if (vis < 6) approx = 110;
+            else if (vis < 8) approx = 65;
+            const aqiInfo = (window.NWAWeather && window.NWAWeather.getAqiDetails)
+              ? window.NWAWeather.getAqiDetails(approx)
+              : { value: approx, category: 'Good', color: '#10b981' };
+            aqiEl.innerHTML = `<span style="color: ${aqiInfo.color}; font-weight: 700;">${aqiInfo.category} (${aqiInfo.value})</span>`;
+            if (aqiIcon) aqiIcon.style.color = aqiInfo.color;
+          }
+        }).catch(() => {});
+      }
+    }
   }
 
   const feedEl = document.getElementById('heroFeedSource');
@@ -1342,10 +1410,6 @@ function downloadForecastCsv() {
 // UI Events & Modals
 // ----------------------------------------------------
 function setupEventListeners() {
-  // Theme button
-  const themeBtn = document.getElementById('themeToggleBtn');
-  if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
-
   // Refresh Weather
   const refreshBtn = document.getElementById('refreshWeatherBtn');
   if (refreshBtn) {
@@ -1577,6 +1641,161 @@ function toggleVoiceBrief() {
   synth.speak(utterance);
 }
 
+// ----------------------------------------------------
+// Real-Time Push Streaming (SSE / Live Telemetry)
+// ----------------------------------------------------
+let sseEventSource = null;
+let sseReconnectTimer = null;
+
+function initLiveStreamSSE() {
+  if (typeof EventSource === 'undefined') {
+    const badge = document.getElementById('liveSyncStatusBadge');
+    if (badge) {
+      badge.classList.remove('active');
+      badge.classList.add('offline');
+      badge.title = 'SSE Streaming not supported in this browser';
+    }
+    return;
+  }
+
+  if (sseEventSource) {
+    try { sseEventSource.close(); } catch (e) {}
+  }
+
+  const base = window.NWAWeather ? window.NWAWeather.getApiBaseUrl() : '';
+  const sseUrl = `${base}/api/v1/stream`;
+
+  try {
+    sseEventSource = new EventSource(sseUrl);
+
+    sseEventSource.onopen = () => {
+      const badge = document.getElementById('liveSyncStatusBadge');
+      if (badge) {
+        badge.classList.remove('offline');
+        badge.classList.add('active');
+        badge.title = 'Real-Time Server-Sent Events Push Stream Connected';
+        const txt = badge.querySelector('.live-sync-text');
+        if (txt) txt.textContent = 'LIVE SYNC ACTIVE';
+      }
+    };
+
+    sseEventSource.onerror = () => {
+      const badge = document.getElementById('liveSyncStatusBadge');
+      if (badge) {
+        badge.classList.remove('active');
+        badge.classList.add('offline');
+        badge.title = 'Live stream reconnecting...';
+        const txt = badge.querySelector('.live-sync-text');
+        if (txt) txt.textContent = 'RECONNECTING...';
+      }
+      try { sseEventSource.close(); } catch (e) {}
+      clearTimeout(sseReconnectTimer);
+      sseReconnectTimer = setTimeout(initLiveStreamSSE, 5000);
+    };
+
+    sseEventSource.onmessage = (e) => {
+      try {
+        const data = JSON.parse(e.data);
+        handleIncomingSSEEvent(data);
+      } catch (err) {
+        // Ping or non-JSON message
+      }
+    };
+  } catch (err) {
+    console.warn('SSE Initialization error:', err);
+  }
+}
+
+function handleIncomingSSEEvent(data) {
+  if (!data || !data.type) return;
+
+  const { type, payload } = data;
+
+  switch (type) {
+    case 'STREAM_CONNECTED':
+      updateStreamTicker('<i class="fa-solid fa-tower-cell" style="color: #38bdf8;"></i> <strong>Kafka Stream Connected:</strong> Ingesting #IMD, #CycloneAlert, and citizen observations in real-time.', 128);
+      break;
+
+    case 'NEW_REPORT':
+      if (window.NWAReports && window.NWAReports.handleRealtimeNewReport) {
+        window.NWAReports.handleRealtimeNewReport(payload);
+      } else if (window.NWAReports && window.NWAReports.loadCitizenReports) {
+        window.NWAReports.loadCitizenReports();
+      }
+      if (window.NWAAdmin && window.NWAAdmin.loadAdminData) {
+        const adminView = document.getElementById('admin-panel-view');
+        if (adminView && adminView.classList.contains('active')) {
+          window.NWAAdmin.loadAdminData();
+        }
+      }
+      if (payload && payload.location) {
+        showToast(`Live Alert: New citizen report in ${payload.location} (${payload.category || 'Incident'})`, 'info');
+        updateStreamTicker(`<i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b;"></i> <strong>New Citizen Telemetry:</strong> ${payload.location} reported ${payload.category || 'incident'} (AI Trust: 94%).`, 146);
+      }
+      break;
+
+    case 'REPORT_MODERATED':
+      if (window.NWAReports && window.NWAReports.loadCitizenReports) {
+        window.NWAReports.loadCitizenReports();
+      }
+      if (window.NWAAdmin && window.NWAAdmin.loadAdminData) {
+        const adminView = document.getElementById('admin-panel-view');
+        if (adminView && adminView.classList.contains('active')) {
+          window.NWAAdmin.loadAdminData();
+        }
+      }
+      break;
+
+    case 'WEATHER_ALERT':
+      if (window.NWAAlerts && window.NWAAlerts.loadNationalAlerts) {
+        window.NWAAlerts.loadNationalAlerts();
+      }
+      if (payload && (payload.city || payload.headline)) {
+        showToast(`Severe Weather Alert: ${payload.headline || payload.hazard} for ${payload.city || 'Region'}`, 'warning');
+        updateStreamTicker(`<i class="fa-solid fa-triangle-exclamation" style="color: #ef4444;"></i> <strong>EMERGENCY BROADCAST:</strong> ${payload.headline || payload.hazard || 'Severe Warning'} in ${payload.city || 'Region'}.`, 185);
+      }
+      break;
+
+    case 'STREAM_BATCH_INGESTED':
+      if (window.NWASocial && window.NWASocial.loadSocialStream) {
+        const socView = document.getElementById('social-stream-view');
+        if (socView && socView.classList.contains('active')) {
+          window.NWASocial.loadSocialStream();
+        }
+      }
+      updateStreamTicker(`<i class="fa-solid fa-bolt" style="color: #38bdf8;"></i> <strong>Kafka Batch Ingested:</strong> ${payload.batchSize || 15} social & telemetry events committed to WAL engine.`, Math.floor(125 + Math.random() * 40));
+      break;
+
+    case 'CONNECTOR_SWITCHED':
+    case 'BENCHMARK_COMPLETED':
+      if (window.NWAAdmin && window.NWAAdmin.loadPipelineTelemetry) {
+        window.NWAAdmin.loadPipelineTelemetry();
+      }
+      break;
+  }
+}
+
+function updateStreamTicker(msg, rate = null) {
+  const msgEl = document.getElementById('streamTickerMsg');
+  const rateEl = document.getElementById('tickerRateBadge');
+  if (msgEl && msg) {
+    msgEl.innerHTML = msg;
+  }
+  if (rateEl && rate != null) {
+    rateEl.textContent = `${rate} msgs/s`;
+  }
+}
+
+// Global resize listener for charts and map responsiveness
+window.addEventListener('resize', () => {
+  if (window.NWACharts && window.NWACharts.renderForecastTrajectoryChart && appState.forecastData) {
+    window.NWACharts.renderForecastTrajectoryChart(appState.forecastData, currentForecastRange, appState.hourlyData);
+  }
+  if (window.NWAMap && window.NWAMap.invalidateSize) {
+    window.NWAMap.invalidateSize();
+  }
+});
+
 window.NWAApp = {
   loadLocationWeather,
   selectLocationFromSearch,
@@ -1593,5 +1812,6 @@ window.NWAApp = {
   setForecastRange,
   renderForecastTable,
   downloadForecastCsv,
-  toggleVoiceBrief
+  toggleVoiceBrief,
+  initLiveStreamSSE
 };

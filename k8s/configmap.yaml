@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nwa-cluster-config
+  namespace: nwa-production
+  labels:
+    app: nwa-platform
+data:
+  NODE_ENV: "production"
+  PORT: "3000"
+  CLUSTER_MODE: "true"
+  MAX_WORKERS: "4"
+  LOG_LEVEL: "info"
+  CORS_ORIGIN: "*"
+  KAFKA_BROKERS: "kafka-service.nwa-production.svc.cluster.local:9092"
+  REDIS_HOST: "redis-service.nwa-production.svc.cluster.local"
+  REDIS_PORT: "6379"
+  CLICKHOUSE_HOST: "clickhouse-service.nwa-production.svc.cluster.local"
+  CLICKHOUSE_PORT: "8123"
+  HPA_AUTO_SCALE: "true"
+  MIN_REPLICAS: "3"
+  MAX_REPLICAS: "50"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: nwa-platform-secrets
+  namespace: nwa-production
+  labels:
+    app: nwa-platform
+type: Opaque
+stringData:
+  ADMIN_TOKEN_SECRET: "nwa_prod_k8s_secret_cluster_signing_key_9281a8b3e"
+  JWT_SECRET: "nwa_super_secret_production_cloud_native_key_4492"
+  DB_ENCRYPTION_KEY: "aes-256-gcm-super-secure-key-2026-prod"

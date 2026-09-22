@@ -1,19 +1,918 @@
 [
   {
-    "id": "rep-1788622895423-55",
+    "id": "rep-1789983018541-744",
     "source": "citizen",
-    "category": "heavy_rain",
-    "location": "Ranchi",
-    "state": "Jharkhand",
-    "lat": 23.3234,
-    "lon": 85.2971,
-    "description": "rik11",
+    "category": "other",
+    "location": "Nagri",
+    "state": "Gujarat",
+    "lat": 23.2156,
+    "lon": 72.6369,
+    "description": "rain",
     "photo": null,
     "video_url": null,
-    "reporter_name": "rik11",
-    "timestamp": "2026-09-05T15:41:35.423Z",
-    "verified_status": "rejected",
+    "reporter_name": "Citizen Contributor",
+    "timestamp": "2026-09-21T09:30:18.541Z",
+    "verified_status": "unverified",
     "urgency": "medium",
+    "source_trust": {
+      "trust_score": 68,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ml_model": "TF-IDF + Multinomial Naive Bayes + Visual Forensics (AI v2.5)",
+      "credibility_score": 89,
+      "composite_trust_score": 71,
+      "ai_fake_probability": 11,
+      "fake_risk_level": "low",
+      "predicted_category": "heavy_rain",
+      "model_confidence": 32,
+      "feature_importance": [
+        {
+          "term": "rain",
+          "weight": 0.756
+        }
+      ],
+      "ai_trust_breakdown": {
+        "nlp_credibility": 0.68,
+        "geo_corroboration": 0.95,
+        "visual_sensor_proof": 0.5,
+        "composite_trust": 0.71,
+        "authenticity_grade": "A"
+      },
+      "visual_analysis": {
+        "has_media": false,
+        "visual_score": 0,
+        "authenticity_grade": "N/A",
+        "scene_verification": "No visual media attached",
+        "exif_status": "NOT_APPLICABLE",
+        "perceptual_hash": null,
+        "sensor_corroborated": false
+      },
+      "reasons": [
+        "GPS telemetry verified within valid Indian territory",
+        "Unverified text-only submission without multimedia sensor proof"
+      ],
+      "vector_dims": 1,
+      "auto_categorized": "heavy_rain"
+    },
+    "ai_trust_breakdown": {
+      "nlp_credibility": 0.68,
+      "geo_corroboration": 0.95,
+      "visual_sensor_proof": 0.5,
+      "composite_trust": 0.71,
+      "authenticity_grade": "A"
+    },
+    "credibility_score": 89,
+    "trust_score": 71,
+    "authenticity_grade": "A"
+  },
+  {
+    "id": "rep-1789563756010-431",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Connaught Place, Delhi",
+    "state": "Delhi",
+    "lat": 28.6315,
+    "lon": 77.2167,
+    "description": "Heavy sudden thunderstorm downpour, visibility reduced to 500m.",
+    "photo": "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=500&q=80",
+    "video_url": null,
+    "reporter_name": "Dr. Vikram Sarabhai",
+    "timestamp": "2026-09-16T13:02:36.010Z",
+    "verified_status": "verified",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 88,
+      "tier": "Verified Citizen Observer",
+      "is_verified_source": true
+    },
+    "ai_analysis": {
+      "ml_model": "TF-IDF + Multinomial Naive Bayes + Visual Forensics (AI v2.5)",
+      "credibility_score": 98,
+      "composite_trust_score": 88,
+      "ai_fake_probability": 2,
+      "fake_risk_level": "low",
+      "predicted_category": "heavy_rain",
+      "model_confidence": 59.3,
+      "feature_importance": [
+        {
+          "term": "heavy",
+          "weight": 0.229
+        },
+        {
+          "term": "delhi",
+          "weight": 0.143
+        },
+        {
+          "term": "thunderstorm",
+          "weight": 0.115
+        },
+        {
+          "term": "sudden",
+          "weight": 0.099
+        },
+        {
+          "term": "downpour",
+          "weight": 0.099
+        }
+      ],
+      "ai_trust_breakdown": {
+        "nlp_credibility": 0.8,
+        "geo_corroboration": 0.95,
+        "visual_sensor_proof": 0.92,
+        "composite_trust": 0.88,
+        "authenticity_grade": "A+"
+      },
+      "visual_analysis": {
+        "has_media": true,
+        "visual_score": 92,
+        "authenticity_grade": "A+",
+        "scene_verification": "Water surface reflections, overcast sky luminosity, and flood inundation textures detected",
+        "exif_status": "VERIFIED_RECENT",
+        "perceptual_hash": "ph_5e60f1c3",
+        "sensor_corroborated": true,
+        "media_type": "image/jpeg"
+      },
+      "reasons": [
+        "GPS telemetry verified within valid Indian territory",
+        "Visual forensic verified (A+): Water surface reflections, overcast sky luminosity, and flood inundation textures detected"
+      ],
+      "vector_dims": 6,
+      "auto_categorized": "heavy_rain"
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-16 13:02:36"
+  },
+  {
+    "id": "rep-1788846329833-947",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Connaught Place, Delhi",
+    "state": "Delhi",
+    "lat": 28.6315,
+    "lon": 77.2167,
+    "description": "Heavy sudden thunderstorm downpour, visibility reduced to 500m.",
+    "photo": "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=500&q=80",
+    "video_url": null,
+    "reporter_name": "Dr. Vikram Sarabhai",
+    "timestamp": "2026-09-08T05:45:29.834Z",
+    "verified_status": "verified",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 88,
+      "tier": "Verified Citizen Observer",
+      "is_verified_source": true
+    },
+    "ai_analysis": {
+      "ml_model": "TF-IDF + Multinomial Naive Bayes + Visual Forensics (AI v2.5)",
+      "credibility_score": 98,
+      "composite_trust_score": 88,
+      "ai_fake_probability": 2,
+      "fake_risk_level": "low",
+      "predicted_category": "heavy_rain",
+      "model_confidence": 59.3,
+      "feature_importance": [
+        {
+          "term": "heavy",
+          "weight": 0.229
+        },
+        {
+          "term": "delhi",
+          "weight": 0.143
+        },
+        {
+          "term": "thunderstorm",
+          "weight": 0.115
+        },
+        {
+          "term": "sudden",
+          "weight": 0.099
+        },
+        {
+          "term": "downpour",
+          "weight": 0.099
+        }
+      ],
+      "ai_trust_breakdown": {
+        "nlp_credibility": 0.8,
+        "geo_corroboration": 0.95,
+        "visual_sensor_proof": 0.92,
+        "composite_trust": 0.88,
+        "authenticity_grade": "A+"
+      },
+      "visual_analysis": {
+        "has_media": true,
+        "visual_score": 92,
+        "authenticity_grade": "A+",
+        "scene_verification": "Water surface reflections, overcast sky luminosity, and flood inundation textures detected",
+        "exif_status": "VERIFIED_RECENT",
+        "perceptual_hash": "ph_5e60f1c3",
+        "sensor_corroborated": true,
+        "media_type": "image/jpeg"
+      },
+      "reasons": [
+        "GPS telemetry verified within valid Indian territory",
+        "Visual forensic verified (A+): Water surface reflections, overcast sky luminosity, and flood inundation textures detected"
+      ],
+      "vector_dims": 6,
+      "auto_categorized": "heavy_rain"
+    },
+    "is_duplicate": true,
+    "duplicate_of": "rep-1788845434675-985",
+    "created_at": "2026-09-08 05:45:29"
+  },
+  {
+    "id": "rep-1788845434675-985",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Connaught Place, Delhi",
+    "state": "Delhi",
+    "lat": 28.6315,
+    "lon": 77.2167,
+    "description": "Heavy sudden thunderstorm downpour, visibility reduced to 500m.",
+    "photo": "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=500&q=80",
+    "video_url": null,
+    "reporter_name": "Dr. Vikram Sarabhai",
+    "timestamp": "2026-09-08T05:30:34.675Z",
+    "verified_status": "verified",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 88,
+      "tier": "Verified Citizen Observer",
+      "is_verified_source": true
+    },
+    "ai_analysis": {
+      "ml_model": "TF-IDF + Multinomial Naive Bayes + Visual Forensics (AI v2.5)",
+      "credibility_score": 98,
+      "composite_trust_score": 88,
+      "ai_fake_probability": 2,
+      "fake_risk_level": "low",
+      "predicted_category": "heavy_rain",
+      "model_confidence": 59.3,
+      "feature_importance": [
+        {
+          "term": "heavy",
+          "weight": 0.229
+        },
+        {
+          "term": "delhi",
+          "weight": 0.143
+        },
+        {
+          "term": "thunderstorm",
+          "weight": 0.115
+        },
+        {
+          "term": "sudden",
+          "weight": 0.099
+        },
+        {
+          "term": "downpour",
+          "weight": 0.099
+        }
+      ],
+      "ai_trust_breakdown": {
+        "nlp_credibility": 0.8,
+        "geo_corroboration": 0.95,
+        "visual_sensor_proof": 0.92,
+        "composite_trust": 0.88,
+        "authenticity_grade": "A+"
+      },
+      "visual_analysis": {
+        "has_media": true,
+        "visual_score": 92,
+        "authenticity_grade": "A+",
+        "scene_verification": "Water surface reflections, overcast sky luminosity, and flood inundation textures detected",
+        "exif_status": "VERIFIED_RECENT",
+        "perceptual_hash": "ph_5e60f1c3",
+        "sensor_corroborated": true,
+        "media_type": "image/jpeg"
+      },
+      "reasons": [
+        "GPS telemetry verified within valid Indian territory",
+        "Visual forensic verified (A+): Water surface reflections, overcast sky luminosity, and flood inundation textures detected"
+      ],
+      "vector_dims": 6,
+      "auto_categorized": "heavy_rain"
+    },
+    "is_duplicate": true,
+    "duplicate_of": "rep-1788844380940-8",
+    "created_at": "2026-09-08 05:30:34"
+  },
+  {
+    "id": "rep-1788844380940-8",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Connaught Place, Delhi",
+    "state": "Delhi",
+    "lat": 28.6315,
+    "lon": 77.2167,
+    "description": "Heavy sudden thunderstorm downpour, visibility reduced to 500m.",
+    "photo": "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=500&q=80",
+    "video_url": null,
+    "reporter_name": "Dr. Vikram Sarabhai",
+    "timestamp": "2026-09-08T05:13:00.940Z",
+    "verified_status": "verified",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 88,
+      "tier": "Verified Citizen Observer",
+      "is_verified_source": true
+    },
+    "ai_analysis": {
+      "ml_model": "TF-IDF + Multinomial Naive Bayes + Visual Forensics (AI v2.5)",
+      "credibility_score": 98,
+      "composite_trust_score": 88,
+      "ai_fake_probability": 2,
+      "fake_risk_level": "low",
+      "predicted_category": "heavy_rain",
+      "model_confidence": 59.3,
+      "feature_importance": [
+        {
+          "term": "heavy",
+          "weight": 0.229
+        },
+        {
+          "term": "delhi",
+          "weight": 0.143
+        },
+        {
+          "term": "thunderstorm",
+          "weight": 0.115
+        },
+        {
+          "term": "sudden",
+          "weight": 0.099
+        },
+        {
+          "term": "downpour",
+          "weight": 0.099
+        }
+      ],
+      "ai_trust_breakdown": {
+        "nlp_credibility": 0.8,
+        "geo_corroboration": 0.95,
+        "visual_sensor_proof": 0.92,
+        "composite_trust": 0.88,
+        "authenticity_grade": "A+"
+      },
+      "visual_analysis": {
+        "has_media": true,
+        "visual_score": 92,
+        "authenticity_grade": "A+",
+        "scene_verification": "Water surface reflections, overcast sky luminosity, and flood inundation textures detected",
+        "exif_status": "VERIFIED_RECENT",
+        "perceptual_hash": "ph_5e60f1c3",
+        "sensor_corroborated": true,
+        "media_type": "image/jpeg"
+      },
+      "reasons": [
+        "GPS telemetry verified within valid Indian territory",
+        "Visual forensic verified (A+): Water surface reflections, overcast sky luminosity, and flood inundation textures detected"
+      ],
+      "vector_dims": 6,
+      "auto_categorized": "heavy_rain"
+    },
+    "is_duplicate": true,
+    "duplicate_of": "rep-1788843630600-441",
+    "created_at": "2026-09-08 05:13:00"
+  },
+  {
+    "id": "rep-1788843630600-441",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Connaught Place, Delhi",
+    "state": "Delhi",
+    "lat": 28.6315,
+    "lon": 77.2167,
+    "description": "Heavy sudden thunderstorm downpour, visibility reduced to 500m.",
+    "photo": "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=500&q=80",
+    "video_url": null,
+    "reporter_name": "Dr. Vikram Sarabhai",
+    "timestamp": "2026-09-08T05:00:30.600Z",
+    "verified_status": "verified",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 88,
+      "tier": "Verified Citizen Observer",
+      "is_verified_source": true
+    },
+    "ai_analysis": {
+      "ml_model": "TF-IDF + Multinomial Naive Bayes + Visual Forensics (AI v2.5)",
+      "credibility_score": 98,
+      "composite_trust_score": 88,
+      "ai_fake_probability": 2,
+      "fake_risk_level": "low",
+      "predicted_category": "heavy_rain",
+      "model_confidence": 59.3,
+      "feature_importance": [
+        {
+          "term": "heavy",
+          "weight": 0.229
+        },
+        {
+          "term": "delhi",
+          "weight": 0.143
+        },
+        {
+          "term": "thunderstorm",
+          "weight": 0.115
+        },
+        {
+          "term": "sudden",
+          "weight": 0.099
+        },
+        {
+          "term": "downpour",
+          "weight": 0.099
+        }
+      ],
+      "ai_trust_breakdown": {
+        "nlp_credibility": 0.8,
+        "geo_corroboration": 0.95,
+        "visual_sensor_proof": 0.92,
+        "composite_trust": 0.88,
+        "authenticity_grade": "A+"
+      },
+      "visual_analysis": {
+        "has_media": true,
+        "visual_score": 92,
+        "authenticity_grade": "A+",
+        "scene_verification": "Water surface reflections, overcast sky luminosity, and flood inundation textures detected",
+        "exif_status": "VERIFIED_RECENT",
+        "perceptual_hash": "ph_5e60f1c3",
+        "sensor_corroborated": true,
+        "media_type": "image/jpeg"
+      },
+      "reasons": [
+        "GPS telemetry verified within valid Indian territory",
+        "Visual forensic verified (A+): Water surface reflections, overcast sky luminosity, and flood inundation textures detected"
+      ],
+      "vector_dims": 6,
+      "auto_categorized": "heavy_rain"
+    },
+    "is_duplicate": true,
+    "duplicate_of": "rep-1788843461993-703",
+    "created_at": "2026-09-08 05:00:30"
+  },
+  {
+    "id": "rep-1788843461993-703",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Connaught Place, Delhi",
+    "state": "Delhi",
+    "lat": 28.6315,
+    "lon": 77.2167,
+    "description": "Heavy sudden thunderstorm downpour, visibility reduced to 500m.",
+    "photo": "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=500&q=80",
+    "video_url": null,
+    "reporter_name": "Dr. Vikram Sarabhai",
+    "timestamp": "2026-09-08T04:57:41.993Z",
+    "verified_status": "verified",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 88,
+      "tier": "Verified Citizen Observer",
+      "is_verified_source": true
+    },
+    "ai_analysis": {
+      "ml_model": "TF-IDF + Multinomial Naive Bayes + Visual Forensics (AI v2.5)",
+      "credibility_score": 98,
+      "composite_trust_score": 88,
+      "ai_fake_probability": 2,
+      "fake_risk_level": "low",
+      "predicted_category": "heavy_rain",
+      "model_confidence": 59.3,
+      "feature_importance": [
+        {
+          "term": "heavy",
+          "weight": 0.229
+        },
+        {
+          "term": "delhi",
+          "weight": 0.143
+        },
+        {
+          "term": "thunderstorm",
+          "weight": 0.115
+        },
+        {
+          "term": "sudden",
+          "weight": 0.099
+        },
+        {
+          "term": "downpour",
+          "weight": 0.099
+        }
+      ],
+      "ai_trust_breakdown": {
+        "nlp_credibility": 0.8,
+        "geo_corroboration": 0.95,
+        "visual_sensor_proof": 0.92,
+        "composite_trust": 0.88,
+        "authenticity_grade": "A+"
+      },
+      "visual_analysis": {
+        "has_media": true,
+        "visual_score": 92,
+        "authenticity_grade": "A+",
+        "scene_verification": "Water surface reflections, overcast sky luminosity, and flood inundation textures detected",
+        "exif_status": "VERIFIED_RECENT",
+        "perceptual_hash": "ph_5e60f1c3",
+        "sensor_corroborated": true,
+        "media_type": "image/jpeg"
+      },
+      "reasons": [
+        "GPS telemetry verified within valid Indian territory",
+        "Visual forensic verified (A+): Water surface reflections, overcast sky luminosity, and flood inundation textures detected"
+      ],
+      "vector_dims": 6,
+      "auto_categorized": "heavy_rain"
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-08 04:57:41"
+  },
+  {
+    "id": "rep-1788806729961-516",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Connaught Place, Delhi",
+    "state": "Delhi",
+    "lat": 28.6315,
+    "lon": 77.2167,
+    "description": "Heavy sudden thunderstorm downpour, visibility reduced to 500m.",
+    "photo": "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=500&q=80",
+    "video_url": null,
+    "reporter_name": "Dr. Vikram Sarabhai",
+    "timestamp": "2026-09-07T18:45:29.961Z",
+    "verified_status": "verified",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 88,
+      "tier": "Verified Citizen Observer",
+      "is_verified_source": true
+    },
+    "ai_analysis": {
+      "ml_model": "TF-IDF + Multinomial Naive Bayes + Visual Forensics (AI v2.5)",
+      "credibility_score": 98,
+      "composite_trust_score": 88,
+      "ai_fake_probability": 2,
+      "fake_risk_level": "low",
+      "predicted_category": "heavy_rain",
+      "model_confidence": 59.3,
+      "feature_importance": [
+        {
+          "term": "heavy",
+          "weight": 0.229
+        },
+        {
+          "term": "delhi",
+          "weight": 0.143
+        },
+        {
+          "term": "thunderstorm",
+          "weight": 0.115
+        },
+        {
+          "term": "sudden",
+          "weight": 0.099
+        },
+        {
+          "term": "downpour",
+          "weight": 0.099
+        }
+      ],
+      "ai_trust_breakdown": {
+        "nlp_credibility": 0.8,
+        "geo_corroboration": 0.95,
+        "visual_sensor_proof": 0.92,
+        "composite_trust": 0.88,
+        "authenticity_grade": "A+"
+      },
+      "visual_analysis": {
+        "has_media": true,
+        "visual_score": 92,
+        "authenticity_grade": "A+",
+        "scene_verification": "Water surface reflections, overcast sky luminosity, and flood inundation textures detected",
+        "exif_status": "VERIFIED_RECENT",
+        "perceptual_hash": "ph_5e60f1c3",
+        "sensor_corroborated": true,
+        "media_type": "image/jpeg"
+      },
+      "reasons": [
+        "GPS telemetry verified within valid Indian territory",
+        "Visual forensic verified (A+): Water surface reflections, overcast sky luminosity, and flood inundation textures detected"
+      ],
+      "vector_dims": 6,
+      "auto_categorized": "heavy_rain"
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-07 18:45:29"
+  },
+  {
+    "id": "rep-1788712593215-441",
+    "source": "citizen",
+    "category": "flood",
+    "location": "Silchar",
+    "state": "Assam",
+    "lat": 24.8333,
+    "lon": 92.7789,
+    "description": "Heavy Rain and flood",
+    "photo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABsQAAAMHCAYAAACOhzKvAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAP+lSURBVHhe7N11fBP3/wfw18Wa1F0opcXdYchgyIxtbGxjxoz59pu7MXcXvjO2wQaDMWNsOAx390IpBYoU6p7Gc78/0lxzl7RNBQrl9Xw88vt9c3fJabJyr7zfH6HMaBZxGojiaXlbmTOxDiIiIiIiIiIiIiIiIjq3qZQTGkoUxdMSVLnf1/NBREREREREREREREREVJtGDcQaM6Ri+EVERERERERERERERESNodECscYIrRiAERERERERERERERERUWMTGmMMsYYGWA19vb/O1HqIiIiIiIiIiIiIiIjo9BIEQTmpWg0OxBoSMlX32uqmK/m7HBEREREREREREREREZ2/GhSI1TeQUr7O/dzhFGF3OOGEAIfdCdHHskRERERERERERERERER1Ue9ArD5BlfI1oijCIYqwOwCbzQGNWg29XgOdRg2tWgWVWoCqDuVuREREREREREREREREREr1CsSUwZY/PF8jiiJECLBY7LA5nQg2BCA4UAeNWiV7DREREREREREREREREVFD1TkQq2sYplxeFEXYHCIsVgcCDVqEBemhUrEKjIiIiIiIiIiIiIiIiE6POgViynCrNsqqMAAwW+2wiwIiQ/QwBGg9liYiIiIiIiIiIiIiIiJqfKetR6GvMMxic8ApCoiPCGIYRkRERERERERERERERGeE34FYXarDfIVhZqsdDicQFxUMNccKIyIiIiIiIiIiIiIiojPEr2SqoWGYzSHCLgqIjQiCSuB4YURERERERERERERERHTm+BWI+ctXcCZCgMXqQGSInpVhREREREREREREREREdMbVmlD5Crn8IY0bZrEj0KDlmGFERERERERERERERETUJGoNxPzlq1WiQxRhczoRFqT3WJKIiIiIiIiIiIiIiIjozKkxEPO3Oqy65ewOINgQAJWK44YRERERERERERERERFR06gxEKsPz3DMZnMgOFAnm09ERERERERERERERER0JlUbiFVX9aVU3XJ2hxMatRoadbWrICIiIiIiIiIiIiIiIjrtGjWtcodjoijC7nRCH6BRLkJERERERERERERERER0RjUoEKuuOgwARFGATqtWTiYiIiIiIiIiIiIiIiI6o3wGYjUFXbVxv9bhEKFVC8rZRERERERERERERERERGeUz0DMH7WFZiIAFccPIyIiIiIiIiIiIiIioibWaImVKIqykEwURagEVogRERERERERERERERFR0/IKxGqr/IIfy9Qym4iIiIiIiIiIiIiIiOiM8QrE6qu2kIyIiIiIiIiIiIiIiIioKdQ5EPMVfMmnsU0iERERERERERERERERnT1kgZivsKs+Gut9iIiIiIiIiIiIiIiIiBqqzhViNWN1GBEREREREREREREREZ1dGjkQIyIiIiIiIiIiIiIiIjq7NDgQY3tEIiIiIiIiIiIiIiIiOpvVKRCrOfxytUuseRkiIiIiIiIiIiIiIiKiM0sKxBhkERERERERERERERERUXNUpwoxIiIiIiIiIiIiIiIionNNgwIxVpURERERERERERERERHR2a5BgZgSAzIiIiIiIiIiIiIiIiI62/gdiDHsIiIiIiIiIiIiIiIionOR34FYzQTlBCIiIiIiIiIiIiIiIqKzglBmNIvwowLM1/yqaQJEUZSei6IIo8WBpLgw2fJERERERERE1HREUw7E4nTAeAKitUQ5m4iagKALA4JaQgjvAMEQp5xNREREjYSBGBEREREREdF5wHlqDcSiVAj6KAhh7YGASOUiRNQULIUQzQUQSw5CiOgKVcJQ5RJERETUCBiIERERERERETVzzmMLALuRQRjRWU4sOQg4LFC1ulI5i4iIiBqIgRgRERERERFRM+Y8tQZwWl1hGBGd9cTcTYAh/rRUim3MKsek7TlYcrgYOUYbfNzuo3OIIABxQVpc1iYcD/aJw8DEYOUi9WK1OWA0W2G22GF3OJWziZoVjVoFfYAGQXoddFq1cna98XN0+jTknDEQIyIiIiIiImqmRFMOnEdms9qE6FxiKYQzZyNUra9r1DHF7p13GH/tL0C51QFABEQBEJRL0TlFBCCIAAQE69S4oXMUJo9uo1yqTorKzDBbbAgy6GAI0ECrqdvNZqJzjc3ugMlih9FkhT5Ai4gQvXKROuPn6PRqyDljIEZERERERETUTLE6jOjc1NhVYkOmpmJXjhEVVidDsOZKBAJ1KvSMC8La8V2Vc/2SX1wBlQqICAmEwOuEzjOiCBSVVcDpBKLDA5Wz/cbP0ZlTn3OmUk7wl6+AjIiIiIiIiIjOIsYTEPRRyqlEdJYTwtoDxhPKyfVy77zDrjDMxjCsWROACpsTu3KMuHfeYeXcWhWVmaFSAZGhvIlP5ydBcF3/KpXr81Af/BydWfU5Zyow3CIiIiIiIiJqlkRrCRAQqZxMRGe7gEjX57eBNmaV46/9Ba7KMDovVFid+Gt/ATZmlStnVctqc8BssSEixL8KC6LmLCIkEGaLDVabQzmrRvwcNZ26nLN6V4gpMVQjIiIiIiIiIiI6e0zanuMaM4yVCucPASi3OjBpe45yTrWMZiuCDDpWtBBVVh0FGXQwmq3KWTXi56jp1OWcNVogdi4RAZRZa08LiYiIiIiIiIiIzlVLDhdX3gmj84tYee79Y7bYYQjQKCcTnbcMARqYLXbl5Brxc9S0/D1n510gZnE4ccvfBxH5yRZ8tOGkcjYREREREREREVGzkGO0ASLLFc47ouA6936yO5zQatTKyUTnLa1GDbujbq1m+TlqWv6eM6HMaBb9aXeoXEb+XIDTWbUyURRhtDiQFBfmsUzTszicuHvOIfy5vwBOEXisfzy+uCxFmp+aZ8Kve/ORUeTfAGzhejWuaR+BUe3CoW6EWkiHw4Gc3Hzs3rMfFqurvK9lYgK6dukAfUCAcvHz0qlTOdi8bRcAIDDQgKGD+0Ov1ysXAwDYbHYUFZfIrk1PBr0eYWEhysnUhERRxPETJ7FnbxrsDgc6dWyHdm2SoVbX/T8mZosFxcWl0vOQ4CAEBdXcw1cURRQVl8Bqdf3RqFarERkRVq/114XntapSqRARHgat1vcvSpTHKLFFPPr16aFc7JzhcDhQWFQCh8NVtRseHnpOft9V9/3dqUPbWq87IiIiotPJse87qFpdqZxMROcA57EFUHd5SDm5TtTvblROovOIY8JA5SSfjueUnHX3cYmaWl0/F3VdnhqfP+egWQdi/x4oxG3/ZKBPfBBm3dgBX2zKxkcbsuAUgQGJwZh3cydEGlw3nTNLLLhoaiqyymrvM+lJJQBfj2qNB/rEKWf5raysHN/9OB2ffvkDzGbfYdzoKy/B6xOeRPu2rZWzziuLlqzELXc+AlTebF66YCbi42KUiwEAdu5OxRVj7oTJ5PuYuvXv2xPPPvUgLhkx5LQHH1S9Y8ezcN//PY/NW3fKprdOScJXn7+NCwf1l02vjfL833/3OHz03gQINYTXmUdP4PKrb0NObj4A4JrRl2LKd59Cc5p/3eG5rQaDHgv/nYZePboqF8OBg4dx9wPPYN/+dGnaLTeNwXcT35Mtdy7JzsnDJVeOw4msUwCA36Z9jVGXDVcudtYqLCrGl19NwaTJM6r9/u7TqxteePZhfscQERFRkzh7AjER9j1fwJGzDtoLPoIqtI1yASJSYCBGDcVAjKj+6vq5qOvy1Pj8OQeN0DKx+pvLTe1wsQUWhxPrTpSh87e78Nmmk3CKwAUtgvHPjR2lMAwAikx2mOy+K4lq4hSBEkv9xyNbvXYTeg0YhXc//F+1N1MBYN6CpRg8/Fr8+PNMr3CSGmbLtl24+faHcfMdD6O0tEw5+7zicDiQl1+I7Jw8ZOfkwWyxKBc5LY6fOInrbr7fKwwDgCOZx3HtTfdh5eoNylk16tShLQYP7Cs9X7NuMwqLau6fvXnrTikMA4Axoy877WGYkslkRnZ2nnIy0g5k4Moxd8rCsLNdfa6ntPRDyklnJVEUMeufBeja52J8+fXkGr+/t+/ci5tvfxjX3/KA7PoiIiIiOn+IsO14B7a0H+Es2gdn3mblAkREREREp10jBGJnr4f7xeHGzlFQCUCR2Q6rQ0RyWACmjmmH2CCtbNle8UF4f0QrpIQFICFY6/fjlq7RuLdXrOy9/DV3/lKMHfcACgqLZNOjoyKR2CLeq/LJZrPj2RffwcRvpjAUOw2WLl+LV9/6BDZb7YPvNVd5+YUYcflN6NRzODr1HI6Vq+oWQtWHKIqY+PUUHDp8FABgMOjxzuvP4fuvP0T3bp2Aymv/nQ8m1imw1Ov1uPzSqkqjAwcPY8/eNNkynux2B+YtXCo9T0iIO2taEYqiiMk//yb7rhg4oA/G334DLvQI/c42TXE9nQmiKOLr76bi3oee86pADQ8LRWKLeCS2iPdqe7lqzUZcee2dOHzkmGw6ERERUbPmtMO24x3YD/0OgP+OrTd7BcTyTNfDWvMP/YjOlD0P9oRjwkA4JgxE8XP9cXv3aOUi+O+2znBMGIhjj/fBiJRQ3N49GsXP9YdjwkD8cFX1laLu11X3qG59Z5MRKaE49nifGvezuZo5ayFG3fRwtY+ZsxYqX3JaFRQW485HXsGomx7Guk2uH2N/8OUUjLrpYXzw5RTl4qeFyWTGM699ilE3PYxnXvvU634CPI7b2LuewYGMTOVsv/naXwBYt2mn7Dy89fF3PpdrTAWFxXjo2Xek/TmQkYmxdz3T4H1szs7Ga+WDL6c06memuvWeCX4FYudq+BKgVuGna9pKoVhCsBbTr22HDpHeY04JAO7rHYtDj/bGiSf6+v2YcW07WaWZv3bv2Y9Hn35FFr48cM+tOLx/HTJS1yB1+zKk7VqJk4e34rWXn4RKVXWq3v3gf9i4ebv0nPzz27SvUZydKj2KTu3FmqWzkJLcUlpm5u//YseuvbLXnU/MZgtsNv8HXW0MJaVl2Lp9t/T8i4/fwKP/dxduGjsaP3//GaKjIoHKyqFjx096vLJ2Qwf3l8aJE0URCxevUC4iOZF1Cps275CeDx7QF4ktEmTLnC7JrVpi8rcfY+qPn2Pqj5+jZ/fOsvnKY3T/3eOw8J9p+PKTN3HHrWNly55N/LmewsNC8PnHr0v7fsXlI5SLnHXmzl+K197+VDbN/f2deWADUrcvQ+r2ZcjO3I7Fc2dIwS4AHDp8FPf933O1VisSERERNQfOov2wrLgd9oyZgFj3jixuorUYliVjYPqzi9fD/O9g2Hd/Ajhq70ZwLhKtJbCufxymfy6AeeGVrsecIbCsuB1iefP8oVVN59v9sCwZw2Cwid3ePRpJoTrpeYhOjfE9fA9pcTqE6NT4alTrszYUu717NGbf2BGJIVXHiKpM/X3uGQ/FmprBoEe/nl0AAJnHTuJYVrZsvslkxtZd+wAAKa1aoFVivGx+QxUUFmPStL9k0xIT6j8EkD8OZGTigaffRl6+vBiEanY2XivJLc/MPdIzwa9A7FwWoFbhl2vbYeG4zlh/dzcMbum6Od6UbDY7Ppv4A0pKXNUuKpUKUyZ9gg/ffRmREeGyZQMDDXj68fvx8/efSaGY1WbD8pXrZcv5YrPZkZdfWG3Fk7KdmdFYoVykyZgtFmm78vIL4XDUvy1ldQRBQPdunfDtxPeg07oqBq02G7Zs3aVcVNIY2+X5HoVFxXUOnBvrvLnfx93GrqLChG+/n1bnlm4lJWXStriv6bowmy3Iyy8EKr/wO3ao+uVUXGw02rVLASq31+7wfS1Xp3XrVhjQr7f0fNWajV4VmW7Kdok3XHdlte0SG7rPAGA0VkjnPyI8DFeOGokxoy/DmNGXIUHxB4nnMQKAi0cMqXEstNp4bn9drkFRFFFYVOzXvvt7Pen1elw6cqi07x3b1/zLOc/PT25eQbXfbzXx/AzV9XOcdTIbb7z7mTRupsGgx+/Tv8FH703w+v5Wq9UY0L8X/ps3QxZcbt+5F99+/4vfx70+GuO7qr6act1ERER0hjjtEI3HqyqWPB6OUytg3/0ZzAsuh2XZjXAW7gYgQB0/FEJQkvKd6kzQBEEIiHQ9tCEQrSWwHZgC64anAEfdxgRvSvYjf8K69kHYj/ypnFXFYYVt80twZC0F1HqoYwdCHT8Egi4czvztsKy8E86SA8pXNSMCBG1I1fn2eEAXBghNe0tLNOXBtuk52DY9B9Hk3fa+uRvWKhQhOjXKrA5szzYCADpGGTAiJVS5aIOUWR0YPycD6nc3So931mbB6hDPeAhHdde1U1vMnvoZFv3xjfQYfmE/AMDC5etQUNh0wfaLT9yDRX98gxefuEc567Tp07MzggINMFaYsH3Xftm8Y1nZyDzm+iH49VddDIPBu6DDX1GR4Zj29TtY9Mc3uHBAL+VsvPrMA1j0xze49/bralzudOjYLgWzfv4Us37+FB0r7/mRt7PtWhk39oom+cycDk3718MZohYEXNI6DK1CA5SzmsSOXXuxYNFy6fkD996G664ZVeMN7itHjcT422/ArTdfi12bF2PCC49J8x56/GWEx3dFeHxXfPHVZKzbsAUXDBmNmKSe6NH/UqTul/+BXFZWjhdf/QDxKX3QvttQqZ1ZYtv+GDnqZqzfuFV2o9Zud+DO+56U1nHVdXf5DGG+n/JrnZbp2GMYMo+ekM0/eSoHd93/NOKT+0jb1b7bUCS2vQBfffszrNaaq03qo3On9ujapYP03NcYRmnph3DDrQ96bVdMUi+8MOE9lJWVK1+CL76aLO3rQ4+/7HPf2nS+EO27XYRJk2fUOAYR6nHe3JTbkXEoE5dedSuiEnugfbehWLlqA774ajJatOmHSZNnyF57y52PyK4tT7v37MfQS8YiueNAaVuSOw5E74GjMGfefz63xRe9PgAx0a4qMJPJjM0egeSe1DRs374HABAaEozwsJoHRVTSBwTIKo6qa5totzuw+L9V0vOkli3Qq4frlxhuDocDs+csQu+Bo7z2uV3Xofhr9gKvG//ZOXno1vcShMd3RULrvti8dSe++vZnxKf0RWLb/rjjnidRUWHCzt2pSGjdV1pu5+5UwOPcdeo5HCeyTknv63lefD0eevxlj61wqW77/bkGzWYzJk2egfbdLkKbzhfK9v2CIaOxeu0m2fmuy/XkeYzC47ti0ZKVste4paUfwhVj7pR9fjp0vwhxyb3x6FOv4uSpHOVLAMX34+f/+xGL/luFjj1cn1/35zil02BMnf6X1/nzZf6i5bKWh+++8Twuv2SYbBklvV6Pd994DoMGVLW3nP7bbBw7niU999xOX+cPfi5Tn+8qf97Xn2Xqs24iIiI694jmAliW3gjzgsurKpY8Hta1j8B24EeIxuOA6IQQGA/tBR9Ae8H7EDT1v2HjpunxDPTXrHU9rt0E3aDPAY0BzrzNcBRW/+PGs43z1Bo4Tq2BWOT97xM3Z9FeOPO3QtCFIWDYT9ANmwLd0O8RcOViqOOHQjTlwr73q+bbilKjh3bAJ1Xn2+MRMHwaBG3jBi91JRqPw3FqFRw5GwCHKxA6nwys/MH58VIrFmQUw+oQEROoxfDkuv27vT5WHi1BXoX3/SF3i0J3W0XTiwPw5rCqIP7NYUkwvTgAphcH4Ier2kitGx0TBmLPgz1l7+W5vGerRs/2h57tH/+9qaP0v4uf64/Jo9siROf6ke09vWKlFo+er3E/3O0kzxdDB/YBABiNJuRXBmKeLeJ8tYHzbLO3Y0+abNk7H3nFK1jzbNk49q5nkHbQu6Wcsv2bsoWbe76v7YFiHXc+8grSDx2ttQVcq8R4pLRqAQDYumufrBXe9l37YawwITYmEp3au4Iiz23yta/ubXjmtU/x4/TZ0nKLlq2Tbcu6TTtx20MvIzfP9WPrtz/9Hnc+8goyDh+rdpuVbS+V6/a1jOdxWrdpJ554+SMYK0wwVpjwxMsf4ZnXPsXu1PRqWyYq30+5zrpeB+eys+1aKSgs9vrMKN/b/fBV/enPZ/JMOS8CMU8WhxMPLTiM0I82Y+rupvkFz/qN22CtbCMWFhaC8beNrTEMAwCNRo3PP3od33z5LpJbVbX4U9q6fTduvesxpGccUc4CKqtgeg0Yhe9++MVnZcX2nXtx5bXjZWNpaTRqjBl9mbTM3n1pshu5qKx2+XfuEun5lq07kbo/XbaM2WzG4v+qbnYPGXwBWiZWlVsuXroKfQdfiX/mLpamuZnNZrzy5sd44tnXlbMazOFwyL5UAj1SdVEU8c/cxRh68fVYunytNN3N6XRi0uQZuHT0bTh+ovp2fhs3bcPQi8f63Lf8gkK8MOE93HrXYygqLlHOBup53nzJPHoct45/FFu2NewfiitXb8DFV97iM1w6knkcd973pN9j3YWFhsjG6vpm0lRkHj2BFavW4/a7n5A+K5ddMkx2vfhrxLDBiIt1tVCorm1i1slTWL9pm/R81KXDEB9fNTag2WzGsy+9g7sfeAZHMo9L093yCwpx3/89h+defrfG4/+/b3/CK29+XG3wdLqUlpbhngefrXH7X5jwHq4Yc6dXsFRUXIJb73oML0x4D/kFVVVqbukZR3DNDffg6++m+nW+68rhcODLrydj4EXXYIPHOXJzOp2YPvNv9B18JRYvrQo1fVm4eAVuHf+o136UlZXjiWdfx0effVvjPii/5/r16YEbrrtStkx1QkND8MwTD0jf9adO5WDTFt9/INdHY31X1UdTrpuIiIjOPMfB6TVXJQkqCAGRUCcMQ8CIX6C/ahk0yVfLq3nM+Y0W4qgThkMV1gmivQJiqcePG5122A//Duvah2BZfhusG5+Fs0D+95ez7Ajs6dPgzN8OsTwTtq2vwrLsJljXPAD74d8Bp++/7UVLIeypX8Gy4g5Ylt8G2873IJbLb+yIdiPsR/6E49h8iMbjsO36CLZNz8FZtA/WDU/Bkb3atVzZIdjTp8FxsupHs9J72IwQRQcEfRSEoERpuqAJgrbvG9B0fQza3i9XDgJRqZb9dhbudq0va6nXOXDmb3fNO76oat9reT/IjuM2OPO3wbrxWdhTv/JYQoTj5HJY1z8Oy7JxsK5/vHJ/G3YNnO59cZxc7lp2xR2w7foIoqXq3xH2zNmwbn4Roq0ccJjhyJwDe8ZMiCbfP9RrbjzbJW48USYFVDq1gMEtg5WLN7rhyWGICXR1+sksdnW98dWiUKcW8MqQRK8xvHRqAff0ipUCKwDoEm2QBVP/3dYZrwxJhE4tv193T69Y/HebfJgDABjdPkJ6v4IKO5w+Lu8LW4bgq1GtZesFgMQQHSZe3lo2rbkymcz4e/4yAEBQkAHRkeEoKCzGg8++g9S0qu9wd4CiDGmMFSa89PZE2bK5eYV474vJ0r29mbMWYurvc2WvefvT76Ub/P54+9PvsXLdVum5scKEdz//UQoYlOvIzSvE4y99WOs6qmuF59kCr0uHNoiKDJfaDXq+Z25eIR54+m2vICk17RD+mvMfACA2JhLtWjesIvuDL6fI9g+V637q1U+qPQaoPE4vv/M/r+2rjTsQVb5fdfvrz3VwrjuXr5Wpv8+VhWbKa6U+n8nGdF4FYiKAt1ZnYfLOXBhtTqw5Jm/3lWO04de9+fhpV67fj925FXX6E85ud2D7TlfFCwD06tG1xoCrruYtWCq1MQsPC0XrlFZSO8BtO/bgxtsekrWMU6lUSEiIQ3iY/JcoX337M1596xPp5nC/Pj2kNm4lJWVYs36LbPnU/enYsrXqP1Kuto7rZMscyTwuGwfpylEjpJZ023bswQOPvCD70vK1bdUFRg2xas1GHDh4WHreqWM76X+vXL0B9zz4rBRyhIQE45abxmD87TfgwkH9peXSDmTg0adeRWmp7xZymUdPSMfdvV/usbHclq9cj3sefNarsq4h501p46btUlgaGGhAYot46PV1q5w0Givw8eeTZMdkwguP4c1Xn5Yduzff/aLaah9PgiDg3rtuQVRkBFB5rPoOvhLX3Xy/tM+dOrbD808/VG0Lw5q0TEzAgAtqbpu4dftunKoMggRBwOWXDpeCC1EU8ca7X+CnaX9Iy3fq2A7jb78Bt4+7Hq1Tqv7DMWXq7/jme9/BkMlkxtz5S6Xn8XExiIuNrjUMbyibzY5X3/oE/86rCnIAIDoqEvFx8tYSO3al4pEnX5GuQZvNjgmvfyRr0do6JQm3j7seV1w+Qj624Uf/w649rv8gNxZRFPHVdz/j9bc/k013X7tabdX4jSaTGePufBQrVlXfTnbz1p1wOp3S58fz9QDw+cQfawyL8/ILkXGo6scGV1w+AqGh/rfh7dq5vSzU3ebxfdhQjfVdVR9NuW4iIiI680RbqXKSi8YA3ZBJMNywF/pr1kI35FuoovvKw5pKtgOT4TjpuiF6OojmAliW3wLbtjfhOLUazoIdcBxfAMvKO13jjVX+K96Zuwm2XR/AuuUVmP8bC/uRWXAW7oUjey1s296EZemNXuN02Y/OhWXhKNj2feMKgAp2wH5wOsxLroVt/3dVwYw5D/Y9X8K24x1Y/rsR9vSf4cjZALF4nysMq2zv6MjdDNuuD+A4OF22HgAQ9NEQ1Ho4y4/BnvmvLPQRAhOg7fJ/EAKr/r70Z79FhwX21ImwbXsdTs/qNIcVtt2fwrbrQzgrsgCVxq/3g+dx3PwCLKvuhuP4AjjzK8c9d1hgXfsIrOsegyNrKZyFu+DIWgrrusdg3fhMzWO/2c0QzfJxUzyd7n2xbnjStWz+NtjTf4blv+ulMNh5dC5Eo6vjjWivgG3/d7Dt+QTOYvkPg5srz3aJq46VYkVmKQ4UmAAA/VsEN+q4XiE6NaZe005WUeUOqrLKrPg11dWm/4XBiQjRqbEv3yS1VpyyMxcAcHnbcK8KrKwyKy6ZsQ/qdzdieabrXlNiiA63dnVVcfVv4Qr2PN/PvdyQpFBZ5RkUrR3bfr0D988/hDKrqwvJlJ25CP94C3Ir7AhQq2B1iHhnbZZsG9tF6L3eszlITTuE68Y/LVWGXDf+aSnEuGLkhYiKDMcPv/yN3LxCDL+wn9RW8dVnHgAA/D1/mVfA4dmGcfzNVwMegUFBYTEWLnfdj/R8P3ebRn/FxkRixnfvybYlN68QaQczG7yOy0YMQmxMpKwVnmcLvKED+8BkMuP7abNgrDBh/M1XS+sYf/PVMFaYMHu+948o3MtN+/odRITLr/cLB/TCjO/eQ2yM617kq8884HM5VFZhbdnh6lzkfk/3a3PzCrFkxQbpGAQFGvDle89j0R/f4Mv3npda/OUXFOPCAb2kae7lPn3rGQQEeI+rt313mnRduFv0zZ76Gbp2agtjhQnfT5tVp+uguTibrpWoSPkwIaisAly5bqvs8+J+7ZYdqTiQ0fDPy+nQrAOx1cdKEfvZVoybfRDlVgcm78jFZ5tOwikCfeKD8PpFVUFUVpkVF01NxR3/ZuC+eYf9fgyYsge/7q15jBxPFosFBQVV5YoJCXEIDDTIlmmoQQP6Ytfmxcg8sAHrV8xGl84dYDab8fFn38rGLXt9wlM4eXgL9u9YjswDG7Bu+WykJFcdk+8nz8DK1RsAAIktEjDYo93X4v9Wyqpclq9cJ1XyVC2zCsUlVf9YWrN+i7T+hIQ4qSrIaKzAa299WuO2bVw9B927dZLeqz6Ki0ukcW2yc/Jw8lQOpk7/C488+YoUYERFRmDQAFfpdmlpGd798H/SWEFDL7wAu7cswXcT38OXn7yJeX//hCmTPpFCgVVrNuKv2Qs81ujtuacewomMzdi/YzkyUtdg1+bFsjZqK1atx7yFVf8wbOh58yUluSXWLJ2FrENbkLp9GYZfNAhPPnovirNTkbZrpeyG/W/TvkZxdiqKs1Px5KP3AopQQKNR49ef/4fnnnoITzxyL9Yt/xuvvfwkACAyItzrmqhOp47t8MKzD0vPPVvXXXH5CPz752QktXSVCdeVssJR2TbRbndgwaKqqrH2bVPQo3vVr722bNuFKT//Jj1/7eUnsW753/jykzfx1edvY8PKf2TjQ038+icc8NF20+25px7CycNbkbZrJaZM+qTGz78/56U4OxVZh7bIggdPi5asxLQZs6TnvXt2xbb1C5CRugZpu1bi+MFNuPH6q6T5K1atx9IVriqfsvJyWCyuf6irVCp88PaL2LpuPr76/G3MnPoV/pv/K8LCXIGQZ+Dnz3a7r6eaHEg/hIlf/yQ9T2wRjzl/TZGu3ezM7fjfZ29Jn0Gn04mXXvtQNt6a0o3XX4WjBzZg/47lyM7cLl2vqAzyZ9XwGS4uKUGpR9u/rp2rWq36IzQ0BK2Sqn7ZeyonF3Z77W0aa3M6vqv81ZTrJiIionOYwwJndvX/ZqkLx6mVcJakQdAEQght6wpDtr4KZ9E+qGMvgP6qZTDcmApt/3cgqHSwZczwCuPE8kwIagO0/d+B/ooF0A34GEJgPJwlB2Dd8rIU2jjztsK+422INiPUCUMRcPFMBFw2G5qU6wHRCfv+SXAcl3cFEa0lgC4UuiGTEHDxTKhbXgH9Zf9Ak3wNAECTfA30VyyA9oIPZa8DAFVEJ6iTRgFOB+y7P4F53kjYdrwNZ8lB5aJ+77c6sieEiK4QLUVw5KypennhLoglByAEhEMdO9jv9/MkGk9BHTcUAZfNlvbHtudTOE6tgiq0DQIumQXDjfugG/YTBH0UHMcXw5bhHQRWEeHM3Qx7+jSvhzN/+2nfF03SlQi4fB50F34FQR8N0ZQLR/o0AID2gg+hu2gyBF04BF04dBdNhv6yf6COvUD2Ps2VZ7vE6Xtc98TWnyiXxvUa1sr7JntjcgdKrSZux4rMUoxICUVYgOsHtF2iDVJwdk8vV+cXZStHq0PET7vysCLTdc/qvXVZyCpz/ds3JTxAFvh9uL6qQ9LU3Xkoszp8VsJtOVkuHYvqHCw0weJwSpVrphcH4GS5Dep3N8LwwSa8vsq7o0tz5A5Hxo29AiaTGXkFrh8tr1y3VQrO3v70e6CagMNzzCT3OEtuaQczkZtXiKBAA667aqQ0/f47rpdu8PvDHdYBQKf2KbLX5hcWw2g01XsdUZHh6NLBVbXoboWnbIFX4XFcpv4+Vzou7iqbfemHZe3wYmMicdmIQdLzhsgvKJa2xf2enuNMjRt7hfR81s+fIjoyHHc+8orUHrE+1mx0/Yhi+IX9pHGsDAY9rr/qYqAe10FzcbZfK8dOuIZ3yc0rxG0PvYxRNz0stVt0h3iN9ZlsTM06ENuUVY4Ckx1/7CtA90m78djiI7A6RCSHBWDGde2l8m4AyDXaUGj23Q6hJlaHiPTKX8GcDcLCQvDZh696VZ1t3LwDi5e6WjIAwCsvPo4nH70Xen1Ve8CuXTpg8nefSDe4Xa3IZsNud0CjUePKUVVjMW3dvltqvVZaWiZrk+W+8bknNQ1paRmAj3aJgwf0RWIL143yLdt2Yf3GqjJkX9vWqUNbzPhpoiz4qauHHn9ZGtemU8/h6NJ7JJ549nXZLwwef+RudOzQFqhsQ7hth6uaT6fV4tWXnkBEeNUfUIIg4JqrLsPoK11fzqgMH8wW379wG3/7DXj+6f+TBSDJrVpi2uQvZJVV02bMkip0GnrelARBwCfvv4ru3To1SmWS3e7A8RMnpUBRrVbjwXtvw+K5M3Bg90pZEFWT/5avwdvvf6mcjEtGDsFPkz6RWh5WVJiweOkq/DtvCf6dtwSHDh9VvsQnzwpHZdtEZbvEEcMGIzYmSno+a/YCKdjr16cH7rvrFqjVVZVqer0ezzzxgLSNBYVF2LCp8teQChePuBDPPHF/jSGYKAJOX70V6sFsseCXX2dJ5ycluSWm/vg52rZJlpYJCQnGFx+/gUtGDsElI4dg8dwZGH2F65qOjAjH5O8+xq7Ni/HJ+6/g3rvGyfa9T69uuOzii6TnWdWM41UXni0nf5r2h1TNZzDoMfXHz3HRkAHStatWq3H7uOvx+oSqUCvtQAZWr90oPffUoV1rvPvmCwgJcf3DRa1W4+EH7sDFIy6UljmSebzaz3BDBQUFIimpKtgtKCiGpRHW1djfVXXRlOsmIiKic5kABNXvB2/23Z/CPGeI6/HvIFg3Pg3YzVDFD4U6pl/VuFuB8dD2e7uygkqAJuV6aNreAjgscGTOkb2noA2GbtAX0KRcDyE4BepWV0E36EsIujA4i1KlsMV+cBpEWznUcYOgGzQRqsieUIV1hLb/29C0vgFwWGA/NFOq/gIAQRMIbf93oU4YCiEoCdAGuf6/Jsi1gCYIQnAKBIO8e4OLAG3Pl6Dt/CCgMUA05cCeMROWJWNgnj8SjuNVPzTye7/VOqhTxgAqDZwnFkO0u8a+Ek+tgmivgCqqD1QRnfx/Pw+qiE7QDvwIqrCOEAwxEI0n4chaBkFjgKbPa1BFuH54qI4dAE33JwGVGs4TiwG79/jjbo5j82Hb9YHXw3Fs/mnfF02fV6EKbQN1i5GV26uBs2gfRFspBEMMVEEJrlagggqqoATXeVXXrQPLucizXaJn+OTZXtAdmDUGz8qrffmu+2/KQCoxRIfQykCsMaSEu85jqcUhBWWo/DF9qcX7Xou/pu/Jx5ebs2F1uP6N7g7G3OOONWZl3dnCs4rH/Zj186fo2M417pHnzXx/BAUaEB3lXami5G7HWF+tWlY/ZIc7MGrIOtzjqGUeO4m0jEyvFnju0K0puEOOmKgI2bAySu7xpDzHm6oPz1A0WXHco6PCfQZd/l4HzcHZfK0crbxW/NGQz0tja9aB2L29YnFpG9eNuWOlFlgdIqIMGvx8TVt0iJR/oLvFBmJc12gkBGvr9BiYGIy7elaNNdTUunXpJKtAcNu2Y490UzwuNhrXj7nCZyDSp1c33HT9aOn5th27UVjkSpEHD+grVel4tk3ct/8gdu52ldL269MDjz98N1AZlsyeswjw0S7xhuuulLVL9GfbWiUlYuy1/o3XUx8TXngMDz8wXlq353YBwA9TfsUTz74uezzz4ls4VlmmCgD70g6iuNi7hYjBoMfdd97k1aINAGKiI3HP+Jul5/v2p+PESdevHvw9NjWdN0+JLeLRrWtH5eQ6iY+Llr3Hw09MwAVDrsaXX0/GseNZCAw0YED/XrLgpCZz5v2Hm29/GGUelTduS5evxaTJMyCKIux2B15582PcfPvDGH/fU3j/46/9blfXKikRIy6q+vWDZ9tEZbvEKy6vCn7Ly43YtddVkgwAuXkFePWtT7yug48++1YWQG7yaB/qaeiFA2Rhpi9msxm5uTX/qsxfhYXF2LOvanyHsdde6fP7ISgoEL9N+wZ//TrJ57lLbtVSukZPZJ3CvAVL8dpbn+Lam+7zOS5eQxw64go5lcf+0ouHolePrh5LugiCgHE3XYsO7ar6ra9c7TsQi4mJ9vpDSq/XIyam6h8dxgoTHD7CZF9qGi/OF6OxAsePV31ftEiIrTEc9VdjflfVVVOum4iIiM4yThvs+76Bde0jsO37Fs6i1GrH4FJF9YIm+VrlZL+IdiNES6HrYS0BVFpouj8O3YCPAQhwlqRDtJVDtBTCsmxcVXg2Zwjsh353vUf5UYjWqn8vCaHtoYqsGtcYAFSR3aAK7wg4LBALUiFaiyGWHwVUGqhaXa0IPgSoW42GoA2GWHYEotnjh2JqPVQ+wy4/qTTQdHschjEbETBiOtSJl0DQBEKsyIZ184uuAA6o036rYwZC0MdALDvqCnjMBbBnLQfUAVC3HlP/46gNg+AO+gA4Sw+5jpvTCtuGJ+XvsfNDwOmAaDwJ0exqGedFpYWm7Thoe77o9VC3cnW5OFP7IgTEACotACcgurojnK/G94jxGgNLKSlUd1rCnccXH5ECqpEpYdLYYJ5B1fLMEqnFofuhrL7SqQW0CHYNL+KLe1yy0AC1bEyymoI392tq8/qq4zB8sAnqdzfikhn7pP0J0akxvkcDvivOUYEGPWKiXENoeLZ78xWe+cMdoBiNJuR7VMU0psZYh7vqzFhhwt/zliPz2ElZBU10ZDiCglz3C9wtBD0fyhZ2tYVXdeEOA/MKilBRzXhc7lZ58Dhv7vaIdWXwuAaUAYs7fDyfnc3XijvA9BV8L6qsJmyMz0tja9aBWKRBg1+vbS+FYuF6Df4c2wEX+Sjd1qoETLw8BSee6Funx7q7uqF15S9H/BEYaECLhKoALfPocZSXu37FdDodPFQ1gF67tq0RE+27JFEQBCR6tDgrKSmTxu2Kj4/F0Auryv/dbRNnz1kkhQGjr7wE115zuVSyumLVeuTmFcjaJSa1bIFePVyDAqIO24bKMdcam1qtxm+/fIPnnnpIFlh5bpfVZsOff8/H1Ol/eT3cYWBNoiIjEB9XfXDaoV1rKegyWywwmVxf9v4em5rOW2PT6/V4+fnHpIo0ADh46Ahef/sz9Oh/Gdp3uwh/zV4ga3tYncNHjuH5Ce9K7daiIiMw+/cfcPMNrt6/qByLbOYf/2LewqX4+Zc/gcoqxPffeqHa46EkCAKuvvIS6bm7baKyXWKvHl3Qq2fVNVZurMAJj/8YHzue5XX+p07/C7/+/o/XuGRng9y8fBR7XAf9+/aUzfdU3fhsoihi/catuPSqWxGT1BPd+l6C2+95AhO/mYJVazbWORTyl/LY9+nVvdptDAo0yEKtnJy801KBFBsTjXCP6iflZ9/hcOCPWfOkIGjCGx8hOydPml9aWoZjx6vabbRKSvQZcNdVY35X1VVTrpuIiIiahqrFCAiaQOVkwGl3jQ91agXsqf+DZemNMM+5EPbdH0uVO27q5Ksh6Ku6MtSFts9rMNy4D/orF7sqfUQHBHUQoPL+8aEXdQCEgEjX2FyqqpvcgjoAUCvHNBEArevegWzcNJUWQoCPf4fowl2BiegExNr/LeQ/0RUsqjRQRfeBbvBE6MdsdFWkOe1wZM6uscIK8N5vIagF1LEDIdor4Mz8B87CHRBNp6AKbQNVrB9tlKo5jnWi0kIIiHBVxqmquaei0kCVMByaDnd6PVTRrl/MnxX7ch4ZkRKKjlGuG6+eY3C5H++szZLaJp6OcGdFZileXnFMGpvrxi5RuL17NFZklqKkMhDzHMPsv9s6wzFhII493sdrDDHPccVevjBRCr4yiy04WW6T9uOFwVU/KnWHgVaHiPUnvH/UW5sfrmoDx4SBML04AG8OS8KKzFKMn5MhhWLxweffNegZhixcvk5q7TZz1kKMuulhPPPap15jR9XEHQ4ox05yj1PWGBpjHZ6t8Lbs2AtjhQkprVqgVWI8oAgKPcdRc1dlffDlFI93a1zuAMM9Xhgqq7ieee1Tad3uKjLP9nvuVn714Q5WVq7binWbXD8yN5nM+Hu+q52t57E535zN14o7PE1NO4Ttu13D0xzIyMTYu57B2LuewYGMzEb5vDS2Zh2IoTIUm3VDR0y/th3m3twRw5K9w7AzSRAEDB5YNWjc9u17sC/NR/9vH6w2m+yX+GeaMlTYun03NmzajhWr1gOV/xEbftFAdOrQFoMHusbFOngoE5s275C1Sxx64QWIj68+HKqJrworf3mOX7R9w0LEx7n+OHM4HJj043SpTWFTa8yWeadL397dsWzBb7hk5BDlLOQXFOK+/3sOT7/wVq1hyZz5/0mBgUqlwo/ffoQRwwbj4/cmYNjQgUBlC8iHn5iAex58VgrO7rrjRgy9cIDsvWrTt08PqYrI3TZR2S5x5PALER7WtN8RZxObzY5X3/oEV147Hlu27VLORnhYaIM+k+eayMhwdO9SVR05d/5/yM0rkJ6r1Wr069MDi/9bhanT/8LX303F5J9/k76312/ahuMnqiql3OMoEhEREZ1L1PFDoBs6CaqY/vIQSqVxtRCM7AlBGwJAgGgrg+3AT7AsuhKOU1VjPDUGISgJ6rY3ucbXypgOsaLyx1Rqg2tbQtsi4MrF0F+z1uuhu2gy4BHqOSuyIZqr/q6DuxKtIguAACGsnSssUQcAdhOcJVWdDNychTsh2spcrRDVPgLDerDt+7ayiqlqTGOg8lgnXgpoDK4KNqe1zvutSrkWgiYQjvwdcBycDjgsUMcOqqqKquP7+SJogyAIagj6aARc/JvX6/XXrEXApbMrWxj6IIoAag8Xz8S+kMvw5DDEBLoqqw4UmKQxuNxWHi1BXoVryIGOUQavEKoxTN+Tjz/3uT6vnsHb32mFUog19Zp2cEwYiJEprh80Lj5U7LWtiSE6LL2ti2y5ffkm3D//MF5fdRxrj7uW92wL6V5u7fHSOo33dU+vWJheHACdRoWsMqusVeLS27ogMUQHq0PE32lNc3O4qV131UgpgHGPQ+Qe/8hznCh/REWG44qRrmERPMckc1czNYbq1rHvwOE6VUi5W+G59evZRdpXz/GzUtMO4brxT0v7oRyLqbF1bJeC/r1dPxZ3j0l13finkZp2SFq3e8wuX+fMF2OFCU+8/BHufOQVlJS6CiY8XXvlCHTt5BrC5u1Pv/da5wN3jq3TddDcnK3XSp8enbzOm3ssuf69u6Jju5RqPy+N+Zmsq2YfiAFAkFaFcV2jMbgRexg3xMALekvVNVabDT//8metwYHNZseDj7yIy0bfhk1bdvpVfeOpfduq8uKMQ0eQl+/7P7KiKCIrq6oqIywsRDYejGeoUFJShv99+5NUITB4YF906tAWer0el186HKh8v/c/+VpqlygIglfbP3+3DZXjjTWGNq1b4aH775Cer1i1HvMWygfR9dyu3j27IvPABilQq+6xd9tSKWjzVFBYhOycatpAAEjPOCLdNDfoAxAU5PpD3N9jU9t5Ox3atU3BX79OQvbR7fjr10kYd9MYWTvAqdP/wpz5S2SvUUpLPyT9757dO6N3r24AgNDQEHz/9YcYNMAVrKIyGAOAtm2S8dRj91VbLVSdmOhIKWRDZdvEhYtXSO0SdVotLr90mMcrgOCgQLT06F/8zBMPeJ1zX4/vJr4ne5+moqxoqunz42vMubXrN+ObSa5BowGge7dOmPTVB9i7bSnyju9C5oENGHudq1VJY1Me++079/jcRlT+YZWXV9VmMi4uBvqAan5l2gD6gADcfGNV9WJ6xhFMn/m37IcKbVq3wqMP3SU9/+q7n7Ftxx4cP3ES7330lTS9Q7vW6FuHQEwURTjsvv870ZjfVb405bqJiIjo7KSK7gtNx/sqW8i5J2qh6fIwAi6eCf21m6C/chHUSVcAah1EUx5sWyfAWXbE820aTNPmZqjC2kEsPwZ72o9AZWAnBLaEs+QgHEf+9lhahH3Pl7CueQDOUtdY19Kc8qOw7/vao8WjCMeBn+AsOQjBEA1VdD9AEwhVy8sBCHBk/ApnoWscVQAQTTlwpE8DnHbX+g3+/wDUVX3m+weRgjYEoq0M9v3fwXGq6kemgAhn0R7AbgY0wRDUgXXeb3VkTwhhHSGWZ8KRuxlCQARUSVV/29f1/XxRRXSDEN4ZYkUO7Ok/y/bTfvgPWJbfCmd+1Q8UvTjMECtcwwnU5EzsS42cNojW86Ml+OCWwdCphWorpFZkluJAgatCJCZQi+HJp+e+xP3zD0vjiQ1JCsWbw5Lw+qrjuH/+Ial6zG3KzlzcP/+wbJrVIWLi5mzZ+GD78k3oPqnq38yXztgvVby5WR0i3lmbhUtneIfiSp7BnVtmsQWtJm6Xtt3N6hDx0YaTdQrZmpOO7VLw/WevIjZGXn376jMP4MIBvWTT/DFu7BUYf3PVv92DAg149ZkHvN6/IZTr6NqpLd6d8KjUus4f7lZ4qNzGPj1d4yy6XTigl1cbwqBAA9575bE6tZGsjxefuAevPvOAbFpsTCS+/+xVdGyXgo7tUvD0/1XdVw0KNODL957H8AtdRSBrNm4HKs/tDVdXFVdUx2DQ49O3npEdU1Qe1+nfvnva9/dsd7ZeK+7z5j7vbsMv7IcXn7hHeq78vJyOz2RdCGVGs1hb1ZGv+VXTXMGG+2a1e57R4kBS3On5D9+5ThRFvPTah/juh1+kaa+9/CSeeOQer7F7ULn8xG+m4PW3P5OmPfnovXjjlacBAA89/jJ+++NfAMCFg/rjj+nfSIGK28rVG3DdzfdL5+21l5/EU4/d59WuK+1ABq667i6p/dvYa6/EpK8+kMIHURTx/Mvv4oefXH3KPX303gQ8cM+tAID9aQcxaswdUptEtw7tWmPe7KmIjalqj+Hvth07noVrbrgHmUdPAABaJiZg6YKZ1d5Y3bk7FVeMuVMqFf1t2tcYdZkrqAOAvPxCXD32bqQdcP3h26ljO8yd9ZPUhs9zuwRBwJ8zvvNZEZWdkwedTovICPnAgF98NRlvvFN1zu4ZfzM+eneCV5BTWFSMG8Y9iO079wKVVSN///Y9QkND/D42NZ03z+2o7Zhl5+ThkivH4URluPbL5C9x9VXy/3CJoohtO/Zg5h//YsILj8n2u6i4BOPGP4qNm1z/4bvj1rH432dvebxazvPaHTigD/6a8R2Cg6v6tB8/cRLX3nQfDh12jSsFAF9+8ibG336D9Lwuli5fixtve0g6pwaDHhWV5dyex93TCxPew6TJM4Bqrl9UHpPDR46hVVKirGJKeTzfeOVpPPnovR6vdKntWlW+j3K+0ViBm25/GOs2uMb1u+WmMfhu4nswWyy4854nsWTZagBASnJLzPlritc4YmazGff+3/OwWCx485Vn0KVzewiCUOu+F5eU4rqb7sOOXa52eO71uim329f1pFzG8xh5rt9g0GPurJ98VlVNmfo7nn6h6jqb/N3H0niD/nw/+rOMm/LzqlKp8N6bz+P+e26Vvr+Vy/SpDHrdzwHgsw9fk40d6LkNvq7F3LwCjL5uPNIzXDeRPI91Q7+rmnLdREREdPo59n0HVavGH4vZcWoNrBufBOyVN3Y1BugGfgF1wlDZcs7iNFjXPwHRWHWjV9vnNWja3iJbriaitRjWlePhLDno9Vp75j+wbXsNgiYIuqHfQxXZHfZDM2Hb+T4gOqEKbQshMB6iMQvO0iMQNAZoB30Bdbyr8sq2vervSMEQA1VIWzjLjkA05QIqNbQ9noOmfeVNP4cF1g2Pu6rdVBqowrsAKq1rvDSHGaqwjtBd9CMEfRTE8kxYlt8OAAgYOR1CsPyGlOPkUlg3Pgc4bVCFtoU6/kJoejwvW8a1vqfgOLUKEAQIgYlQhabAWXoEojHLtX1934ImxTUem7/77WY7MBn23Z8BEKFucTF0F06U7vHU5f3cx1EdOxC6YfLWTI7stbBteBKi3QQhKBGq0NYQLcWuYyaooO31EjRtx8le43m+BU2QYrw2FyG0DXQXfgWhsq3l6d4X9/WuCmoJ3fCpEHThgMMKy5r74czbAkEbAlV0L2i6PAxVZPWt6uvKeWwB1F0eUk6uE/W7vsdYPh+9OSwJzw9qAQDnTQDlmFD1w+CaHM8p4X1cPxUUFuOpVz9Bbl4hunZqi3deegQGgx7rNu3E259+f0aCCDoz6vq5qOvy1Pj8OQfNukLM4nDioQWHoXtvE4I/3Iz312V5/e6qxOLAsVJLvR8FJt+/mq+JIAh45ME70bZNsjTtrfe+wO33PIF9+9Nl1V9ZJ7Px5HNvyMKwsLAQXD/mCum5P/r37Slr1fjOBxPx7fe/yCrTUvel4857n5RCFZVKhdvHXScLcARBwOWXDvcKZMLCQjB0cH/peeuUJJ83rocNHeg17lOfXt3Qt3d36fk7H0zEF19Nhtlc1SP40OGjGH/fU1IY1hhioiPx1GP3Sc/TDmTgl19nSeGT53aJoohnX3obqfvSpeVROQbWVdeNR7uuQ/Hsi+/IxgtSmjL1d3z8+bey/Tp5Kgd3P/CM7Eb5rTdfK92Mbqzz5i+9PkB2fr6fMkM2Fpnd7sAzL76NS64ch8k//4bX3/5Mtj/hYaFI8hjLzFZNVYlbYkKc9L+3b98jOw6iKGJv6gGcrKzgcpv4zRRZ27m66N2rKzq2d/XdFUVRCsMA4JKRQ7zCMAAYe92V0Gldv3xNzziCCa9/iLKyql/CiaKI2XMWof+Q0ejcawSmz/xbdkyakj4gAHfcOlb6vGYePYEHH31JdkzLysrx5PNvYf7CZVi6fC0uHHkd5ldWS5Z47GdQUCB0uqpfAIuiiKnT/5TCMF9qu55qM+7mMVIJuMlkxvj7nsKWbbukz6jD4cD0mX/jhVeqQrhOHdvhoiH+/cFfH5ER4fj4/VekKl+n04kXX/0AN9z6EPbsTYPD4UBkRDhefekJqFSu/8Ru37lXdm2PunQYbr15jPQcgKwV49btu/H1pKnSdWQ2m/HFVz9KgZRSQ7+rmnLdRERE1PypwjshYOSvUIVV/c3RmDRJV0AV2QOitQT2tB8AiNC0HQfdBR9AMMS6qoJOrYGz9AhUIcnQDZ0kC4UAQBXZE+rESyCaC+DI3QjRlAPBEA1tv3ehae8KtQDXeFPagZ9B0+5WQNDAWbjbVeEk2qFOvAS64T/7PTaausXF0La/E1Dp4Cw5CGeRa+wN+UIB0A2eCE2PpyBogiAaj8Nxag1E4wkIgXHQXfCBFIYBqPN+a1peBiEwDlBpoU4eLQuQUI/380UdPwS6YZOhCkmGaMxyvUfhHgiGWNfxrSUYFe1GiJZCrwesJa7x2iqdiX3xotZB2+d1qELbQrSVw5G3FaLl/KgUIzqfeY7p5Nmi7u1PvwfO8/GuiM4FzbpCbMbefNw1JwPu4ZgCtSr8e1NHqefvuhNluOb3Ayg213zTviY6tYCZ17XHtR3rXuK3Y1cqbhj3oBRkeIqPi0FBYZFXK0WVSoWfv/8M14y+VJrmb3XDth17cP0t98uqtrRaDWJjomE0VqC4RP6H20P334H333rBK/xSVgsAwGUXX4RpU76QtSn7adofeOr5N6XnNVUPbNi0DWNuuBdWm6vXNCr3NS4uBjarDfkF3q0Ca6t2qq3qBj4qa6IiIzB/9s/o1LEdUNlKcey4B2XXd6eO7dCvTw+k7jsgCwMMBj0W/jsNvXq4+uwqK8TcatqvYUMH4pfJX8iCmYaet7pUiIk+KgDd23vdNZfjvTdf8DomrVOS8OB9tyMhPhbr1m/Bjz//Js3zrNTxRXmOAODyS4YhPj4G23fuxZ69Pv5RWDkO3bTJX9SrLaRn1ZGb8tx5En1UdGq1Ggwe2A8JCXFYuXoDsrOr2mF6fgZrqn7ypDwOymtV+T7K+crr2LOCx2az49mX3sbU6X9JywNAdFQktDotcnLyZNf3iGGDMX3KlwgKCvS6hm+75To8+tB45OTm47c/5+C3P+dI8+CjQsyf60m5b57HSPRRHYvK4DUoKBC5efmy70iVSoVZMydhxLDB0jTP78cbr78K33/9odd3mr/foZ7mzl+Kex56xus7GpXHtqS01Oe86q5dX1W17s+5cj/h41grP5eow3dVU66biIiITr+mrhBzE005sK55EM6yw9D1fx/qVqen9baSaMoDHEZAF+6q6vHgVQ1kr4BozgVUARAC471CFRmnHaLJ9TesoI/1WcXkL9FWKo27VhNpX9RBEAy+/03nVtN+10djvJ9oLQasxX5t/+nUGPvixWFxBXQa/9ul+YMVYo2LFWLV86eqguQ++HKK1zhInhVjdO6r6+eirstT4/PnHDTrCrHUvAopDAOACpsT2eVVgcvRYkuDwjBU9vndfNK7b7I/evfsihWLf8cF/bz74Wbn5HndhAwJCcavU7/yajnmr769u+OXyV8iKjJCmmaz2ZF1MtsrVHn0/+7C268963XjGABiY6JkN5wB4IrLR3iN2TN4UD/ZTd+O7dugdy/fN0EHDeiLyd99Ims353Q6cepUjiw0iggP87lN9RUUFIhnn3xAquQoKCzC15OmSWMVDb9oEKZMkm9X2oEMTJ/5t+wmr0qlwqcfvIqe3btI05Tc2+1rv1B5PXw78T2vKqXGOm/+EAQBjz9yj6x60b29hUWuyp7hFw3CB++8JB2zI5nH8eIr72P8fU/h+ym/SjfFhw0diEtH+v7HsFvP7l0w4fnHZNMWL12FqdP/koVhKckt8epLT0jnYc26zbjr/qdR6mMgztpcd80or+q5Pr26o31b19h4SoIg4I0JT+LuO2+SptlsdqxasxG//fGvLAxLSW6Jzz56rdYw5UzSajV4+7VnMWb0ZbLp+QWFOHUqRxZi9O7ZFV9/8Y60/WOvvUJ2Lcz4bTYGDb8W1950nxSGhYdVP0iyP9dTTQRBwMMPjMeEF+TXSHFJKbJOZsu+Iw0GPWZO+8rru8mTWqOp92dD6eqrLsHiuTPQOiVJOQv5BYVe39+o/EzMnPqVVxiGygDp6cfvl01zf85tNjsEQZDGb/SlId9VTbluIiIiOoepNIoAR6ic5ptgiEPAJX9Bf836MxaGAa42iEJwin/BhybQtWxgQq3hFFQaCEFJEIKSGhSGAahs+1fL+jz3xY8wqU777YfGeD9BF+739p9OjbEvXtQBjR6GUeN7fdVxGD7YBMMHm86LMIxOrxefuAeL/vhG9vj0rWcYhhGd5Zp1IHZJ6zAEaqt2McqgQYeoqj9QhrQKQa+4qvGK6iMlLAC3dI1WTvZbq6RELPx3Gn76/tNqb8iHhYXgiUfuxb7tyzDq0mENuqF70ZABWLdiNu67a5wUaHjq06sbFvwzFW+/9qzs5qbSFZePkLYjLjba503otq2TMXTIBdLzYUMHykIdpauvugRrlv3ts4JMr9fjrdeewcxpX0Ovb9g/NpSGDL4A11xVVXH3+59zsGXbTqDyhvy1V19e7Xahsq3h+pX/4Nabr6323LRMTMDcWT+hf1/vXuLufVv47zS08Ggh6Kmxzps/klq2wNxZP+Haqy9XzgIqj8kD99yKZQt/87k/KpUKD91/B2ZO/cor3FMSBAGPPDQec/6a4vOGu0qlwoP33oY1S2fhmScewORvP5H2f9WajZjwxsd1bk/YpXN7r+qUMVdfVmOIpdfr8cn7r+Cn7z/1GYB4bqe7JePZJDQ0BFMmfVLt9ld3DSa1bIHff/nG53mOjorElEmf4AkfFW+earueaqPVavDskw9i6YKZPrdDpVLh9nHXY9v6Bbj8kmHK2adVn17dsHnNPEz+7uNqv789bdi4DXtSfVc9CoKARx+6Cz9++zFCQoJl89zX37ibq9rhKDXku6op101ERETnLnXcIOhHLYT+igWux6iFUMcNUi4mp9JA0Mr/3iAiIiIiOlOadctEEcBf+wvw+qoTCNSq8N6IJFzWphF/AXQaGI0VKCktw8GMI2iZmICIiLBGr4pys9nsKCouweHDRxETE4X4uJgaQ4EzyWyxIC+vAMeOZ6FNSitER0c1OOhpDO7tSj94BB3at0ZMTJRXZZxbda0KjcYKZOfkIS+vAG3bpiAyIgxqtf/jfZ3J8+ZwOFBYVAK1WlXtdejenxNZp9ChXesGnauSkjLkFxQiL68AbdokIyI8rN7vdTqVlJTh5KlsFBQWo2OHtnU+h02tPtvvfk2FyYzWKUnVXg818ed6qo3RWIHCouKz7rsBld8PhYXFSDtwCAnxMYiOjoIgADfd9n/SGGKeLSmr43A4kJdfiEOHM5HcqiXiYmPqvI91+a7y1JTrJiIiotPjdLVMbA4c2evgyJgGVUR3aLo+qpxN1OTYMpEaii0Tieqvrp+Lui5Pjc+fc9CsAzGiplRdIEZE55eFi1fgtrsfl/47+dmHr+Ge8TcrFyMiIiI6LRiIEZ27GiMQ07y3EaJTun1H5wsREFSA/WUGYkT1VdfPRV2Xp8bnzznw7r1GREREjeaSkUMx+/cfMPXHzzH1x8+R3KolLFarcjEiIiIiIqJGFxekBQTvH7pTMyeIrnPvJ41aBZvdoZxMdN6y2R3QqOsWnfBz1LT8PWe1L0FERET1ptVqMGzoQIwZfRnGjL4MF4+4EAE6nXIxIiIiIiKiRucaOoTlYecfoU7DxugDNDBZ7MrJROctk8UOfUDdhpDg56hp+XvOGIgRERERERERERE1Qw/2iUOwTg2wSOz8IQLBOjUe7BOnnFOtIL0ORpMVPkbNITrviCJgNFkRpK/bj5n5OWo6dTlnDMSITpP77x6HtF0rkbZrJVYs/gMx0ZHKRYiIiIiIiE4rQRcGWAqVk4nobGcpdH1+G2hgYjBu6ByFQB1vAZ4vAnUq3NA5CgMTg5WzqqXTqqEP0KKorEI5i+i8U1RWAX2AFjqtWjmrRvwcNZ26nDP+15DoNAkKCkR8XAzi42IQEx0Jtbr2DyQREREREVGjCmoJseSgcioRneVEcwEQ1FI5uV4mj26DnnFBCNSqWCnWnIlAoFaFnnFBmDy6jXJurSJC9HA6gcLSCla40HlJFF3Xv9Pp+jzUBz9HZ1Z9zhkDMSIiIiIiIqJmSgjv4LqxzioxonOKWHIQQngH5eR6Wzu+K27qEo3gAPePdUWGY82BKP0fBAeocVOXaKwd31W5lN+iwwMhCCpkF5Sh1GiBze5QLkLU7NjsDpQaLcguKIMgqBAdHqhcpE74OTr9GnLOhDKjWRRriSt9za+a5hqY0+l0yuYZLQ4kxTW8tJuIiIiIiIiI6s95ag1gyoYQO0A5i4jOQmLJQUClgyphqHJWg23MKsek7TlYcrgYOUYbKxjOcYIAxAVpcVmbcDzYJ65ObRJrYrU5YDRbYbbYYXdU3fMlao40ahX0ARoE6XV+tdzzFz9Hp09DzhkDMSIiIiIiIqJmznlsAaAOgBDWXjmLiM4WlkJXGKYJgqrVlcq5RERE1EBsmUhERERERETUzKlaXQmodHAeW+C64c4WikRnD0shxNxNcOZsBAzxDMOIiIhOE1aIEREREREREZ0nRFMOxOJ0wHgCorVEOZuImoCgCwOCWkII7wDBEKecTURERI2EgRgRERERERERERERERE1a2yZSERERERERERERERERM0aAzEiIiIiIiIiIiIiIiJq1hiIERERERERERERERERUbPGQIyIiIiIiIiIiIiIiIiaNQZiRERERERERERERERE1KwxECMiIiIiIiIiIiIiIqJmjYEYERERERERERERERERNWsMxIiIiIiIiIiIiIiIiKhZYyBGREREREREREREREREzRoDMSIiIiIiIiIiIiIiImrWGIgRERERERERERERERFRs8ZAjIiIiIiIiIiIiIiIiJo1BmJERERERERERERERETUrDEQIyIiIiIiIiIiIiIiomaNgRgRERERERERERERERE1awzEiIiIiIiIiIiIiIiIqFljIEZERERERERERERERETNGgMxIiIiIiIiIiIiIiIiatYYiBEREREREREREREREVGzxkCMiIiIiIiIiIiIiIiImjUGYkRERERERERERERERNSsMRAjIiIiIiIiIiIiIiKiZo2BGBERERERERERERERETVrDMSIiIiIiIiIiIiIiIioWWMgRkRERERERERERERERM0aAzEiIiIiIiIiIiIiIiJq1pp1IHY8p0Q5iYiIiIiIiIiIiIiIiE6DuuQyDoejUR+1adaBGBEREREREREREREREREDMSIiIiIiIiIiIiIiImrWGIgRERERERERERERERFRs8ZAjIiIiIiIiIiIiIiIiJo1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Gh3bp6BFfAwqTGbs2J2Gtq2T8PpzDyG4AYNJEhERERERERERERH5Updc5kxXiDEQa8ZO5eTjs2+mwWK1YezVl2DowN5nPJSjpiGKIvanH8HcxauQdvAIoqMicNmIQRg2qG+1lWVERERERERERERERA1Rl1yGgVgjqsuBJyIiIiIiIiIiIiIiovqrSy5zpgMxlgsRERERERERERERERFRs8ZAjIiIiIiIiIiIiIiIiJo1BmJERERERERERERERETUrDEQIyIiIiIiIiIiIiIiomaNgRgRERERERERERERERE1awzEiIiIiIiIiIiIiIiIqFljIEZERERERERERERERETNGgMxIiIiIiIiIiIiIiIiatYYiBEREREREREREREREVGzxkCMiIiIiIiIiIiIiIiImjUGYkRERERERERERERERNSsMRAjIiIiIiIiIiIiIiKiZq3ZB2KiqJxCREREREREREREREREjelsz2OadSCmVqvgcDqVk4mIiIiIiIiIiIiIiKgROZxOqNVnb+x09m5ZIwjQqmG1OZSTiYiIiIiIiIiIiIiIqBFZbQ4EaNXKyWeNZh2I6bRqmK125WQiIiIiIiIiIiIiIiJqRGarHToGYk0jMEALk9kG8WxvXElERERERERERERERHSOEkURJrMNgQFa5ayzRrMOxNRqFQwBGpRVWJWziIiIiIiIiIiIiIiIqBGUVVhhCNBwDLGmFBqkR6nRArvDqZxFREREREREREREREREDWB3OFFqtCA0SK+cdVZp9oGYRqNCWHAACktNyllERERERERERERERETUAIWlJoQFB0CjObsjp7N76xpJSGAAtBoVCkoqlLOIiIiIiIiIiIiIiIioHgpKKqDVqBASGKCcddY5LwIxAIgIMUClEpBbZGT7RCIiIiIiIiIiIiIionqyO5zILTJCpRIQEWJQzj4rnTeBGCpDMUOABtkF5Sg1WiCKonIRIiIiIiIiIiIiIiIi8kEURZQaLcguKIchQHPOhGEAIJQZzWJtwZCv+VXTBACA01lVdSWKIowWB5LiwqRpZxO73YlSoxkmix0GvRZ6nQY6rRpqlQqCa3eIiIiIiIiIiIiIiIjOa6IIOJxOWG0OmK12mMw2GAI0CA3SN3jMMIfDoZzUIGq1WjlJ5rwMxNwcDicqLDZYbQ5YbA442EqRiIiIiIiIiIiIiIhIolarEKBVQ6dVIzBAC7W6YUGYGwMxIiIiIiIiIiIiIiIiatbOdCDWODEeERERERERERERERER0VmKgRgRERERERERERERERE1a2yZSERERERERERERERERGdUTS0Tt27dirS0NOTn5wMAoqOj0alTJ/Tr10+5qKS2lokMxIiIiIiIiIiIiIiIiOiM8hWIFRcXY968ecjLy1POAgDExMRg9OjRCA8PV86qNRBjy0QiIiIiIiIiIiIiIiJqcjWFYQCQl5eHefPmKSf7hYEYERERERERERERERERNamtW7fWGIa55eXlYevWrcrJtWIgRkRERERERERERERERE0qLS1NOaladVnWjYEYERERERERERERERERNan8/HzlpGrVZVk3BmJERERERERERERERETUpERRVE6qVl2WdWMgRkRERERERERERERERM0aAzEiIiIiIiIiIiIiIiJq1hiIERERERERERERERERUbPGQIyIiIiIiIiIiIiIiIiaNQZiRERERERERERERERE1KwxECMiIiIiIiIiIiIiIqJmjYEYERERERERERERERERNWsMxIiIiIiIiIiIiIiIiKhZYyBGREREREREREREREREzRoDMSIiIiIiIiIiIiIiImrWGIgRERERERERERERERFRsyaUGc2iKIrK6TK+5ldNEwAATqdTNs9ocSApLkyadjZyOJyosNhgtTlgsTngcFTtAxERERERERERERER0flOrVYhQKuGTqtGYIAWanXj1Fo5HA7Z888//1z2vDZPPfWU7LlarZY9VzovAzG73YlSoxkmix0GvRZ6nQY6rRpqlQqCa3eIiIiIiIiIiIiIiIjOa6IIOJxOWG0OmK12mMw2GAI0CA3SQ6NpWDB2pgOxhm3tOaiswoLswnJoNGq0iAlBZKgBgXotNGqGYURERERERERERERERG6CAGjUKgTqtYgMNaBFTAg0GjWyC8tRVmFRLn5WO68CsaIyE0wWO+KjghEaFACBCRgREREREREREREREZFfBEFAaFAA4qOCYbLYUVRmUi5y1jpvArGiMhOcThGxEUHQNFJ/SyIiIiIiIiIiIiIiovONRq1CbEQQnE7xnAnFzotkqKzCApvdiaiwQOUsIiIiIiIiIiIiIiIiqoeosEDY7M5zon1isw/E7HYnSsotiAw1KGcRERERERERERERERFRA0SGGlBSboHd7lTOOqs0+0Cs1GhGaFAA2yQSERERERERERERERE1Mo1ahdCgAJQazcpZZ5VmnRI5HE6YLHaEBOqUs4iIiIiIiIiIiIiIiKgRhATqYLLY4XCcvVVizToQq7DYYNBrIQiCchYRERERERERERERERE1AkEQYNBrUWGxKWedNZp1IGa1OaDXaZSTiYiIiIiIiIiIiIiIqBHpdRpYbQ7l5LNGsw7ELDYHdFq1cjIRERERERERERERERE1Ip1WDQsDsabhcDihVjXrXSQiIiIiIiIiIiIiImpyapWKY4g1JQ4fRkREREREREREREREdHqd7XlMsw/EiIiIiIiIiIiIiIiI6PzGQIyIiIiIiIiIiIiIiIiaNQZiRERERERERERERERE1KwxECMiIiIiIiIiIiIiIqJmjYEYERERERERERERERERNWsMxIiIiIiIiIiIiIiIiKhZYyBGREREREREREREREREzRoDMSIiIiIiIiIiIiIiImrWhDKjWRRFUTldxtf8qmkCAMDpdMrmGS0OJMWFSdOawvGckjO2DWYbUFIhwmgRYXMo51Jzp1UDQQECwgIF6LXKuUREREREREREREREzV9dchmHQx6mfP7557LntXnqqadkz9Vqtey5EivEGkFOiYij+U4UVzAMO1/ZHEBxhes6yCnxDpCJiIiIiIiIiIiIiKjpsEKsgU4UiTCavY8Pnd+C9AJaRrg+G0RERERERERERETUcBUOGwptFSizW2BxsjqlNgEqNUI0AYjUBiJQfWZam9Ull2GF2Dkkp4RhGPlmNIusFCMiIiIiIiIiIiJqJCfMJUg35iPfWsEwzE8WpwP51gqkG/NxwlyinH3eYSBWT2abq0UeUXWKK0SYbcqpRERERERERERERFQXhysKkW+tUE6mOsi3VuBwRaFy8nmFgVg9lTAMIz/wOiEiIiIiIiIiIiKqvxPmEpTaLcrJVA+ldst5XSnGQKyejBYGHVQ7XidERERERERERERE9VPhsLEyrJHlWytQ4Tg/W5sxEKsnG1uUkh94nRARERERERERERHVT6GNYdjpcL4eVwZiZwGbAyg0iRBZTEREREREREREREREBAAoY6vE0+J8Pa4MxJqYzQHM3OnEDxudWHLQqZxNRERERERERERERHResjjZgut0OF+PKwOxJrbpuBPZZSJEAGm5Io4Vs0yM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GAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAAAAAAAAAAAFwagRgAAAAAAAAAAABcGoEYAAAAAAAAAAAAXBqBGAAA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",
+    "video_url": null,
+    "reporter_name": "Subash",
+    "timestamp": "2026-09-06T16:36:33.215Z",
+    "verified_status": "verified",
+    "urgency": "high",
+    "source_trust": {
+      "trust_score": 88,
+      "tier": "Verified Citizen Observer",
+      "is_verified_source": true
+    },
+    "ai_analysis": {
+      "ml_model": "TF-IDF + Multinomial Naive Bayes + Visual Forensics (AI v2.5)",
+      "credibility_score": 98,
+      "composite_trust_score": 87,
+      "ai_fake_probability": 2,
+      "fake_risk_level": "low",
+      "predicted_category": "heavy_rain",
+      "model_confidence": 44.1,
+      "feature_importance": [
+        {
+          "term": "flood",
+          "weight": 0.405
+        },
+        {
+          "term": "heavy",
+          "weight": 0.293
+        },
+        {
+          "term": "rain",
+          "weight": 0.252
+        }
+      ],
+      "ai_trust_breakdown": {
+        "nlp_credibility": 0.76,
+        "geo_corroboration": 0.95,
+        "visual_sensor_proof": 0.92,
+        "composite_trust": 0.87,
+        "authenticity_grade": "A+"
+      },
+      "visual_analysis": {
+        "has_media": true,
+        "visual_score": 92,
+        "authenticity_grade": "A+",
+        "scene_verification": "Water surface reflections, overcast sky luminosity, and flood inundation textures detected",
+        "exif_status": "VERIFIED_RECENT",
+        "perceptual_hash": "ph_79b77e61",
+        "sensor_corroborated": true,
+        "media_type": "image/jpeg"
+      },
+      "reasons": [
+        "GPS telemetry verified within valid Indian territory",
+        "Visual forensic verified (A+): Water surface reflections, overcast sky luminosity, and flood inundation textures detected"
+      ],
+      "vector_dims": 3,
+      "auto_categorized": "heavy_rain"
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 16:36:33"
+  },
+  {
+    "id": "rep-1788710584043-977",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Connaught Place, Delhi",
+    "state": "Delhi",
+    "lat": 28.6315,
+    "lon": 77.2167,
+    "description": "Heavy sudden thunderstorm downpour, visibility reduced to 500m.",
+    "photo": "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=500&q=80",
+    "video_url": null,
+    "reporter_name": "Dr. Vikram Sarabhai",
+    "timestamp": "2026-09-06T16:03:04.043Z",
+    "verified_status": "verified",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 88,
+      "tier": "Verified Citizen Observer",
+      "is_verified_source": true
+    },
+    "ai_analysis": {
+      "ml_model": "TF-IDF + Multinomial Naive Bayes + Visual Forensics (AI v2.5)",
+      "credibility_score": 98,
+      "composite_trust_score": 88,
+      "ai_fake_probability": 2,
+      "fake_risk_level": "low",
+      "predicted_category": "heavy_rain",
+      "model_confidence": 59.3,
+      "feature_importance": [
+        {
+          "term": "heavy",
+          "weight": 0.229
+        },
+        {
+          "term": "delhi",
+          "weight": 0.143
+        },
+        {
+          "term": "thunderstorm",
+          "weight": 0.115
+        },
+        {
+          "term": "sudden",
+          "weight": 0.099
+        },
+        {
+          "term": "downpour",
+          "weight": 0.099
+        }
+      ],
+      "ai_trust_breakdown": {
+        "nlp_credibility": 0.8,
+        "geo_corroboration": 0.95,
+        "visual_sensor_proof": 0.92,
+        "composite_trust": 0.88,
+        "authenticity_grade": "A+"
+      },
+      "visual_analysis": {
+        "has_media": true,
+        "visual_score": 92,
+        "authenticity_grade": "A+",
+        "scene_verification": "Water surface reflections, overcast sky luminosity, and flood inundation textures detected",
+        "exif_status": "VERIFIED_RECENT",
+        "perceptual_hash": "ph_5e60f1c3",
+        "sensor_corroborated": true,
+        "media_type": "image/jpeg"
+      },
+      "reasons": [
+        "GPS telemetry verified within valid Indian territory",
+        "Visual forensic verified (A+): Water surface reflections, overcast sky luminosity, and flood inundation textures detected"
+      ],
+      "vector_dims": 6,
+      "auto_categorized": "heavy_rain"
+    },
+    "is_duplicate": true,
+    "duplicate_of": "rep-1788709569651-77",
+    "created_at": "2026-09-06 16:03:04"
+  },
+  {
+    "id": "rep-1788709569651-77",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Connaught Place, Delhi",
+    "state": "Delhi",
+    "lat": 28.6315,
+    "lon": 77.2167,
+    "description": "Heavy sudden thunderstorm downpour, visibility reduced to 500m.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Test Citizen",
+    "timestamp": "2026-09-06T15:46:09.652Z",
+    "verified_status": "verified",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 68,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ml_model": "TF-IDF + Multinomial Naive Bayes + Visual Forensics (AI v2.5)",
+      "credibility_score": 93,
+      "composite_trust_score": 76,
+      "ai_fake_probability": 7,
+      "fake_risk_level": "low",
+      "predicted_category": "heavy_rain",
+      "model_confidence": 59.3,
+      "feature_importance": [
+        {
+          "term": "heavy",
+          "weight": 0.229
+        },
+        {
+          "term": "delhi",
+          "weight": 0.143
+        },
+        {
+          "term": "thunderstorm",
+          "weight": 0.115
+        },
+        {
+          "term": "sudden",
+          "weight": 0.099
+        },
+        {
+          "term": "downpour",
+          "weight": 0.099
+        }
+      ],
+      "ai_trust_breakdown": {
+        "nlp_credibility": 0.8,
+        "geo_corroboration": 0.95,
+        "visual_sensor_proof": 0.5,
+        "composite_trust": 0.76,
+        "authenticity_grade": "A"
+      },
+      "visual_analysis": {
+        "has_media": false,
+        "visual_score": 0,
+        "authenticity_grade": "N/A",
+        "scene_verification": "No visual media attached",
+        "exif_status": "NOT_APPLICABLE",
+        "perceptual_hash": null,
+        "sensor_corroborated": false
+      },
+      "reasons": [
+        "GPS telemetry verified within valid Indian territory",
+        "Unverified text-only submission without multimedia sensor proof"
+      ],
+      "vector_dims": 6,
+      "auto_categorized": "heavy_rain"
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 15:46:09"
+  },
+  {
+    "id": "rep-1788688386940-761",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Connaught Place, Delhi",
+    "state": "Delhi",
+    "lat": 28.6315,
+    "lon": 77.2167,
+    "description": "Heavy sudden thunderstorm downpour, visibility reduced to 500m.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Test Citizen",
+    "timestamp": "2026-09-06T09:53:06.940Z",
+    "verified_status": "verified",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 68,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ml_model": "TF-IDF + Multinomial Naive Bayes (NLP v2)",
+      "credibility_score": 93,
+      "ai_fake_probability": 7,
+      "fake_risk_level": "low",
+      "predicted_category": "heavy_rain",
+      "model_confidence": 59.3,
+      "feature_importance": [
+        {
+          "term": "heavy",
+          "weight": 0.229
+        },
+        {
+          "term": "delhi",
+          "weight": 0.143
+        },
+        {
+          "term": "thunderstorm",
+          "weight": 0.115
+        },
+        {
+          "term": "sudden",
+          "weight": 0.099
+        },
+        {
+          "term": "downpour",
+          "weight": 0.099
+        }
+      ],
+      "reasons": [
+        "GPS telemetry verified within valid Indian territory",
+        "Unverified text-only submission without multimedia sensor proof"
+      ],
+      "vector_dims": 6,
+      "auto_categorized": "heavy_rain"
+    },
+    "is_duplicate": true,
+    "duplicate_of": "rep-1788688316385-933",
+    "created_at": "2026-09-06 09:53:06"
+  },
+  {
+    "id": "rep-1788686247090-819",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Connaught Place, New Delhi",
+    "state": "Delhi",
+    "lat": 28.6304,
+    "lon": 77.2177,
+    "description": "Heavy sudden cloudburst with waterlogging up to knee height near Outer Circle.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Aarav Sharma",
+    "timestamp": "2026-09-06T09:17:27.090Z",
+    "verified_status": "verified",
+    "urgency": "high",
     "source_trust": {
       "trust_score": 68,
       "tier": "Standard Citizen Contributor",
@@ -27,10 +926,74 @@
         "GPS telemetry corroborated within standard Indian subcontinent zone",
         "Unverified text-only submission without multimedia sensor proof"
       ],
-      "auto_categorized": "other"
+      "auto_categorized": "flood"
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 09:47:22"
+  },
+  {
+    "id": "rep-1788622895423-55",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Ranchi",
+    "state": "Jharkhand",
+    "lat": 23.3234,
+    "lon": 85.2971,
+    "description": "rik11",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "rik11",
+    "timestamp": "2026-09-05T15:41:35.423Z",
+    "verified_status": "verified",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 12,
+      "tier": "Flagged Fake / Untrusted"
+    },
+    "ai_analysis": {
+      "ml_model": "TF-IDF + Multinomial Naive Bayes + Visual Forensics (AI v2.5)",
+      "credibility_score": 5,
+      "composite_trust_score": 12,
+      "ai_fake_probability": 95,
+      "fake_risk_level": "critical",
+      "predicted_category": "flagged_hoax",
+      "model_confidence": 98,
+      "feature_importance": [
+        {
+          "term": "heavy",
+          "weight": 0.377
+        },
+        {
+          "term": "rain",
+          "weight": 0.324
+        }
+      ],
+      "ai_trust_breakdown": {
+        "nlp_credibility": 0.1,
+        "geo_corroboration": 0.95,
+        "visual_sensor_proof": 0,
+        "composite_trust": 0.12,
+        "authenticity_grade": "F"
+      },
+      "visual_analysis": {
+        "has_media": false,
+        "visual_score": 0,
+        "authenticity_grade": "N/A",
+        "scene_verification": "No visual media attached",
+        "exif_status": "NOT_APPLICABLE",
+        "perceptual_hash": null,
+        "sensor_corroborated": false
+      },
+      "reasons": [
+        "GPS telemetry verified within valid Indian territory",
+        "AI Security & NLP Flag: Character gibberish or unrecognized non-weather text pattern detected"
+      ],
+      "vector_dims": 2
     },
     "is_duplicate": true,
-    "duplicate_of": "rep-1788622536785-572"
+    "duplicate_of": "rep-1788622536785-572",
+    "created_at": "2026-09-06 09:47:22"
   },
   {
     "id": "rep-1788622839351-64",
@@ -45,7 +1008,7 @@
     "video_url": null,
     "reporter_name": "Test Citizen",
     "timestamp": "2026-09-05T15:40:39.351Z",
-    "verified_status": "rejected",
+    "verified_status": "verified",
     "urgency": "high",
     "source_trust": {
       "trust_score": 68,
@@ -63,38 +1026,8 @@
       "auto_categorized": "flood"
     },
     "is_duplicate": true,
-    "duplicate_of": "rep-1788622806239-631"
-  },
-  {
-    "id": "rep-1788622806239-631",
-    "source": "citizen",
-    "category": "heavy_rain",
-    "location": "Connaught Place, New Delhi",
-    "state": "Delhi",
-    "lat": 28.6315,
-    "lon": 77.2167,
-    "description": "Severe waterlogging under Minto Bridge.",
-    "photo": null,
-    "video_url": null,
-    "reporter_name": "Test Citizen",
-    "timestamp": "2026-09-05T15:40:06.239Z",
-    "verified_status": "unverified",
-    "urgency": "high",
-    "source_trust": {
-      "trust_score": 68,
-      "tier": "Standard Citizen Contributor",
-      "is_verified_source": false
-    },
-    "ai_analysis": {
-      "ai_fake_probability": 13,
-      "credibility_score": 87,
-      "fake_risk_level": "low",
-      "reasons": [
-        "GPS telemetry corroborated within standard Indian subcontinent zone",
-        "Unverified text-only submission without multimedia sensor proof"
-      ],
-      "auto_categorized": "flood"
-    }
+    "duplicate_of": "rep-1788622806239-631",
+    "created_at": "2026-09-06 09:47:22"
   },
   {
     "id": "rep-1788622726742-268",
@@ -109,23 +1042,67 @@
     "video_url": null,
     "reporter_name": "Anirban Sen",
     "timestamp": "2026-09-05T15:38:46.742Z",
-    "verified_status": "unverified",
+    "verified_status": "verified",
     "urgency": "medium",
     "source_trust": {
-      "trust_score": 68,
-      "tier": "Standard Citizen Contributor",
-      "is_verified_source": false
+      "trust_score": 12,
+      "tier": "Flagged Fake / Untrusted"
     },
     "ai_analysis": {
-      "ai_fake_probability": 13,
-      "credibility_score": 87,
-      "fake_risk_level": "low",
-      "reasons": [
-        "GPS telemetry corroborated within standard Indian subcontinent zone",
-        "Unverified text-only submission without multimedia sensor proof"
+      "ml_model": "TF-IDF + Multinomial Naive Bayes + Visual Forensics (AI v2.5)",
+      "credibility_score": 5,
+      "composite_trust_score": 12,
+      "ai_fake_probability": 95,
+      "fake_risk_level": "critical",
+      "predicted_category": "flagged_hoax",
+      "model_confidence": 98,
+      "feature_importance": [
+        {
+          "term": "velocity",
+          "weight": 0.122
+        },
+        {
+          "term": "tree",
+          "weight": 0.122
+        },
+        {
+          "term": "thunderstorm",
+          "weight": 0.098
+        },
+        {
+          "term": "sudden",
+          "weight": 0.084
+        },
+        {
+          "term": "high",
+          "weight": 0.084
+        }
       ],
-      "auto_categorized": "strong_winds"
-    }
+      "ai_trust_breakdown": {
+        "nlp_credibility": 0.1,
+        "geo_corroboration": 0.95,
+        "visual_sensor_proof": 0,
+        "composite_trust": 0.12,
+        "authenticity_grade": "F"
+      },
+      "visual_analysis": {
+        "has_media": false,
+        "visual_score": 0,
+        "authenticity_grade": "N/A",
+        "scene_verification": "No visual media attached",
+        "exif_status": "NOT_APPLICABLE",
+        "perceptual_hash": null,
+        "sensor_corroborated": false
+      },
+      "reasons": [
+        "GPS telemetry verified within valid Indian territory",
+        "AI Security & NLP Flag: No recognized meteorological keywords found in report text"
+      ],
+      "vector_dims": 5
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 09:47:22"
   },
   {
     "id": "rep-1788622536785-572",
@@ -140,23 +1117,55 @@
     "video_url": null,
     "reporter_name": "rik",
     "timestamp": "2026-09-05T15:35:36.785Z",
-    "verified_status": "unverified",
+    "verified_status": "flagged_fake",
     "urgency": "medium",
     "source_trust": {
-      "trust_score": 68,
-      "tier": "Standard Citizen Contributor",
-      "is_verified_source": false
+      "trust_score": 12,
+      "tier": "Flagged Fake / Untrusted"
     },
     "ai_analysis": {
-      "ai_fake_probability": 13,
-      "credibility_score": 87,
-      "fake_risk_level": "low",
-      "reasons": [
-        "GPS telemetry corroborated within standard Indian subcontinent zone",
-        "Unverified text-only submission without multimedia sensor proof"
+      "ml_model": "TF-IDF + Multinomial Naive Bayes + Visual Forensics (AI v2.5)",
+      "credibility_score": 5,
+      "composite_trust_score": 12,
+      "ai_fake_probability": 95,
+      "fake_risk_level": "critical",
+      "predicted_category": "flagged_hoax",
+      "model_confidence": 98,
+      "feature_importance": [
+        {
+          "term": "heavy",
+          "weight": 0.377
+        },
+        {
+          "term": "rain",
+          "weight": 0.324
+        }
       ],
-      "auto_categorized": "other"
-    }
+      "ai_trust_breakdown": {
+        "nlp_credibility": 0.1,
+        "geo_corroboration": 0.95,
+        "visual_sensor_proof": 0,
+        "composite_trust": 0.12,
+        "authenticity_grade": "F"
+      },
+      "visual_analysis": {
+        "has_media": false,
+        "visual_score": 0,
+        "authenticity_grade": "N/A",
+        "scene_verification": "No visual media attached",
+        "exif_status": "NOT_APPLICABLE",
+        "perceptual_hash": null,
+        "sensor_corroborated": false
+      },
+      "reasons": [
+        "GPS telemetry verified within valid Indian territory",
+        "AI Security & NLP Flag: Character gibberish or unrecognized non-weather text pattern detected"
+      ],
+      "vector_dims": 2
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 09:47:22"
   },
   {
     "id": "rep-1788622297849-256",
@@ -171,25 +1180,68 @@
     "video_url": null,
     "reporter_name": "Anonymous",
     "timestamp": "2026-09-05T15:31:37.849Z",
-    "verified_status": "unverified",
+    "verified_status": "flagged_fake",
     "urgency": "medium",
     "source_trust": {
-      "trust_score": 45,
-      "tier": "Untrusted / Anonymous",
-      "is_verified_source": false
+      "trust_score": 12,
+      "tier": "Flagged Fake / Untrusted"
     },
     "ai_analysis": {
-      "ai_fake_probability": 98,
-      "credibility_score": 2,
-      "fake_risk_level": "high",
+      "ml_model": "TF-IDF + Multinomial Naive Bayes + Visual Forensics (AI v2.5)",
+      "credibility_score": 14,
+      "composite_trust_score": 60,
+      "ai_fake_probability": 86,
+      "fake_risk_level": "critical",
+      "predicted_category": "flagged_hoax",
+      "model_confidence": 96.9,
+      "feature_importance": [
+        {
+          "term": "delhi",
+          "weight": 0.388
+        },
+        {
+          "term": "degree",
+          "weight": 0.194
+        },
+        {
+          "term": "snow",
+          "weight": 0.194
+        },
+        {
+          "term": "tsunami_delhi",
+          "weight": 0.194
+        },
+        {
+          "term": "degree_snow",
+          "weight": 0.194
+        }
+      ],
+      "ai_trust_breakdown": {
+        "nlp_credibility": 0.83,
+        "geo_corroboration": 0.4,
+        "visual_sensor_proof": 0.5,
+        "composite_trust": 0.6,
+        "authenticity_grade": "B"
+      },
+      "visual_analysis": {
+        "has_media": false,
+        "visual_score": 0,
+        "authenticity_grade": "N/A",
+        "scene_verification": "No visual media attached",
+        "exif_status": "NOT_APPLICABLE",
+        "perceptual_hash": null,
+        "sensor_corroborated": false
+      },
       "reasons": [
-        "Sensationalist or physically impossible weather terminology detected",
+        "GPS telemetry verified within valid Indian territory",
         "Meteorological anomaly: Tropical cyclone event reported in inland northern/central state",
-        "GPS telemetry corroborated within standard Indian subcontinent zone",
         "Unverified text-only submission without multimedia sensor proof"
       ],
-      "auto_categorized": "other"
-    }
+      "vector_dims": 7
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 09:47:22"
   },
   {
     "id": "rep-1788622297835-194",
@@ -204,7 +1256,7 @@
     "video_url": null,
     "reporter_name": "Local Spotter",
     "timestamp": "2026-09-05T15:31:37.835Z",
-    "verified_status": "unverified",
+    "verified_status": "rejected",
     "urgency": "medium",
     "source_trust": {
       "trust_score": 68,
@@ -220,7 +1272,10 @@
         "Unverified text-only submission without multimedia sensor proof"
       ],
       "auto_categorized": "heavy_rain"
-    }
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 09:47:22"
   },
   {
     "id": "rep-1788621997796-87",
@@ -235,7 +1290,7 @@
     "video_url": null,
     "reporter_name": "Vikram Joshi",
     "timestamp": "2026-09-05T15:26:37.796Z",
-    "verified_status": "verified",
+    "verified_status": "rejected",
     "urgency": "high",
     "source_trust": {
       "trust_score": 68,
@@ -251,38 +1306,10 @@
         "Unverified text-only submission without multimedia sensor proof"
       ],
       "auto_categorized": "flood"
-    }
-  },
-  {
-    "id": "rep-1788592118269-944",
-    "source": "citizen",
-    "category": "heavy_rain",
-    "location": "Connaught Place, Delhi",
-    "state": "Delhi",
-    "lat": 28.6315,
-    "lon": 77.2167,
-    "description": "Heavy sudden thunderstorm downpour, visibility reduced to 500m.",
-    "photo": null,
-    "video_url": null,
-    "reporter_name": "Test Citizen",
-    "timestamp": "2026-09-05T07:08:38.269Z",
-    "verified_status": "verified",
-    "urgency": "medium",
-    "source_trust": {
-      "trust_score": 68,
-      "tier": "Standard Citizen Contributor",
-      "is_verified_source": false
     },
-    "ai_analysis": {
-      "ai_fake_probability": 13,
-      "credibility_score": 87,
-      "fake_risk_level": "low",
-      "reasons": [
-        "GPS telemetry corroborated within standard Indian subcontinent zone",
-        "Unverified text-only submission without multimedia sensor proof"
-      ],
-      "auto_categorized": "fog"
-    }
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 09:47:22"
   },
   {
     "id": "rep-1788589692169-78",
@@ -297,24 +1324,55 @@
     "video_url": null,
     "reporter_name": "kahwdfjqwef",
     "timestamp": "2026-09-05T06:28:12.169Z",
-    "verified_status": "verified",
+    "verified_status": "rejected",
     "urgency": "medium",
     "source_trust": {
-      "trust_score": 68,
-      "tier": "Standard Citizen Contributor",
-      "is_verified_source": false
+      "trust_score": 12,
+      "tier": "Flagged Fake / Untrusted"
     },
     "ai_analysis": {
-      "ai_fake_probability": 13,
-      "credibility_score": 87,
-      "fake_risk_level": "low",
-      "reasons": [
-        "GPS telemetry corroborated within standard Indian subcontinent zone",
-        "Unverified text-only submission without multimedia sensor proof",
-        "Corroborated with active station observation data"
+      "ml_model": "TF-IDF + Multinomial Naive Bayes + Visual Forensics (AI v2.5)",
+      "credibility_score": 5,
+      "composite_trust_score": 12,
+      "ai_fake_probability": 95,
+      "fake_risk_level": "critical",
+      "predicted_category": "flagged_hoax",
+      "model_confidence": 98,
+      "feature_importance": [
+        {
+          "term": "heavy",
+          "weight": 0.377
+        },
+        {
+          "term": "rain",
+          "weight": 0.324
+        }
       ],
-      "auto_categorized": "other"
-    }
+      "ai_trust_breakdown": {
+        "nlp_credibility": 0.1,
+        "geo_corroboration": 0.95,
+        "visual_sensor_proof": 0,
+        "composite_trust": 0.12,
+        "authenticity_grade": "F"
+      },
+      "visual_analysis": {
+        "has_media": false,
+        "visual_score": 0,
+        "authenticity_grade": "N/A",
+        "scene_verification": "No visual media attached",
+        "exif_status": "NOT_APPLICABLE",
+        "perceptual_hash": null,
+        "sensor_corroborated": false
+      },
+      "reasons": [
+        "GPS telemetry verified within valid Indian territory",
+        "AI Security & NLP Flag: Character gibberish or unrecognized non-weather text pattern detected"
+      ],
+      "vector_dims": 2
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 09:47:22"
   },
   {
     "id": "rep-1788547505057-282",
@@ -329,107 +1387,63 @@
     "video_url": null,
     "reporter_name": "Anonymous Citizen",
     "timestamp": "2026-09-04T18:45:05.057Z",
-    "verified_status": "flagged_fake",
+    "verified_status": "rejected",
     "urgency": "medium",
     "source_trust": {
-      "trust_score": 45,
-      "tier": "Untrusted / Anonymous",
-      "is_verified_source": false
+      "trust_score": 12,
+      "tier": "Flagged Fake / Untrusted"
     },
     "ai_analysis": {
-      "ai_fake_probability": 13,
-      "credibility_score": 87,
-      "fake_risk_level": "low",
-      "reasons": [
-        "GPS telemetry corroborated within standard Indian subcontinent zone",
-        "Unverified text-only submission without multimedia sensor proof"
+      "ml_model": "TF-IDF + Multinomial Naive Bayes + Visual Forensics (AI v2.5)",
+      "credibility_score": 5,
+      "composite_trust_score": 12,
+      "ai_fake_probability": 95,
+      "fake_risk_level": "critical",
+      "predicted_category": "flagged_hoax",
+      "model_confidence": 98,
+      "feature_importance": [
+        {
+          "term": "waves",
+          "weight": 0.254
+        },
+        {
+          "term": "sea",
+          "weight": 0.203
+        },
+        {
+          "term": "cyclone",
+          "weight": 0.203
+        },
+        {
+          "term": "high",
+          "weight": 0.175
+        }
       ],
-      "auto_categorized": "strong_winds"
-    }
-  },
-  {
-    "id": "rep-001",
-    "source": "citizen",
-    "category": "heavy_rain",
-    "location": "Marine Drive, Mumbai",
-    "state": "Maharashtra",
-    "lat": 18.9438,
-    "lon": 72.8232,
-    "description": "Waterlogging up to 1.5 ft near Churchgate station. Traffic slow moving.",
-    "timestamp": "2026-09-04T18:00:00.000Z",
-    "verified_status": "verified",
-    "reporter_name": "Aakash Mehta",
-    "urgency": "medium",
-    "source_trust": {
-      "trust_score": 85,
-      "tier": "Trusted Spotter",
-      "is_verified_source": true
+      "ai_trust_breakdown": {
+        "nlp_credibility": 0.1,
+        "geo_corroboration": 0.95,
+        "visual_sensor_proof": 0,
+        "composite_trust": 0.12,
+        "authenticity_grade": "F"
+      },
+      "visual_analysis": {
+        "has_media": false,
+        "visual_score": 0,
+        "authenticity_grade": "N/A",
+        "scene_verification": "No visual media attached",
+        "exif_status": "NOT_APPLICABLE",
+        "perceptual_hash": null,
+        "sensor_corroborated": false
+      },
+      "reasons": [
+        "GPS telemetry verified within valid Indian territory",
+        "AI Security & NLP Flag: No recognized meteorological keywords found in report text"
+      ],
+      "vector_dims": 4
     },
-    "ai_analysis": {
-      "ai_fake_probability": 8,
-      "credibility_score": 92,
-      "fake_risk_level": "low",
-      "reasons": [
-        "Corroborated by Mumbai Doppler Radar"
-      ],
-      "auto_categorized": "heavy_rain"
-    }
-  },
-  {
-    "id": "rep-002",
-    "source": "citizen",
-    "category": "cyclone",
-    "location": "Puri Beach Road",
-    "state": "Odisha",
-    "lat": 19.7983,
-    "lon": 85.8249,
-    "description": "High storm surge and gusty winds exceeding 75 km/h. Sea rough, fishermen advised not to venture.",
-    "timestamp": "2026-09-04T17:45:00.000Z",
-    "verified_status": "unverified",
-    "reporter_name": "Priyanka Das",
-    "urgency": "high",
-    "source_trust": {
-      "trust_score": 90,
-      "tier": "IMD Volunteer Network",
-      "is_verified_source": true
-    },
-    "ai_analysis": {
-      "ai_fake_probability": 5,
-      "credibility_score": 95,
-      "fake_risk_level": "low",
-      "reasons": [
-        "Bay of Bengal synoptic depression corroborated"
-      ],
-      "auto_categorized": "cyclone"
-    }
-  },
-  {
-    "id": "rep-003",
-    "source": "citizen",
-    "category": "heatwave",
-    "location": "Churu District",
-    "state": "Rajasthan",
-    "lat": 28.29,
-    "lon": 74.96,
-    "description": "Severe heatwave conditions with loo winds. Outdoor activity minimal after 11 AM.",
-    "timestamp": "2026-09-04T16:30:00.000Z",
-    "verified_status": "unverified",
-    "reporter_name": "Sunil Sharma",
-    "urgency": "high",
-    "source_trust": {
-      "trust_score": 78,
-      "tier": "Standard Citizen Contributor",
-      "is_verified_source": false
-    },
-    "ai_analysis": {
-      "ai_fake_probability": 12,
-      "credibility_score": 88,
-      "fake_risk_level": "low",
-      "reasons": [
-        "Desert zone temperature anomaly matches satellite feed"
-      ],
-      "auto_categorized": "heatwave"
-    }
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 09:47:22"
   },
   {
     "id": "rep-004",
@@ -440,9 +1454,11 @@
     "lat": 12.9698,
     "lon": 77.75,
     "description": "Sudden intense thunderstorm with frequent lightning and localized power outages.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Rohan Iyer",
     "timestamp": "2026-09-04T18:15:00.000Z",
     "verified_status": "verified",
-    "reporter_name": "Rohan Iyer",
     "urgency": "medium",
     "source_trust": {
       "trust_score": 82,
@@ -457,91 +1473,10 @@
         "Convective cloud echo matches IMD Bengaluru radar"
       ],
       "auto_categorized": "thunderstorm"
-    }
-  },
-  {
-    "id": "rep-005",
-    "source": "citizen",
-    "category": "flood",
-    "location": "Kaziranga National Park",
-    "state": "Assam",
-    "lat": 26.5775,
-    "lon": 93.1711,
-    "description": "Brahmaputra water level breached danger mark, low-lying animal corridors inundated.",
-    "timestamp": "2026-09-04T15:20:00.000Z",
-    "verified_status": "verified",
-    "reporter_name": "Himanta Borah",
-    "urgency": "high",
-    "source_trust": {
-      "trust_score": 95,
-      "tier": "State Disaster Response Liaison",
-      "is_verified_source": true
     },
-    "ai_analysis": {
-      "ai_fake_probability": 3,
-      "credibility_score": 97,
-      "fake_risk_level": "low",
-      "reasons": [
-        "Central Water Commission hydrological telemetry verified"
-      ],
-      "auto_categorized": "flood"
-    }
-  },
-  {
-    "id": "rep-006",
-    "source": "citizen",
-    "category": "heavy_rain",
-    "location": "Aluva, Kochi",
-    "state": "Kerala",
-    "lat": 10.1076,
-    "lon": 76.3516,
-    "description": "Periyar river swelling due to continuous torrential monsoon showers. Orange alert sounded.",
-    "timestamp": "2026-09-04T17:10:00.000Z",
-    "verified_status": "verified",
-    "reporter_name": "Ananya Menon",
-    "urgency": "high",
-    "source_trust": {
-      "trust_score": 88,
-      "tier": "Trusted Spotter",
-      "is_verified_source": true
-    },
-    "ai_analysis": {
-      "ai_fake_probability": 6,
-      "credibility_score": 94,
-      "fake_risk_level": "low",
-      "reasons": [
-        "Kochi IMD radar corroboration active"
-      ],
-      "auto_categorized": "heavy_rain"
-    }
-  },
-  {
-    "id": "rep-007",
-    "source": "citizen",
-    "category": "hailstorm",
-    "location": "Solan Valley",
-    "state": "Himachal Pradesh",
-    "lat": 30.9045,
-    "lon": 77.0967,
-    "description": "Heavy hailstorm with golf-ball sized hailstones damaging apple orchard nets.",
-    "timestamp": "2026-09-04T14:45:00.000Z",
-    "verified_status": "verified",
-    "reporter_name": "Vikram Thakur",
-    "urgency": "medium",
-    "source_trust": {
-      "trust_score": 80,
-      "tier": "Standard Citizen Contributor",
-      "is_verified_source": false
-    },
-    "ai_analysis": {
-      "ai_fake_probability": 14,
-      "credibility_score": 86,
-      "fake_risk_level": "low",
-      "reasons": [
-        "Western disturbance freezing altitude matches"
-      ],
-      "auto_categorized": "hailstorm"
-    }
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 09:47:22"
   },
   {
     "id": "rep-008",
@@ -552,9 +1487,11 @@
     "lat": 28.6315,
     "lon": 77.2167,
     "description": "Heavy sudden downpour with waterlogging near Minto bridge underpass.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Deepak Gupta",
     "timestamp": "2026-09-04T18:10:00.000Z",
     "verified_status": "flagged_fake",
-    "reporter_name": "Deepak Gupta",
     "urgency": "medium",
     "source_trust": {
       "trust_score": 84,
@@ -569,63 +1506,109 @@
         "Palam Doppler Radar rain cell confirmed"
       ],
       "auto_categorized": "heavy_rain"
-    }
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 09:47:22"
   },
   {
-    "id": "rep-009",
+    "id": "rep-001",
     "source": "citizen",
-    "category": "cyclone",
-    "location": "Marina Beach",
-    "state": "Tamil Nadu",
-    "lat": 13.0475,
-    "lon": 80.2824,
-    "description": "Gale winds and high tidal waves reaching coast road. Storm signals hoisted.",
-    "timestamp": "2026-09-04T16:00:00.000Z",
-    "verified_status": "unverified",
-    "reporter_name": "Kavitha Raman",
-    "urgency": "high",
+    "category": "heavy_rain",
+    "location": "Marine Drive, Mumbai",
+    "state": "Maharashtra",
+    "lat": 18.9438,
+    "lon": 72.8232,
+    "description": "Waterlogging up to 1.5 ft near Churchgate station. Traffic slow moving.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Aakash Mehta",
+    "timestamp": "2026-09-04T18:00:00.000Z",
+    "verified_status": "verified",
+    "urgency": "medium",
     "source_trust": {
-      "trust_score": 89,
+      "trust_score": 85,
       "tier": "Trusted Spotter",
       "is_verified_source": true
     },
     "ai_analysis": {
-      "ai_fake_probability": 7,
-      "credibility_score": 93,
+      "ai_fake_probability": 8,
+      "credibility_score": 92,
       "fake_risk_level": "low",
       "reasons": [
-        "Chennai Doppler radar cyclone track matches"
+        "Corroborated by Mumbai Doppler Radar"
       ],
-      "auto_categorized": "cyclone"
-    }
+      "auto_categorized": "heavy_rain"
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 09:47:22"
   },
   {
-    "id": "rep-010",
+    "id": "rep-002",
     "source": "citizen",
-    "category": "flood",
-    "location": "Howrah Riverside",
-    "state": "West Bengal",
-    "lat": 22.5892,
-    "lon": 88.3414,
-    "description": "High tide combined with catchment runoff leading to localized ghat flooding.",
-    "timestamp": "2026-09-04T15:40:00.000Z",
+    "category": "cyclone",
+    "location": "Puri Beach Road",
+    "state": "Odisha",
+    "lat": 19.7983,
+    "lon": 85.8249,
+    "description": "High storm surge and gusty winds exceeding 75 km/h. Sea rough, fishermen advised not to venture.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Priyanka Das",
+    "timestamp": "2026-09-04T17:45:00.000Z",
     "verified_status": "unverified",
-    "reporter_name": "Subhashish Roy",
-    "urgency": "medium",
+    "urgency": "high",
     "source_trust": {
-      "trust_score": 86,
-      "tier": "Standard Citizen Contributor",
-      "is_verified_source": false
+      "trust_score": 90,
+      "tier": "IMD Volunteer Network",
+      "is_verified_source": true
     },
     "ai_analysis": {
-      "ai_fake_probability": 11,
-      "credibility_score": 89,
+      "ai_fake_probability": 5,
+      "credibility_score": 95,
       "fake_risk_level": "low",
       "reasons": [
-        "Hooghly tidal gauge data matches level"
+        "Bay of Bengal synoptic depression corroborated"
       ],
-      "auto_categorized": "flood"
-    }
+      "auto_categorized": "cyclone"
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 09:47:22"
+  },
+  {
+    "id": "rep-006",
+    "source": "citizen",
+    "category": "heavy_rain",
+    "location": "Aluva, Kochi",
+    "state": "Kerala",
+    "lat": 10.1076,
+    "lon": 76.3516,
+    "description": "Periyar river swelling due to continuous torrential monsoon showers. Orange alert sounded.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Ananya Menon",
+    "timestamp": "2026-09-04T17:10:00.000Z",
+    "verified_status": "verified",
+    "urgency": "high",
+    "source_trust": {
+      "trust_score": 88,
+      "tier": "Trusted Spotter",
+      "is_verified_source": true
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 6,
+      "credibility_score": 94,
+      "fake_risk_level": "low",
+      "reasons": [
+        "Kochi IMD radar corroboration active"
+      ],
+      "auto_categorized": "heavy_rain"
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 09:47:22"
   },
   {
     "id": "rep-011",
@@ -636,9 +1619,11 @@
     "lat": 23.0033,
     "lon": 70.2208,
     "description": "Squall line with wind gusts up to 60 km/h and thunder squalls in Gulf of Kutch.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Mahesh Patel",
     "timestamp": "2026-09-04T17:00:00.000Z",
     "verified_status": "unverified",
-    "reporter_name": "Mahesh Patel",
     "urgency": "medium",
     "source_trust": {
       "trust_score": 75,
@@ -653,6 +1638,174 @@
         "Coastal radar echo indicates convective activity"
       ],
       "auto_categorized": "thunderstorm"
-    }
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 09:47:22"
+  },
+  {
+    "id": "rep-003",
+    "source": "citizen",
+    "category": "heatwave",
+    "location": "Churu District",
+    "state": "Rajasthan",
+    "lat": 28.29,
+    "lon": 74.96,
+    "description": "Severe heatwave conditions with loo winds. Outdoor activity minimal after 11 AM.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Sunil Sharma",
+    "timestamp": "2026-09-04T16:30:00.000Z",
+    "verified_status": "unverified",
+    "urgency": "high",
+    "source_trust": {
+      "trust_score": 78,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 12,
+      "credibility_score": 88,
+      "fake_risk_level": "low",
+      "reasons": [
+        "Desert zone temperature anomaly matches satellite feed"
+      ],
+      "auto_categorized": "heatwave"
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 09:47:22"
+  },
+  {
+    "id": "rep-009",
+    "source": "citizen",
+    "category": "cyclone",
+    "location": "Marina Beach",
+    "state": "Tamil Nadu",
+    "lat": 13.0475,
+    "lon": 80.2824,
+    "description": "Gale winds and high tidal waves reaching coast road. Storm signals hoisted.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Kavitha Raman",
+    "timestamp": "2026-09-04T16:00:00.000Z",
+    "verified_status": "unverified",
+    "urgency": "high",
+    "source_trust": {
+      "trust_score": 89,
+      "tier": "Trusted Spotter",
+      "is_verified_source": true
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 7,
+      "credibility_score": 93,
+      "fake_risk_level": "low",
+      "reasons": [
+        "Chennai Doppler radar cyclone track matches"
+      ],
+      "auto_categorized": "cyclone"
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 09:47:22"
+  },
+  {
+    "id": "rep-010",
+    "source": "citizen",
+    "category": "flood",
+    "location": "Howrah Riverside",
+    "state": "West Bengal",
+    "lat": 22.5892,
+    "lon": 88.3414,
+    "description": "High tide combined with catchment runoff leading to localized ghat flooding.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Subhashish Roy",
+    "timestamp": "2026-09-04T15:40:00.000Z",
+    "verified_status": "unverified",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 86,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 11,
+      "credibility_score": 89,
+      "fake_risk_level": "low",
+      "reasons": [
+        "Hooghly tidal gauge data matches level"
+      ],
+      "auto_categorized": "flood"
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 09:47:22"
+  },
+  {
+    "id": "rep-005",
+    "source": "citizen",
+    "category": "flood",
+    "location": "Kaziranga National Park",
+    "state": "Assam",
+    "lat": 26.5775,
+    "lon": 93.1711,
+    "description": "Brahmaputra water level breached danger mark, low-lying animal corridors inundated.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Himanta Borah",
+    "timestamp": "2026-09-04T15:20:00.000Z",
+    "verified_status": "verified",
+    "urgency": "high",
+    "source_trust": {
+      "trust_score": 95,
+      "tier": "State Disaster Response Liaison",
+      "is_verified_source": true
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 3,
+      "credibility_score": 97,
+      "fake_risk_level": "low",
+      "reasons": [
+        "Central Water Commission hydrological telemetry verified"
+      ],
+      "auto_categorized": "flood"
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 09:47:22"
+  },
+  {
+    "id": "rep-007",
+    "source": "citizen",
+    "category": "hailstorm",
+    "location": "Solan Valley",
+    "state": "Himachal Pradesh",
+    "lat": 30.9045,
+    "lon": 77.0967,
+    "description": "Heavy hailstorm with golf-ball sized hailstones damaging apple orchard nets.",
+    "photo": null,
+    "video_url": null,
+    "reporter_name": "Vikram Thakur",
+    "timestamp": "2026-09-04T14:45:00.000Z",
+    "verified_status": "verified",
+    "urgency": "medium",
+    "source_trust": {
+      "trust_score": 80,
+      "tier": "Standard Citizen Contributor",
+      "is_verified_source": false
+    },
+    "ai_analysis": {
+      "ai_fake_probability": 14,
+      "credibility_score": 86,
+      "fake_risk_level": "low",
+      "reasons": [
+        "Western disturbance freezing altitude matches"
+      ],
+      "auto_categorized": "hailstorm"
+    },
+    "is_duplicate": false,
+    "duplicate_of": null,
+    "created_at": "2026-09-06 09:47:22"
   }
 ]

@@ -9,156 +9,25 @@ let activeCategoryFilter = 'all';
 let activePlatformFilter = 'all';
 let socialAutoStreamTimer = null;
 
-const DEFAULT_SOCIAL_FEED = [
-  {
-    id: 'soc-gnews-001',
-    source: 'google_news',
-    platform: 'Google News / Intelligence',
-    user_handle: '@google_news_weather',
-    hashtag: '#GoogleNews #IndiaWeather #IMD',
-    category: 'heavy_rain',
-    description: '[Google Weather Alert] Flash flood and cloudburst advisories issued across Western Ghats and Northern India. Live radar tracking active.',
-    city: 'New Delhi',
-    state: 'Delhi',
-    lat: 28.6139,
-    lon: 77.2090,
-    sentiment: 'alert',
-    urgency: 'high',
-    timestamp: new Date().toISOString()
-  },
-  {
-    id: 'soc-gnews-002',
-    source: 'google_news',
-    platform: 'Google News / Intelligence',
-    user_handle: '@google_imd_intel',
-    hashtag: '#GoogleNews #Monsoon2026',
-    category: 'cyclone',
-    description: '[Google Disaster Watch] IMD Doppler Radar registers deep convective depression system moving towards eastern coastal belts.',
-    city: 'Bhubaneswar',
-    state: 'Odisha',
-    lat: 20.2961,
-    lon: 85.8245,
-    sentiment: 'critical',
-    urgency: 'high',
-    timestamp: new Date(Date.now() - 5 * 60 * 1000).toISOString()
-  },
-  {
-    id: 'soc-101',
-    source: 'social_media',
-    platform: 'X / Twitter',
-    user_handle: '@mumbaifloodwatch',
-    hashtag: '#MumbaiRains #IMD',
-    category: 'heavy_rain',
-    description: 'IMD issues Orange Alert for Mumbai, Thane and Palghar. Colaba recorded 68mm rainfall in last 3 hours. #MumbaiRains #IMD',
-    city: 'Mumbai',
-    state: 'Maharashtra',
-    lat: 19.0760,
-    lon: 72.8777,
-    sentiment: 'alert',
-    urgency: 'high',
-    timestamp: new Date(Date.now() - 8 * 60 * 1000).toISOString()
-  },
-  {
-    id: 'soc-imd-001',
-    source: 'official_imd',
-    platform: 'IMD Official',
-    user_handle: '@mausam_bhawan_official',
-    hashtag: '#IMD #OfficialAlert',
-    category: 'thunderstorm',
-    description: 'IMD National Weather Forecasting Centre: Severe thunderstorm with lightning and gusty winds (40-50 km/h) likely over Northwest India.',
-    city: 'New Delhi',
-    state: 'Delhi',
-    lat: 28.6139,
-    lon: 77.2090,
-    sentiment: 'alert',
-    urgency: 'high',
-    timestamp: new Date(Date.now() - 12 * 60 * 1000).toISOString()
-  },
-  {
-    id: 'soc-102',
-    source: 'social_media',
-    platform: 'X / Twitter',
-    user_handle: '@odisha_nowcast',
-    hashtag: '#CycloneAlert #IMD',
-    category: 'cyclone',
-    description: 'Depression over Bay of Bengal likely to intensify into Deep Depression. Coastal Odisha districts on high alert. #CycloneAlert #IMD',
-    city: 'Bhubaneswar',
-    state: 'Odisha',
-    lat: 20.2961,
-    lon: 85.8245,
-    sentiment: 'critical',
-    urgency: 'high',
-    timestamp: new Date(Date.now() - 18 * 60 * 1000).toISOString()
-  },
-  {
-    id: 'soc-103',
-    source: 'social_media',
-    platform: 'X / Twitter',
-    user_handle: '@delhi_weather_radar',
-    hashtag: '#DelhiWeather #IMD',
-    category: 'heatwave',
-    description: 'Safdarjung Observatory records max temp 43.4°C today. Heatwave warning extended for 48 hours. Drink plenty of water. #DelhiWeather #IMD',
-    city: 'New Delhi',
-    state: 'Delhi',
-    lat: 28.6139,
-    lon: 77.2090,
-    sentiment: 'alert',
-    urgency: 'medium',
-    timestamp: new Date(Date.now() - 32 * 60 * 1000).toISOString()
-  },
-  {
-    id: 'soc-104',
-    source: 'social_media',
-    platform: 'X / Twitter',
-    user_handle: '@chennai_rains_update',
-    hashtag: '#ChennaiRains #IMD',
-    category: 'thunderstorm',
-    description: 'Convective cloud bands moving across north coastal Tamil Nadu. Moderate to intense thunderstorms expected around evening. #ChennaiRains',
-    city: 'Chennai',
-    state: 'Tamil Nadu',
-    lat: 13.0827,
-    lon: 80.2707,
-    sentiment: 'info',
-    urgency: 'low',
-    timestamp: new Date(Date.now() - 44 * 60 * 1000).toISOString()
-  },
-  {
-    id: 'soc-105',
-    source: 'social_media',
-    platform: 'X / Twitter',
-    user_handle: '@himalaya_pulse',
-    hashtag: '#HimachalWeather #Cloudburst #IMD',
-    category: 'flood',
-    description: 'Heavy rainfall triggers landslide near Mandi-Kullu highway. Traffic diverted. Stay safe travellers. #HimachalWeather #IMD',
-    city: 'Mandi',
-    state: 'Himachal Pradesh',
-    lat: 31.5892,
-    lon: 76.9182,
-    sentiment: 'critical',
-    urgency: 'high',
-    timestamp: new Date(Date.now() - 65 * 60 * 1000).toISOString()
-  },
-  {
-    id: 'soc-106',
-    source: 'social_media',
-    platform: 'X / Twitter',
-    user_handle: '@kerala_rain_tracker',
-    hashtag: '#KeralaMonsoon #IMD',
-    category: 'heavy_rain',
-    description: 'Idukki and Wayanad ghat sections witness continuous torrential downpours. Dam shutters being monitored closely. #KeralaMonsoon #IMD',
-    city: 'Kochi',
-    state: 'Kerala',
-    lat: 9.9312,
-    lon: 76.2673,
-    sentiment: 'alert',
-    urgency: 'medium',
-    timestamp: new Date(Date.now() - 85 * 60 * 1000).toISOString()
-  }
-];
+// No mock or simulated demo data - live intelligence feed is populated directly from genuine multi-source backend
+const DEFAULT_SOCIAL_FEED = [];
 
 async function loadSocialStream() {
   const base = window.NWAWeather ? window.NWAWeather.getApiBaseUrl() : '';
   let posts = [];
+
+  const container = document.getElementById('socialPostsList');
+  if (container && (!container.children || container.children.length === 0 || container.querySelector('.empty-state-card'))) {
+    container.innerHTML = `
+      <div class="empty-state-card" style="margin: 1rem 0;">
+        <div class="empty-state-icon">
+          <i class="fa-solid fa-satellite-dish fa-spin" style="color: var(--accent-primary);"></i>
+        </div>
+        <div class="empty-state-title">Fetching Live Intelligence Stream...</div>
+        <p class="empty-state-desc">Ingesting real-time alerts and bulletins from IMD Official, Google News, UN GDACS, X, and Instagram...</p>
+      </div>
+    `;
+  }
 
   try {
     let url = `${base}/api/v1/social/stream`;
@@ -170,20 +39,10 @@ async function loadSocialStream() {
 
     const res = await fetch(url);
     if (!res.ok) throw new Error('Backend offline');
-    posts = await res.json();
+    const rawData = await res.json();
+    posts = Array.isArray(rawData) ? rawData : (rawData.posts || rawData.items || []);
   } catch (err) {
-    // Fallback to client-side feed
-    posts = [...DEFAULT_SOCIAL_FEED];
-    if (activePlatformFilter !== 'all') {
-      const pLow = activePlatformFilter.toLowerCase();
-      posts = posts.filter(i => (i.platform || '').toLowerCase().includes(pLow));
-    }
-    if (activeCategoryFilter !== 'all') {
-      posts = posts.filter(i => i.category === activeCategoryFilter);
-    }
-    if (activeHashtagFilter !== 'all') {
-      posts = posts.filter(i => i.hashtag.toLowerCase().includes(activeHashtagFilter.toLowerCase()));
-    }
+    posts = [];
   }
 
   renderSocialFeed(posts);
@@ -202,16 +61,30 @@ function renderSocialFeed(posts) {
   if (!container) return;
 
   if (!posts || posts.length === 0) {
+    const platformNames = {
+      imd: 'IMD Official Desk',
+      google: 'Google News RSS',
+      twitter: 'X / Twitter',
+      gdacs: 'UN GDACS Alerts',
+      instagram: 'Instagram'
+    };
+    const filterLabel = activePlatformFilter !== 'all' ? ` for ${platformNames[activePlatformFilter] || activePlatformFilter.toUpperCase()}` : '';
+
     container.innerHTML = `
       <div class="empty-state-card" style="margin: 1rem 0;">
         <div class="empty-state-icon">
-          <i class="fa-solid fa-tower-broadcast"></i>
+          <i class="fa-solid fa-cloud-sun"></i>
         </div>
-        <div class="empty-state-title">No Intelligence Signals Found</div>
-        <p class="empty-state-desc">No monitored Google News, Twitter, or IMD weather alert posts match the active filter criteria.</p>
-        <button type="button" class="btn btn-outline" onclick="window.NWASocial.resetSocialFilters()" style="margin-top: 0.5rem;">
-          <i class="fa-solid fa-rotate-left"></i> Reset Filter Feed
-        </button>
+        <div class="empty-state-title">No Intelligence Posts Found${filterLabel}</div>
+        <p class="empty-state-desc">No live signals match the currently selected filter. You can ingest the latest real-time signals or view all platform feeds.</p>
+        <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 0.5rem;">
+          <button type="button" class="btn btn-primary" onclick="window.NWASocial.fetchLiveSignals()">
+            <i class="fa-solid fa-rotate"></i> Ingest Live Signals Now
+          </button>
+          <button type="button" class="btn btn-outline" onclick="window.NWASocial.resetSocialFilters()">
+            <i class="fa-solid fa-filter-circle-xmark"></i> Show All Platforms
+          </button>
+        </div>
       </div>
     `;
     return;
@@ -231,41 +104,95 @@ function renderSocialFeed(posts) {
     const timeAgo = formatSocialTime(p.timestamp);
     const urgencyClass = `urgency-${p.urgency || 'medium'}`;
 
-    // Platform-specific icon and styling
+    // Platform-specific icon, styling and metadata
     let platformIcon = '<i class="fa-brands fa-x-twitter"></i>';
-    let platformName = p.platform || 'Social Feed';
+    let platformName = 'X / Twitter';
     let avatarBg = '#0f172a';
+    let sourceBadgeBg = 'rgba(15, 23, 42, 0.08)';
+    let sourceBadgeColor = '#0f172a';
+    let openLabel = 'Open on X';
+    let isImdOfficial = false;
 
-    const pLow = (p.platform || '').toLowerCase();
-    if (pLow.includes('google')) {
-      platformIcon = '<i class="fa-brands fa-google" style="color: #ffffff;"></i>';
-      platformName = 'Google News / Intelligence';
-      avatarBg = '#4285F4';
-    } else if (pLow.includes('imd')) {
+    const pLow = ((p.platform || '') + ' ' + (p.source || '') + ' ' + (p.user_handle || '')).toLowerCase();
+    if (pLow.includes('imd') || pLow.includes('indiametdept')) {
+      isImdOfficial = true;
       platformIcon = '<i class="fa-solid fa-satellite-dish" style="color: #ffffff;"></i>';
       platformName = 'IMD Official Desk';
       avatarBg = '#0284c7';
+      sourceBadgeBg = 'rgba(2, 132, 199, 0.14)';
+      sourceBadgeColor = '#0369a1';
+      openLabel = 'IMD Advisory';
+    } else if (pLow.includes('instagram')) {
+      platformIcon = '<i class="fa-brands fa-instagram" style="color: #ffffff;"></i>';
+      platformName = 'Instagram';
+      avatarBg = '#E1306C';
+      sourceBadgeBg = 'rgba(225, 48, 108, 0.12)';
+      sourceBadgeColor = '#C13584';
+      openLabel = 'Open on Instagram';
+    } else if (pLow.includes('gdacs') || pLow.includes('united nations')) {
+      platformIcon = '<i class="fa-solid fa-triangle-exclamation" style="color: #ffffff;"></i>';
+      platformName = 'UN GDACS Disaster Alert';
+      avatarBg = '#dc2626';
+      sourceBadgeBg = 'rgba(220, 38, 38, 0.12)';
+      sourceBadgeColor = '#b91c1c';
+      openLabel = 'View UN Alert';
+    } else if (pLow.includes('google')) {
+      platformIcon = '<i class="fa-solid fa-newspaper" style="color: #ffffff;"></i>';
+      platformName = 'Google News';
+      avatarBg = '#2563eb';
+      sourceBadgeBg = 'rgba(37, 99, 235, 0.12)';
+      sourceBadgeColor = '#1d4ed8';
+      openLabel = 'Read Article';
+    } else if (pLow.includes('twitter') || pLow.includes('x')) {
+      platformIcon = '<i class="fa-brands fa-x-twitter" style="color: #ffffff;"></i>';
+      platformName = 'X / Twitter';
+      avatarBg = '#0f172a';
+      sourceBadgeBg = 'rgba(15, 23, 42, 0.08)';
+      sourceBadgeColor = '#0f172a';
+      openLabel = 'Open on X';
     }
 
+    const extLink = p.external_url || p.link;
+    const linkBtn = extLink ? `
+      <a href="${escapeHtml(extLink)}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 11px; color: var(--accent-primary); text-decoration: none; font-weight: 600; padding: 2px 8px; border: 1px solid var(--border-color); border-radius: 4px; background: var(--bg-card); transition: all 0.2s;">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> ${openLabel}
+      </a>
+    ` : '';
+
+    const sevBadge = p.severity ? `
+      <span style="font-size: 0.7rem; padding: 2px 7px; border-radius: 4px; background: rgba(239, 68, 68, 0.15); color: #dc2626; font-weight: 700; border: 1px solid rgba(239, 68, 68, 0.3);">
+        <i class="fa-solid fa-circle-exclamation"></i> ${escapeHtml(p.severity)}
+      </span>
+    ` : '';
+
+    const verifiedBadge = isImdOfficial ? `
+      <span style="display: inline-flex; align-items: center; color: #0284c7; font-size: 0.85rem;" title="Official Government Verified Desk">
+        <i class="fa-solid fa-circle-check"></i>
+      </span>
+    ` : '';
+
     return `
-      <div class="social-post-card">
+      <div class="social-post-card" style="border-left: 4px solid ${avatarBg};">
         <div class="post-header">
           <div class="post-user">
-            <div class="post-avatar" style="background: ${avatarBg}; display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 6px;">${platformIcon}</div>
+            <div class="post-avatar" style="background: ${avatarBg}; display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 6px; flex-shrink: 0;">${platformIcon}</div>
             <div>
-              <div class="post-handle" style="display: flex; align-items: center; gap: 0.4rem;">
-                <span>${escapeHtml(p.user_handle)}</span>
-                <span style="font-size: 0.7rem; padding: 1px 6px; border-radius: 4px; background: rgba(255,255,255,0.06); border: 1px solid var(--border-color); font-weight: 500;">${platformName}</span>
+              <div class="post-handle" style="display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;">
+                <span style="font-weight: 600;">${escapeHtml(p.user_handle || '@official_feed')}</span>
+                ${verifiedBadge}
+                <span style="font-size: 0.7rem; padding: 1px 6px; border-radius: 4px; background: ${sourceBadgeBg}; color: ${sourceBadgeColor}; border: 1px solid var(--border-color); font-weight: 600;">${platformName}</span>
+                ${sevBadge}
               </div>
-              <div class="post-time">${timeAgo} • Inferred: ${escapeHtml(p.city)}, ${escapeHtml(p.state)}</div>
+              <div class="post-time" style="font-size: 0.75rem; color: var(--text-muted);">${timeAgo} • Inferred: ${escapeHtml(p.city || 'National')}, ${escapeHtml(p.state || 'India')}</div>
             </div>
           </div>
           <span class="category-tag cat-${p.category}">${catLabels[p.category] || p.category}</span>
         </div>
-        <p class="post-content">${highlightHashtags(escapeHtml(p.description))}</p>
-        <div class="post-badges">
+        <p class="post-content" style="line-height: 1.5; margin: 0.6rem 0;">${highlightHashtags(escapeHtml(p.description))}</p>
+        <div class="post-badges" style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
           <span class="category-meta-badge"><i class="fa-solid fa-tag"></i> ${catLabels[p.category]}</span>
           <span class="urgency-tag ${urgencyClass}">Urgency: ${(p.urgency || 'Medium').toUpperCase()}</span>
+          ${linkBtn}
           <button onclick="window.NWAApp.loadLocationWeather('${p.city}', '${p.state}', ${p.lat}, ${p.lon})" style="margin-left: auto; background: transparent; border: 1px solid var(--border-color); color: var(--accent-primary); border-radius: 4px; padding: 2px 8px; font-size: 11px; cursor: pointer;">
             <i class="fa-solid fa-compass"></i> View Station
           </button>
@@ -475,7 +402,8 @@ async function loadSocialStreamSilently() {
 
     const res = await fetch(url);
     if (res.ok) {
-      const posts = await res.json();
+      const rawData = await res.json();
+      const posts = Array.isArray(rawData) ? rawData : (rawData.posts || rawData.items || []);
       renderSocialFeed(posts);
       if (window.NWAMap && window.NWAMap.updateSocialMapMarkers) {
         window.NWAMap.updateSocialMapMarkers(posts);

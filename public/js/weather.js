@@ -88,8 +88,81 @@ function weatherApiCodeToWmo(code, text = '') {
   return 1;
 }
 
+function pm25ToAqi(pm25) {
+  if (pm25 == null || isNaN(pm25) || pm25 < 0) return null;
+  const c = Number(pm25);
+  if (c <= 12.0) return Math.round(((50 - 0) / (12.0 - 0)) * (c - 0) + 0);
+  if (c <= 35.4) return Math.round(((100 - 51) / (35.4 - 12.1)) * (c - 12.1) + 51);
+  if (c <= 55.4) return Math.round(((150 - 101) / (55.4 - 35.5)) * (c - 35.5) + 101);
+  if (c <= 150.4) return Math.round(((200 - 151) / (150.4 - 55.5)) * (c - 55.5) + 151);
+  if (c <= 250.4) return Math.round(((300 - 201) / (250.4 - 150.5)) * (c - 150.5) + 201);
+  if (c <= 350.4) return Math.round(((400 - 301) / (350.4 - 250.5)) * (c - 250.5) + 301);
+  return Math.min(500, Math.round(((500 - 401) / (500.4 - 350.5)) * (c - 350.5) + 401));
+}
+
+// User-specified AQI color scale:
+// 0-50 Green colour(Good)
+// 51-100 yelow colour(Moderate)
+// 101-150 orange (Unhealthy)
+// 151-200 red (Unhealthy)
+// 201-300 purple (very unhealthy)
+// 301-500+ maroon(Hazardous)
+function getAqiDetails(aqiValue) {
+  const aqi = Math.round(Number(aqiValue));
+  if (isNaN(aqi) || aqi <= 0) {
+    return { value: '--', category: 'Unknown', color: '#94a3b8' };
+  }
+  if (aqi <= 50) {
+    return { value: aqi, category: 'Good', color: '#10b981' }; // Green
+  } else if (aqi <= 100) {
+    return { value: aqi, category: 'Moderate', color: '#eab308' }; // Yellow
+  } else if (aqi <= 150) {
+    return { value: aqi, category: 'Unhealthy', color: '#f97316' }; // Orange
+  } else if (aqi <= 200) {
+    return { value: aqi, category: 'Unhealthy', color: '#ef4444' }; // Red
+  } else if (aqi <= 300) {
+    return { value: aqi, category: 'Very Unhealthy', color: '#a855f7' }; // Purple
+  } else {
+    return { value: aqi, category: 'Hazardous', color: '#881337' }; // Maroon
+  }
+}
+
+async function fetchRealtimeAQI(lat, lon) {
+  const base = getApiBaseUrl();
+  // 1. Try Backend API
+  try {
+    const resp = await fetch(`${base}/api/v1/weather/aqi?lat=${lat}&lon=${lon}`);
+    if (resp.ok) {
+      const data = await resp.json();
+      if (data && data.aqi != null) return data;
+    }
+  } catch (e) {}
+
+  // 2. Direct client fallback to Open-Meteo Air Quality
+  try {
+    const aqiUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=us_aqi,pm2_5,pm10`;
+    const resp = await fetch(aqiUrl);
+    if (resp.ok) {
+      const data = await resp.json();
+      const curr = data.current || {};
+      let val = curr.us_aqi != null ? Math.round(curr.us_aqi) : null;
+      if (val == null && curr.pm2_5 != null) {
+        val = pm25ToAqi(curr.pm2_5);
+      }
+      return {
+        aqi: val,
+        pm2_5: curr.pm2_5,
+        pm10: curr.pm10,
+        provider: 'open-meteo-air-quality'
+      };
+    }
+  } catch (e) {}
+
+  return null;
+}
+
 async function fetchFromWeatherApiDirect(lat, lon) {
-  const url = `https://api.weatherapi.com/v1/forecast.json?key=${WEATHERAPI_KEY}&q=${lat},${lon}&days=4&aqi=no&alerts=no`;
+  const url = `https://api.weatherapi.com/v1/forecast.json?key=${WEATHERAPI_KEY}&q=${lat},${lon}&days=4&aqi=yes&alerts=no`;
   const resp = await fetch(url);
   if (!resp.ok) {
     throw new Error(`WeatherAPI returned status ${resp.status}`);
@@ -97,6 +170,11 @@ async function fetchFromWeatherApiDirect(lat, lon) {
   const data = await resp.json();
   const c = data.current || {};
   const forecastDays = data.forecast?.forecastday || [];
+
+  let aqiVal = null;
+  if (c.air_quality && c.air_quality.pm2_5 != null) {
+    aqiVal = pm25ToAqi(c.air_quality.pm2_5);
+  }
 
   const current = {
     temperature: c.temp_c,
@@ -111,6 +189,8 @@ async function fetchFromWeatherApiDirect(lat, lon) {
     sunrise: forecastDays[0]?.astro?.sunrise || null,
     sunset: forecastDays[0]?.astro?.sunset || null,
     visibility: c.vis_km || 10,
+    aqi: aqiVal,
+    air_quality: c.air_quality || null,
     provider: 'weatherapi.com'
   };
 
@@ -123,7 +203,7 @@ async function fetchFromWeatherApiDirect(lat, lon) {
     feels_like_min: fd.day?.mintemp_c,
     humidity: fd.day?.avghumidity || 65,
     precipitation_sum: fd.day?.totalprecip_mm || 0,
-    precipitation_probability: fd.day?.daily_chance_of_rain || (fd.day?.totalprecip_mm > 0 ? 80 : 20),
+    precipitation_probability: fd.day?.daily_chance_of_rain != null ? Number(fd.day.daily_chance_of_rain) : (fd.day?.totalprecip_mm > 0 ? Math.min(100, Math.round(fd.day.totalprecip_mm * 25 + 20)) : 0),
     wind_speed_max: fd.day?.maxwind_kph,
     wind_direction: 90,
     uv_index_max: fd.day?.uv,
@@ -150,6 +230,15 @@ async function fetchFromWeatherApiDirect(lat, lon) {
     humidity: useHours.map(h => h.humidity)
   };
 
+  const hourly_all = {
+    times: allHours.map(h => h.time),
+    temperatures: allHours.map(h => h.temp_c),
+    rain: allHours.map(h => h.precip_mm || 0),
+    wind: allHours.map(h => h.wind_kph),
+    humidity: allHours.map(h => h.humidity)
+  };
+  hourly.all = hourly_all;
+
   return {
     latitude: data.location?.lat ?? lat,
     longitude: data.location?.lon ?? lon,
@@ -158,6 +247,7 @@ async function fetchFromWeatherApiDirect(lat, lon) {
     current,
     forecast,
     hourly,
+    hourly_all,
     cached: false,
     provider: 'weatherapi.com'
   };
@@ -191,13 +281,34 @@ async function fetchCompleteWeather(lat, lon) {
 
   // Tier 2: Automatic Direct Client Fallback to Open-Meteo
   try {
-    const directUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_sum,precipitation_probability_max,windspeed_10m_max,winddirection_10m_dominant,sunrise,sunset,uv_index_max,relative_humidity_2m_mean&hourly=temperature_2m,rain,wind_speed_10m,relative_humidity_2m&forecast_days=10&timezone=Asia/Kolkata`;
+    const directUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_sum,precipitation_probability_max,windspeed_10m_max,winddirection_10m_dominant,sunrise,sunset,uv_index_max,relative_humidity_2m_mean&hourly=temperature_2m,apparent_temperature,precipitation,rain,weathercode,surface_pressure,relative_humidity_2m,wind_speed_10m,uv_index&forecast_days=16&timezone=Asia/Kolkata`;
+    const aqiUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=us_aqi,pm2_5,pm10`;
 
-    const resp = await fetch(directUrl);
+    const [resp, aqiResp] = await Promise.all([
+      fetch(directUrl),
+      fetch(aqiUrl).catch(() => null)
+    ]);
+
     if (!resp.ok) {
       throw new Error(`Open-Meteo HTTP ${resp.status}`);
     }
     const data = await resp.json();
+
+    let liveAqi = null;
+    let livePm25 = null;
+    let livePm10 = null;
+    if (aqiResp && aqiResp.ok) {
+      try {
+        const aqiJson = await aqiResp.json();
+        const aqiCurr = aqiJson.current || {};
+        liveAqi = aqiCurr.us_aqi != null ? Math.round(aqiCurr.us_aqi) : null;
+        livePm25 = aqiCurr.pm2_5 != null ? aqiCurr.pm2_5 : null;
+        livePm10 = aqiCurr.pm10 != null ? aqiCurr.pm10 : null;
+        if (liveAqi == null && livePm25 != null) {
+          liveAqi = pm25ToAqi(livePm25);
+        }
+      } catch (_) {}
+    }
 
     const currentRaw = data.current || {};
     const dailyRaw = data.daily || {};
@@ -216,6 +327,9 @@ async function fetchCompleteWeather(lat, lon) {
       sunrise: dailyRaw.sunrise ? dailyRaw.sunrise[0] : null,
       sunset: dailyRaw.sunset ? dailyRaw.sunset[0] : null,
       visibility: 10,
+      aqi: liveAqi,
+      pm2_5: livePm25,
+      pm10: livePm10,
       provider: 'open-meteo'
     };
 
@@ -226,7 +340,9 @@ async function fetchCompleteWeather(lat, lon) {
       const tMin = dailyRaw.temperature_2m_min ? dailyRaw.temperature_2m_min[i] : 24;
       const fMax = dailyRaw.apparent_temperature_max ? dailyRaw.apparent_temperature_max[i] : (tMax ? tMax + 3 : 33);
       const fMin = dailyRaw.apparent_temperature_min ? dailyRaw.apparent_temperature_min[i] : tMin;
-      const rainProb = dailyRaw.precipitation_probability_max ? dailyRaw.precipitation_probability_max[i] : (dailyRaw.precipitation_sum && dailyRaw.precipitation_sum[i] > 0 ? 80 : 20);
+      const rainProb = (dailyRaw.precipitation_probability_max && dailyRaw.precipitation_probability_max[i] != null)
+        ? Math.round(dailyRaw.precipitation_probability_max[i])
+        : (dailyRaw.precipitation_sum && dailyRaw.precipitation_sum[i] > 0 ? Math.min(100, Math.round(dailyRaw.precipitation_sum[i] * 20 + 20)) : 0);
 
       forecast.push({
         date: days[i],
@@ -247,7 +363,9 @@ async function fetchCompleteWeather(lat, lon) {
     }
 
     const now = new Date();
-    const currentHourStr = now.toISOString().slice(0, 13);
+    const dateStr = now.toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
+    const hourStr = now.toLocaleTimeString('en-GB', { timeZone: 'Asia/Kolkata', hour: '2-digit', hour12: false });
+    const currentHourStr = `${dateStr}T${hourStr}`;
     let startIdx = 0;
     if (hourlyRaw.time) {
       const idx = hourlyRaw.time.findIndex(t => t >= currentHourStr);
@@ -257,10 +375,29 @@ async function fetchCompleteWeather(lat, lon) {
     const hourly = {
       times: (hourlyRaw.time || []).slice(startIdx, startIdx + 24),
       temperatures: (hourlyRaw.temperature_2m || []).slice(startIdx, startIdx + 24),
+      apparent_temperatures: (hourlyRaw.apparent_temperature || []).slice(startIdx, startIdx + 24),
       rain: (hourlyRaw.rain || []).slice(startIdx, startIdx + 24),
+      precipitation: (hourlyRaw.precipitation || []).slice(startIdx, startIdx + 24),
+      weathercodes: (hourlyRaw.weathercode || []).slice(startIdx, startIdx + 24),
+      pressures: (hourlyRaw.surface_pressure || []).slice(startIdx, startIdx + 24),
       wind: (hourlyRaw.wind_speed_10m || []).slice(startIdx, startIdx + 24),
-      humidity: (hourlyRaw.relative_humidity_2m || []).slice(startIdx, startIdx + 24)
+      humidity: (hourlyRaw.relative_humidity_2m || []).slice(startIdx, startIdx + 24),
+      uv_index: (hourlyRaw.uv_index || []).slice(startIdx, startIdx + 24)
     };
+
+    const hourly_all = {
+      times: hourlyRaw.time || [],
+      temperatures: hourlyRaw.temperature_2m || [],
+      apparent_temperatures: hourlyRaw.apparent_temperature || [],
+      rain: hourlyRaw.rain || [],
+      precipitation: hourlyRaw.precipitation || [],
+      weathercodes: hourlyRaw.weathercode || [],
+      pressures: hourlyRaw.surface_pressure || [],
+      wind: hourlyRaw.wind_speed_10m || [],
+      humidity: hourlyRaw.relative_humidity_2m || [],
+      uv_index: hourlyRaw.uv_index || []
+    };
+    hourly.all = hourly_all;
 
     currentApiMode = 'direct';
     updateApiStatusBadge('direct', false);
@@ -274,6 +411,7 @@ async function fetchCompleteWeather(lat, lon) {
       current,
       forecast,
       hourly,
+      hourly_all,
       cached: false,
       provider: 'open-meteo'
     };
@@ -471,16 +609,82 @@ async function fetchHourlyWeather(lat, lon) {
   return { hourly: full.hourly };
 }
 
+/**
+ * Fetch 24-Hour hourly weather for any custom date
+ */
+async function fetchHourlyForDate(lat, lon, dateStr) {
+  const base = getApiBaseUrl();
+
+  // Tier 1: Try NWA Backend API
+  try {
+    const res = await fetch(`${base}/api/v1/weather/hourly-date?lat=${lat}&lon=${lon}&date=${dateStr}`);
+    if (res.ok) {
+      const data = await res.json();
+      return data;
+    }
+  } catch (e) {
+    console.warn('Backend hourly-date endpoint unreachable, falling back to direct Open-Meteo:', e.message);
+  }
+
+  // Tier 2: Direct Open-Meteo archive or forecast fallback
+  try {
+    const now = new Date();
+    const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    const isPastDate = dateStr < todayStr;
+
+    const apiUrl = isPastDate
+      ? `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lon}&start_date=${dateStr}&end_date=${dateStr}&hourly=temperature_2m,apparent_temperature,precipitation,rain,weathercode,surface_pressure,relative_humidity_2m,wind_speed_10m&timezone=Asia/Kolkata`
+      : `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&start_date=${dateStr}&end_date=${dateStr}&hourly=temperature_2m,apparent_temperature,precipitation,rain,weathercode,surface_pressure,relative_humidity_2m,wind_speed_10m,uv_index&timezone=Asia/Kolkata`;
+
+    const resp = await fetch(apiUrl);
+    if (!resp.ok) {
+      throw new Error(`Open-Meteo direct returned HTTP ${resp.status}`);
+    }
+    const data = await resp.json();
+    const hourlyRaw = data.hourly || {};
+
+    const hourly = {
+      times: hourlyRaw.time || [],
+      temperatures: hourlyRaw.temperature_2m || [],
+      apparent_temperatures: hourlyRaw.apparent_temperature || [],
+      rain: hourlyRaw.rain || [],
+      precipitation: hourlyRaw.precipitation || [],
+      weathercodes: hourlyRaw.weathercode || [],
+      pressures: hourlyRaw.surface_pressure || [],
+      wind: hourlyRaw.wind_speed_10m || [],
+      humidity: hourlyRaw.relative_humidity_2m || [],
+      uv_index: hourlyRaw.uv_index || []
+    };
+
+    return {
+      latitude: lat,
+      longitude: lon,
+      date: dateStr,
+      retrieved_at: new Date().toISOString(),
+      hourly,
+      provider: isPastDate ? 'open-meteo-archive' : 'open-meteo',
+      cached: false
+    };
+  } catch (err) {
+    console.error('Failed to fetch hourly weather for date directly:', err);
+    throw err;
+  }
+}
+
 window.NWAWeather = {
   getWmoInfo,
   getWindDirection,
   getUvRating,
+  getAqiDetails,
+  pm25ToAqi,
+  fetchRealtimeAQI,
   getApiBaseUrl,
   fetchCompleteWeather,
   fetchFromWeatherApiDirect,
   fetchCurrentWeather,
   fetchForecastWeather,
   fetchHourlyWeather,
+  fetchHourlyForDate,
   searchLocations,
   reverseGeocode
 };
