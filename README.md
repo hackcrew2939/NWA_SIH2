@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ⛈️ NWA Platform — National Weather Big Data Analytics & Early Warning Platform
 
 > **Smart India Hackathon (SIH) Solution**  
@@ -120,3 +121,6 @@ Access the platform at `http://localhost`.
 
 ## 📄 License
 ISC License — Developed for National Meteorological Intelligence & Early Warning Research.
+=======
+# NWA_SIH2
+>>>>>>> cf6795a2972620ada6a533a9d4247265dde1b39c
