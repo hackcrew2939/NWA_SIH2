@@ -1,14 +1,17 @@
 {
   "name": "sih-weather_69",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "National Weather Analytics Platform",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "start:cluster": "node cluster.js",
     "docker:build": "docker build -t nwa-platform:2.4.0 .",
     "docker:up": "docker compose up -d",
     "test": "node test_checklist.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   },
   "keywords": [],
   "author": "",

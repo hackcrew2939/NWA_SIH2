@@ -45,16 +45,18 @@ function broadcastStreamEvent(type, payload = {}) {
   }
 }
 
-// SSE Keep-Alive Heartbeat every 15 seconds
-setInterval(() => {
-  for (const client of sseClients) {
-    try {
-      client.res.write(':keepalive\n\n');
-    } catch (e) {
-      sseClients.delete(client);
+// SSE Keep-Alive Heartbeat every 15 seconds (only when running long-lived Node process)
+if (!process.env.VERCEL) {
+  setInterval(() => {
+    for (const client of sseClients) {
+      try {
+        client.res.write(':keepalive\n\n');
+      } catch (e) {
+        sseClients.delete(client);
+      }
     }
-  }
-}, 15000);
+  }, 15000);
+}
 
 // ----------------------------------------------------
 // Big Data Large-Scale Stream Ingestion Pipeline (Phase 4, FR-10 to FR-12)
@@ -79,8 +81,10 @@ class StreamIngestionBuffer {
       { id: 3, name: 'partition-3-west', depth: 0, lagMs: 3 }
     ];
 
-    // Periodic worker to process stream batches asynchronously
-    this.workerTimer = setInterval(() => this.flushBatch(), this.flushIntervalMs);
+    // Periodic worker to process stream batches asynchronously (only in full server mode)
+    if (!process.env.VERCEL) {
+      this.workerTimer = setInterval(() => this.flushBatch(), this.flushIntervalMs);
+    }
   }
 
   setConnector(connectorName) {

@@ -6,9 +6,25 @@
 
 const fs = require('fs');
 const path = require('path');
-const { DatabaseSync } = require('node:sqlite');
 
-const DB_PATH = path.join(__dirname, 'nwa_analytics.sqlite');
+let DatabaseSync = null;
+try {
+  DatabaseSync = require('node:sqlite').DatabaseSync;
+} catch (e) {
+  console.warn('node:sqlite module not available in this Node runtime:', e.message);
+}
+
+const isVercel = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+const LOCAL_DB_PATH = path.join(__dirname, 'nwa_analytics.sqlite');
+const DB_PATH = isVercel ? path.join('/tmp', 'nwa_analytics.sqlite') : LOCAL_DB_PATH;
+
+if (isVercel && fs.existsSync(LOCAL_DB_PATH) && !fs.existsSync(DB_PATH)) {
+  try {
+    fs.copyFileSync(LOCAL_DB_PATH, DB_PATH);
+  } catch (err) {
+    console.warn('Could not copy sqlite DB to /tmp:', err.message);
+  }
+}
 
 let dbInstance = null;
 
@@ -20,13 +36,16 @@ function getDb() {
 }
 
 function initDatabase() {
+  if (!DatabaseSync) return null;
   try {
     dbInstance = new DatabaseSync(DB_PATH);
 
     // Performance optimizations: WAL mode for high concurrency
-    dbInstance.exec('PRAGMA journal_mode = WAL;');
-    dbInstance.exec('PRAGMA synchronous = NORMAL;');
-    dbInstance.exec('PRAGMA foreign_keys = ON;');
+    try {
+      dbInstance.exec('PRAGMA journal_mode = WAL;');
+      dbInstance.exec('PRAGMA synchronous = NORMAL;');
+      dbInstance.exec('PRAGMA foreign_keys = ON;');
+    } catch (e) {}
 
     // 1. Citizen Reports Table
     dbInstance.exec(`
@@ -200,6 +219,7 @@ function migrateFromLegacyJson(jsonFilePath) {
 
 function getAllReports(filters = {}) {
   const db = getDb();
+  if (!db) return [];
   let sql = 'SELECT * FROM citizen_reports WHERE 1=1';
   const params = [];
 
@@ -255,6 +275,7 @@ function getAllReports(filters = {}) {
 
 function getReportCount(filters = {}) {
   const db = getDb();
+  if (!db) return 0;
   let sql = 'SELECT COUNT(*) AS total FROM citizen_reports WHERE 1=1';
   const params = [];
 
@@ -278,6 +299,7 @@ function getReportCount(filters = {}) {
 
 function insertReport(report) {
   const db = getDb();
+  if (!db) return report;
   const stmt = db.prepare(`
     INSERT OR REPLACE INTO citizen_reports (
       id, source, category, location, state, lat, lon, description,
@@ -501,6 +523,20 @@ function getDatabaseStats() {
     const stats = fs.statSync(DB_PATH);
     fileSize = stats.size;
   } catch (e) {}
+
+  if (!db) {
+    return {
+      engine: 'Serverless Storage Engine',
+      architecture: 'Vercel Serverless Memory State',
+      journalMode: 'MEMORY',
+      databasePath: DB_PATH,
+      sizeBytes: fileSize,
+      sizeFormatted: `${(fileSize / 1024).toFixed(1)} KB`,
+      tables: { citizen_reports: { rows: 0 }, weather_alerts: { rows: 0 }, social_stream: { rows: 0 } },
+      totalRecords: 0,
+      status: 'ACTIVE (Vercel Serverless Mode)'
+    };
+  }
 
   const repCount = db.prepare('SELECT COUNT(*) AS c FROM citizen_reports').get()?.c || 0;
   const alertCount = db.prepare('SELECT COUNT(*) AS c FROM weather_alerts').get()?.c || 0;
